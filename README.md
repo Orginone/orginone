@@ -62,18 +62,38 @@ Orginone主要聚焦以下四个方面能力的集成：
 
 ## 如何参与项目
 
+### 概述
 Orginone采用开放、开源共建模式，避免重复造轮子，以持续迭代，不断演进的模式，完善公共平台的建设。引入开放社区治理模式，保障平台的开放和中心，建设成果以开放或开源模式输出，鼓励在公共平台基础上开展商业服务，以市场化竞争方式提高资源效率，降低社会运行成本。
 
 Orginone对kubernetes能力封装基于[kubevela](https://github.com/oam-dev/kubevela)，应用层开发基于[go-zero](https://github.com/tal-tech/go-zero)。
 
 正式进入实际开发之前，需要做一些准备工作，比如：熟悉kubernetes和kubevela，Go环境的安装，grpc代码生成使用的工具安装， 必备工具Goctl的安装，Golang环境配置等,熟悉go-zero中的编码规范
 
+### 议事规则
+
+设立三级组织
+
+- PMC 
+
+对于有矛盾的议题进行最终仲裁。
+
+- 维护者
+ 
++ 决定项目方向、功能、发布新版本; 
++ 拥有pr合并及拒绝的权利。
++ 维护者会议就分歧议题采用半数通过投票。
+
+- 贡献者
+
++ 提交pr，批准pr的权利；
++ 新功能提案的权利。
+ 
+此外:维护者会根据贡献者和开发者的机构来源，周期性进行公示
+
+
 ### 奥集能官网
 
-
 https://www.orginone.cn
-
-前端项目后期开源。
 
 ### 开发流程
 
@@ -90,10 +110,11 @@ https://www.orginone.cn
 > 业务代码填充   
 > 错误处理   
 
+
 ### 工程介绍
 
 #### 一、服务介绍
-
+<!--
     ms为服务主要逻辑需求
     apigw 路由入口此处配有负载均衡,降级,熔断,鉴权等
     user-ms 用户相关服务
@@ -108,7 +129,6 @@ https://www.orginone.cn
     staging 测试环境分支,对应云服务器测试环境,建议不要直接在次分支编写代码而是merge develop分支,合并之前确定develop能run 
     develop 代码编写分支, 次分支解决冲突日常代码编写提交,本地自测相对稳定想发布测试请merge 到staging 分支
 
-#### 项目进展随时同步在本文档。 问题交流。   
 
 
 #### 示例代码 
@@ -121,3 +141,4 @@ etc/user-api.yaml文件中配置好数据库，在user目录下面执行
 ```
 go run cmd/api/user.go -f cmd/api/etc/user-api.yaml
 ```
+-->
