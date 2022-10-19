@@ -1,4 +1,4 @@
-# Orginone 
+# 欢迎来到 Orginone 
 
 > Org-in-one 英文发音[ˈɔːdʒɪnʌn]，中文:奥集能
 
