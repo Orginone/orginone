@@ -66,7 +66,7 @@ Orginone采用开放、开源共建模式，避免重复造轮子，以持续迭
 
 Orginone对kubernetes能力封装基于[kubevela](https://github.com/oam-dev/kubevela)，应用层开发基于[go-zero](https://github.com/tal-tech/go-zero)。
 
-正式进入实际开发之前，需要做一些准备工作，比如：熟悉kubernetes和kubevela，Go环境的安装，grpc代码生成使用的工具安装，必备工具Goctl的安装，Golang环境配置等,熟悉go-zero中的编码规范以及内部中间件的配置信息规则
+正式进入实际开发之前，需要做一些准备工作，比如：熟悉kubernetes和kubevela，Go环境的安装，grpc代码生成使用的工具安装，必备工具Goctl的安装，Golang环境配置等,熟悉go-zero中的编码规范
 
 ### 奥集能官网
 
