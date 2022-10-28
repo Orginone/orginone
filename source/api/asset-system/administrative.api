@@ -1,0 +1,25 @@
+//行政区划管理
+
+@server(
+   jwt: Auth
+   group: administrative
+   prefix: /asset-system/administrative
+)
+
+service system-api {
+    //分页--use
+    @handler listAll
+    get /listAll(ListAllReq) returns (CommonResponse)
+    //删除--use
+    @handler removeByIds
+    post /removeByIds(RemoveByIdsReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq) returns (CommonResponse)
+    //tree--use
+    @handler tree
+    get /tree(Nil) returns (CommonResponse)
+    //treeV2--use
+    @handler treeV2
+    get /treeV2(Nil) returns (CommonResponse)
+}

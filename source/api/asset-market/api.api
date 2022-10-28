@@ -1,0 +1,13 @@
+//市场应用角色
+
+@server(
+   jwt: Auth
+   group: api
+   prefix: /asset-market/api
+)
+
+service market-api {
+    //list
+    @handler rolelist
+    get /role/list(Nil) returns (CommonResponse)
+}

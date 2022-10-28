@@ -1,0 +1,340 @@
+syntax = "proto3";
+package market;
+option go_package = "./market";
+
+message Nil{
+    
+}
+
+message PageRequest {
+    int64 limit = 1;
+    int64 offset = 2;
+    bool searchCount = 3;
+    string filter = 4;
+}
+
+message CommonRpcRes{
+    //返回数据JSON
+    string json = 1;
+}
+
+message CommonRpcReq{
+    //请求数据JSON
+    string json = 1; 
+}
+
+message PrimaryKeyReq{
+    //主键Id
+    int64 id = 1;
+    //租户编号
+    string tenantCode = 2;
+}
+
+message TenantPurchaseReq{
+    //租户编号
+    string tenantCode = 1;
+    //应用名称
+    string appName = 2;
+    //分页参数
+    PageRequest page = 3;
+}
+ 
+message GroupPurchaseReq{
+    //集团Id
+    int64 GroupId = 1;
+    //应用名称
+    string appName = 2;
+    //分页参数
+    PageRequest page = 3;
+}
+ 
+message MarketAppReq{
+    //销售状态
+    repeated int64 saleStatus = 1;
+    //应用名称
+    string appName = 2;
+    //分页参数
+    PageRequest page = 3;
+    //审核状态：0-注册申请，1-注册通过，2-注册拒绝，3-部署申请，4-部署通过，5-部署拒绝，6-发布申请，7-发布通过，8-发布拒绝
+    repeated int64 status = 4;
+    //目标用户：1-个人，2-单位，3-集团
+    repeated int64 targetUser = 5 ;
+    //组织id
+    int64 groupId = 6;
+    //租户ID
+    string tenantId = 7;
+    //租户编号
+    string tenantCode = 8;
+}
+
+message GetRedeployReq{
+    //标识
+    repeated int64 status = 1;
+    //应用名称
+    string appName = 2;
+    //分页参数
+    PageRequest page = 3;
+}
+
+message FindMarkAppNoticeListReq{
+    //集团或单位
+    int64 groupOrUnit = 1;
+    //标题
+    string noticeTitle = 2;
+    //分页参数
+    PageRequest page = 3;
+}
+
+message UpdateMarkAppNoticesStatusReq{
+    //通知ID
+    int64 notoceId = 1;
+    //通知状态
+    int64 noticeStatus = 2; 
+    //是否删除
+    int64 IsDeleted=3;
+}
+
+message MarkAppNoticeIdsReq{
+    //通知IDs
+    repeated  int64 notoceIds = 1; 
+}
+
+message GroupPurchaseAppReq{
+    //集团Id
+    int64 groupId = 1;
+    //应用Id
+    int64 appId = 2;
+    //应用名称
+    string unitName = 3;
+    //分页参数
+    PageRequest page = 4;
+}
+
+
+message GroupAppByIdReq{
+    //集团Id
+    int64 groupId = 1;
+    //应用Id
+    int64 appId = 2;
+}
+
+message unitAppUnsubscribeReq{
+    //应用Id数组
+    repeated int64 appIds = 1;
+    //租户编号
+    string tenantCode = 2;
+}
+
+message groupAppUnsubscribeReq{
+    //集团Id
+    int64 groupId = 1;
+    //应用Id数组
+    repeated int64 appIds = 2;
+    //租户编号
+    string tenantCode = 3;
+}
+
+
+message AppLinkReq{
+    //应用Id
+    int64 appId = 1;
+    //分页参数
+    PageRequest page = 2;
+}
+
+message UnitAppPurchasReq{
+    //应用Id
+    int64 appId = 1;
+    //租户编号
+    string tenantCode = 2;
+}
+
+message GroupAppPurchasReq{
+    //应用Id
+    int64 appId = 1;
+    //集团Id
+    repeated int64 groupIds = 2;
+}
+
+message AppPurchasConfigReq{
+    //应用Id
+    int64 appId = 1;
+    //租户编号
+    string tenantCode = 2;
+}
+
+message AppOnOrOffSaleReq{
+    //操作 0:下架,1:上架
+    int64 flag = 1;
+    //应用Id
+    repeated int64 appIds = 2;
+}
+
+message DeleteAppReq{
+    //应用Id
+    int64 appId = 1;
+    //是否强制删除
+    bool removeAdmin = 2;
+}
+
+message AppDeployReq {
+    //应用Id
+    int64 appId = 1;
+}
+
+message AppCancelApplyReq {
+    //应用Id
+    repeated int64 appIds = 1;
+}
+
+
+message AppRoleDistribeReq {
+    //角色ID
+	int64 roleId = 1;
+    //岗位IDs
+	repeated int64 jobIds = 2;
+    //部门IDs
+	repeated int64 agencyIds = 3;
+    //用户IDs
+	repeated int64 userIds = 4;
+}
+
+message AppRoleDistribeRpcReq{
+    //租户编号
+    string tenantCode = 1;
+    //分配数据
+    repeated AppRoleDistribeReq data = 2;
+}
+
+message GetAppRoleDistribeReq{
+    //应用Id
+    int64 appId = 1;
+    //租户编号
+    string tenantCode = 2;
+}
+
+message GetUserAppIdsReq{
+    //用户Id
+    int64 userId = 1;
+}
+
+message GetComponmentReq{
+    //操作标记
+    int64 flag = 1;
+    //分页数据
+    PageRequest page = 2;
+}
+
+message GetUserTemplateReq {
+    //用户Id
+    int64 userId = 1;
+    //分页数据
+    PageRequest page = 2;
+}
+
+message GetUserTemplateIdReq {
+    //用户Id
+    int64 userId = 1;
+}
+
+message UpdateMarketAppNoticeReq {
+    //通知Id
+    int64 id = 1;
+    //集团或租户
+    int64 groupOrUnit = 2;
+    //通知内容
+    string noticeContent = 3;
+    //通知发布状态
+    int64 noticeReleaseStatus = 4;
+    //发布方
+    string noticeReleaseUnitId = 5;
+    //发布对象角色
+    string noticeRoleIds = 6;
+    //发布对象单位
+    string noticeUnitIds = 7;
+    //标题
+    string noticeTitle = 8; 
+}
+
+message MarketappcomponenttemplateListReq{
+    //名称
+    string name = 1;
+    //状态
+    int64 status = 2;
+    //分页参数
+    PageRequest page = 3;
+}
+
+message MarketAppUnitCancelDistributeReq{
+    //应用id
+    int64 appId = 1;
+    //租户id
+    string tenantId = 2;
+    //集团id
+    int64 groupId = 3;
+}
+
+message GetUsedAppMenuReq{
+    //用户id
+    int64 userId = 1;
+}
+
+message ApiRoleLitReq{
+    //应用id    
+    int64 appId = 1;
+}
+
+message RemoveByRelationReq{
+    //应用id
+    int64 appId = 1;
+    //用户id
+    int64 userId = 2;
+}
+
+message SortUsedAppReq{
+    //应用idList
+    repeated int64 appIdList = 1;
+    //用户id
+    int64 userId = 2;
+}
+
+message SubmitMarketUsedAppReq{
+    //id
+    int64 id = 1;
+    //用户id
+    int64 userId = 2;		 
+    //应用id
+    int64 appId = 3;		 
+    //排序号
+    int64 sort = 4;		  
+} 
+
+message FindMarketAppCheckListReq{
+    //App名称
+    string appName = 1;
+    //类型
+    int64 Type = 2;		 
+    //应用id
+    PageRequest page = 3;	 
+} 
+
+message CheckRedeployReq{
+    //是否通过
+    bool pass = 1;
+    //
+    repeated int64 redeployIds = 2;		  
+}
+
+message AppCheckReq{
+    //状态
+    bool status = 1;
+    //APP Ids
+    repeated int64 appIds = 2;
+}
+
+message CheckRoleReq{
+    //状态
+    int64 appId = 1;
+    //APP Ids
+    string roleName = 2;
+}

@@ -1,0 +1,64 @@
+//it-ops-controller
+
+@server(
+   jwt: Auth
+   group: itops
+   prefix: /blade-system/itops
+)
+
+service user-api {
+    //全局扫描并自动修复
+    @handler allitops
+    post /allitops(Nil) returns (CommonResponse)
+    //全局扫描并需要手工修复的（以租户为单元的）
+    @handler alltenantitops
+    post /alltenantitops(Nil) returns (CommonResponse)
+    //全局扫描并需要手工修复的（以用户为单元的）
+    @handler alluseritops
+    post /alluseritops(Nil) returns (CommonResponse)
+    //删除租户
+    @handler deletetenant
+    post /deletetenant(DeletetenantReq) returns (CommonResponse)
+    //得到所有扫描表
+    @handler getallitops
+    get /getallitops(Nil) returns (CommonResponse)
+    //根据扫描表得到所有修复记录
+    @handler getallitopsdetail
+    get /getallitopsdetail(GetallitopsdetailReq) returns (CommonResponse)
+    //获取需要修复的租户列表
+    @handler getalltenantitops
+    get /getalltenantitops(Nil) returns (CommonResponse)
+    //获取需要修复的用户列表
+    @handler getalluseritops
+    get /getalluseritops(Nil) returns (CommonResponse)
+    //得到多个手机号（根据userid)
+    @handler getmultiphone
+    get /getmultiphone(GetmultiphoneReq) returns (CommonResponse)
+    //得到多个超级管理员
+    @handler getmultisupermanager
+    get /getmultisupermanager(GetmultisupermanagerReq) returns (CommonResponse)
+    //得到多个租户（根据phone_number)
+    @handler getmultitenant
+    get /getmultitenant(GetmultitenantReq) returns (CommonResponse)
+    //得到多个用户名（根据userid)
+    @handler getmultiusername
+    get /getmultiusername(GetmultiusernameReq) returns (CommonResponse)
+    //得到租户具体信息
+    @handler gettenant
+    get /gettenant(GettenantReq) returns (CommonResponse)
+    //租户人员数据导入
+    @handler importtenantuser
+    post /import/tenantuser(ImportTenantuserReq) returns (CommonResponse)
+    //修复一个单位中有多少超级管理员的
+    @handler modifysupermanager
+    post /modifysupermanager(ModifysupermanagerReq) returns (CommonResponse)
+    //修复一个用户中有多个密码的
+    @handler modifyuser
+    post /modifyuser(ModifyuserReq) returns (CommonResponse)
+    //修复用户和人员表中名字不一致的
+    @handler modifyusername
+    post /modifyusername(ModifyusernameReq) returns (CommonResponse)
+    //修复用户和人员表中手机号不一致的
+    @handler modifyuserphone
+    post /modifyuserphone(ModifyuserphoneReq) returns (CommonResponse)
+}

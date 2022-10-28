@@ -1,0 +1,28 @@
+//数据源管理
+
+@server(
+   jwt: Auth
+   group: datasource
+   prefix: /asset-system/v1/datasource
+)
+
+service system-api {
+    //删除
+    @handler apiverification
+    post /api/verification(ApiVerificationReq) returns (CommonResponse)
+    //详情
+    @handler detail
+    get /detail(DetailReq1) returns (CommonResponse)
+    //列表
+    @handler list
+    get /list(ListReq4) returns (CommonResponse)
+    //列表
+    @handler listperscene
+    get /list-per-scene(ListPerSceneReq) returns (CommonResponse)
+    //删除
+    @handler remove
+    delete /remove(RemoveReq6) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq8) returns (CommonResponse)
+}

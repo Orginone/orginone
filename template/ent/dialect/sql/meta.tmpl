@@ -1,0 +1,86 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Type */}}
+
+{{/* constants needed for sql dialects. */}}
+{{ define "dialect/sql/meta/constants" }}
+	{{- range $t := $.RelatedTypes }}
+		{{- if ne $t.ID.StorageKey $.ID.StorageKey }}
+			// {{ $t.Name }}FieldID holds the string denoting the ID field of the {{ $t.Name }}.
+			{{ $t.Name }}FieldID = "{{ $t.ID.StorageKey }}"
+		{{- end }}
+	{{- end }}
+	// Table holds the table name of the {{ lower $.Name }} in the database.
+	Table = "{{ $.Table }}"
+	{{- range $e := $.Edges }}
+		// {{ $e.TableConstant }} is the table that holds the {{ $e.Name }} relation/edge.
+		{{- if $e.M2M }} The primary key declared below.{{ end }}
+		{{ $e.TableConstant }} = "{{ $e.Rel.Table }}"
+		{{- if ne $.Table $e.Type.Table }}
+			// {{ $e.InverseTableConstant }} is the table name for the {{ $e.Type.Name }} entity.
+			// It exists in this package in order to avoid circular dependency with the "{{ $e.Type.Package }}" package.
+			{{ $e.InverseTableConstant }} = "{{ $e.Type.Table }}"
+		{{- end }}
+		{{- if not $e.M2M }}
+			// {{ $e.ColumnConstant }} is the table column denoting the {{ $e.Name }} relation/edge.
+			{{ $e.ColumnConstant }} = "{{ $e.Rel.Column }}"
+		{{- end }}
+	{{- end }}
+{{ end }}
+
+{{/* Variables needed for sql dialects. */}}
+{{ define "dialect/sql/meta/variables" }}
+	// Columns holds all SQL columns for {{ lower $.Name }} fields.
+	var Columns = []string{
+		{{ $.ID.Constant }},
+		{{- range $f := $.Fields }}
+			{{ $f.Constant }},
+		{{- end }}
+	}
+	{{/* If any of the edges owns a foreign-key */}}
+	{{ with $.UnexportedForeignKeys }}
+		// ForeignKeys holds the SQL foreign-keys that are owned by the "{{ $.Table }}"
+		// table and are not defined as standalone fields in the schema.
+		var ForeignKeys = []string{
+			{{- range $fk := . }}
+				"{{ $fk.Edge.Rel.Column }}",
+			{{- end }}
+		}
+	{{ end }}
+
+	{{ with $.NumM2M }}
+		var (
+			{{- range $e := $.Edges }}
+				{{- if $e.M2M }}
+					// {{ $e.PKConstant }} and {{ $e.ColumnConstant }}2 are the table columns denoting the
+					// primary key for the {{ $e.Name }} relation (M2M).
+					{{ $e.PKConstant }} = []string{"{{ index $e.Rel.Columns 0 }}", "{{ index $e.Rel.Columns 1 }}"}
+				{{- end }}
+			{{- end }}
+		)
+	{{ end }}
+{{ end }}
+
+{{/* functions needed for sql dialects. */}}
+{{ define "dialect/sql/meta/functions" }}
+// ValidColumn reports if the column name is valid (part of the table columns).
+func ValidColumn(column string) bool {
+	for i := range Columns {
+		if column == Columns[i] {
+			return true
+		}
+	}
+	{{- with $.UnexportedForeignKeys }}
+		for i := range ForeignKeys {
+			if column == ForeignKeys[i] {
+				return true
+			}
+		}
+	{{- end }}
+	return false
+}
+{{ end }}

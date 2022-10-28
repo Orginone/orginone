@@ -1,0 +1,66 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Type */}}
+
+{{ define "dialect/gremlin/decode/one" }}
+{{ $receiver := $.Receiver }}
+
+// FromResponse scans the gremlin response data into {{ $.Name }}.
+func ({{ $receiver }} *{{ $.Name }}) FromResponse(res *gremlin.Response) error {
+	vmap, err := res.ReadValueMap()
+	if err != nil {
+		return err
+	}
+	{{- $scan := print "scan" $receiver }}
+	var {{ $scan }} struct {
+		ID   {{ $.ID.Type }}  `json:"id,omitempty"`
+		{{ range $f := $.Fields }}
+			{{- $f.StructField }} {{ if and $f.IsTime (not $f.HasGoType) }}int64{{ else }}{{ if $f.NillableValue }}*{{ end }}{{ $f.Type }}{{ end }} `json:"{{ $f.StorageKey }},omitempty"`
+		{{ end }}
+	}
+	if err := vmap.Decode(&{{ $scan }}); err != nil {
+		return err
+	}
+	{{ $receiver }}.ID = {{ $scan }}.ID
+	{{ range $f := $.Fields }}
+		{{- $receiver }}.{{ $f.StructField }} = {{ if and $f.IsTime (not $f.HasGoType) }}time.Unix(0, {{ $scan }}.{{ $f.StructField }}) {{ else }}{{- $scan }}.{{ $f.StructField }}{{ end }}
+	{{ end -}}
+	return nil
+}
+{{ end }}
+
+{{ define "dialect/gremlin/decode/many" }}
+{{ $receiver := $.Receiver }}
+{{ $slice := $.Scope.Slice }}
+
+// FromResponse scans the gremlin response data into {{ $slice }}.
+func ({{ $receiver }} *{{ $slice }}) FromResponse(res *gremlin.Response) error {
+	vmap, err := res.ReadValueMap()
+	if err != nil {
+		return err
+	}
+	{{- $scan := print "scan" $receiver }}
+	var {{ $scan }} []struct {
+		ID   {{ $.ID.Type }}  `json:"id,omitempty"`
+		{{ range $f := $.Fields }}
+			{{- $f.StructField }} {{ if and $f.IsTime (not $f.HasGoType) }}int64{{ else }}{{ if $f.NillableValue }}*{{ end }}{{ $f.Type }}{{ end }} `json:"{{ $f.StorageKey }},omitempty"`
+		{{ end }}
+	}
+	if err := vmap.Decode(&{{ $scan }}); err != nil {
+		return err
+	}
+	for _, v := range {{ $scan }} {
+		*{{ $receiver }} = append(*{{ $receiver }}, &{{ $.Name }}{
+			ID: v.ID,
+			{{- range $f := $.Fields }}
+				{{ $f.StructField }}: {{- if and $f.IsTime (not $f.HasGoType) }}time.Unix(0, v.{{ $f.StructField }}) {{ else }}v.{{ $f.StructField }}{{ end }},
+			{{- end }}
+		})
+	}
+	return nil
+}
+{{ end }}

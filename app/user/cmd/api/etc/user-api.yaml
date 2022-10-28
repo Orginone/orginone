@@ -1,0 +1,14 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 2020
+Timeout: 0
+Mode: dev
+AesSecretKey: assetcloudorgcna
+Auth:
+  AccessSecret: 1234qwer
+  AccessExpire: 7200
+UserRpc:
+  Etcd:
+    Hosts:
+    - localhost:2379
+    Key: user.rpc

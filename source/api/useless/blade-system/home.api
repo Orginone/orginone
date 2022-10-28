@@ -1,0 +1,55 @@
+//home-controller
+
+@server(
+   jwt: Auth
+   group: home
+   prefix: /blade-system/home
+)
+
+service user-api {
+    //根据recid删除容器信息
+    @handler Contain
+    delete /Contain(ContainReq) returns (CommonResponse)
+    //根据recid删除公共容器信息
+    @handler PublicContain
+    delete /PublicContain(PublicContainReq) returns (CommonResponse)
+    //增加容器对象信息
+    @handler addContain
+    post /addContain(AddContainReq) returns (CommonResponse)
+    //增加公共容器对象信息
+    @handler addPublicContain
+    post /addPublicContain(AddPublicContainReq) returns (CommonResponse)
+    //增加portal对象信息
+    @handler addportal
+    post /addportal(AddportalReq) returns (CommonResponse)
+    //根据portalid以及查询条件查找容器集合信息
+    @handler getallcontain
+    get /getallcontain(GetallcontainReq) returns (CommonResponse)
+    //根据人员得到portal中所有容器
+    @handler getallcontainbyuserid
+    get /getallcontainbyuserid(GetallcontainbyuseridReq) returns (CommonResponse)
+    //得到所有portal（加条件）
+    @handler getallportal
+    get /getallportal(GetallportalReq) returns (CommonResponse)
+    //得到所有公共容器（加条件）
+    @handler getpubliccontainbyfilter
+    get /getpubliccontainbyfilter(GetpubliccontainbyfilterReq) returns (CommonResponse)
+    //根据recid删除portal模板信息
+    @handler portal
+    delete /portal(PortalReq) returns (CommonResponse)
+    //portal关联角色
+    @handler relportal
+    post /relportal(RelportalReq) returns (CommonResponse)
+    //portal关联人员
+    @handler relportal
+    post /relportal(RelportalReq1) returns (CommonResponse)
+    //修改容器对象信息
+    @handler updateContain
+    post /updateContain(UpdateContainReq) returns (CommonResponse)
+    //修改公共容器对象信息
+    @handler updatePublicContain
+    post /updatePublicContain(UpdatePublicContainReq) returns (CommonResponse)
+    //修改portal对象信息
+    @handler updateportal
+    post /updateportal(UpdateportalReq) returns (CommonResponse)
+}

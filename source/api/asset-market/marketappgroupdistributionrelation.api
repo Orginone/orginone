@@ -1,0 +1,13 @@
+//市场应用集团分配
+
+@server(
+   jwt: Auth
+   group: marketappgroupdistributionrelation
+   prefix: /asset-market/marketappgroupdistributionrelation
+)
+
+service market-api {
+    //获取id列表--use
+    @handler getRelation
+    get /getRelation(GetRelationReq) returns (CommonResponse)
+}

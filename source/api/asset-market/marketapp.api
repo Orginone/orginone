@@ -1,0 +1,100 @@
+//市场应用
+
+@server(
+   jwt: Auth
+   group: marketapp
+   prefix: /asset-market/marketapp
+)
+
+service market-api {
+    //应用审核--use
+    @handler appCheck
+    post /appCheck(AppCheckReq) returns (CommonResponse)
+    //取消应用申请--use
+    @handler cancelApply
+    post /cancelApply(CancelApplyReq) returns (CommonResponse)
+    //删除应用--use
+    @handler deleteApp
+    get /deleteApp(DeleteAppReq) returns (CommonResponse)
+    //详情
+    @handler detail
+    get /detail(DetailReq) returns (CommonResponse)
+    //获取应用相关信息--use
+    @handler getAll
+    get /getAll(GetAllReq) returns (CommonResponse)
+    //获取应用相关信息--use
+    @handler getAllApp
+    get /getAllApp(GetAllAppReq) returns (CommonResponse)
+    //应用冻结接口--use
+    @handler freezeApp
+    get /freezeApp(FreezeAppReq) returns (CommonResponse)
+    //已上架应用数--uses
+    @handler getOnSaleAppNum
+    get /getOnSaleAppNum(Nil) returns (CommonResponse)
+    //获取重新发布应用列表--use
+    @handler getRedeployAppList
+    get /getRedeployAppList(GetRedeployAppListReq) returns (CommonResponse)
+    //获取租户名
+    @handler getTenantName
+    get /getTenantName(Nil) returns (CommonResponse)
+    //分页--use
+    @handler list
+    get /list(AppListReq) returns (CommonResponse)
+    //获取应用审核列表分页--use
+    @handler listcheck
+    get /list/check(ListCheckReq) returns (CommonResponse)
+    //获取全部应用--use
+    @handler listAll
+    get /listAll(ListAllReq) returns (CommonResponse)
+    //获取通用查询排序应用列表
+    @handler listAppBySort
+    post /listAppBySort(ListAppBySortReq) returns (CommonResponse)
+    //获取单位创建应用列表
+    @handler listAppList
+    get /listAppList(ListAppListReq) returns (CommonResponse)
+    //租户已被分配应用分页
+    @handler listByDistributeTenantId
+    get /listByDistributeTenantId(ListByDistributeTenantIdReq) returns (CommonResponse)
+    //集团已购应用分页--use
+    @handler listByPurchaseGroupId
+    get /listByPurchaseGroupId(ListByPurchaseGroupIdReq) returns (CommonResponse)
+    //租户已购应用分页--use
+    @handler listByPurchaseTenantId
+    get /listByPurchaseTenantId(ListByPurchaseTenantIdReq) returns (CommonResponse)
+    //整改应用
+    @handler reformApp
+    get /reformApp(ReformAppReq) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq) returns (CommonResponse)
+    //下架--use
+    @handler setOffSale
+    post /setOffSale(SetOffSaleReq) returns (CommonResponse)
+    //上架--use
+    @handler setOnSale
+    post /setOnSale(SetOnSaleReq) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq) returns (CommonResponse)
+    //新增或修改所有应用相关信息--use
+    @handler submitAll
+    post /submitAll(SubmitAllReq) returns (CommonResponse)
+    //注册--use
+    @handler submitFirst
+    post /submitFirst(SubmitFirstReq) returns (CommonResponse)
+    //部署--use
+    @handler submitSecond
+    post /submitSecond(SubmitSecondReq) returns (CommonResponse)
+    //发布--use
+    @handler submitThird
+    post /submitThird(SubmitThirdReq) returns (CommonResponse)
+    //详情
+    @handler tokendetail
+    get /token/detail(TokenDetailReq) returns (CommonResponse)
+    //获取通用查询排序应用列表
+    @handler tokenlistAppBySort
+    post /token/listAppBySort(TokenListAppBySortReq) returns (CommonResponse)
+    //分页
+    @handler tokenlistWithoutToken
+    post /token/listWithoutToken(TokenListWithoutTokenReq) returns (CommonResponse)
+}

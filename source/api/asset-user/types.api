@@ -1,0 +1,176 @@
+//用户注册-检索手机号是否注册过-请求参数
+type UserRetrieveUserReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+}
+//用户注册-修改密码-请求参数
+type UserUpdatePwdReq struct { 
+    PhoneNumber          interface{}    `form:"phoneNumber"`
+    Pwd                  interface{}    `form:"pwd"`
+}
+//用户注册-获取测试用户-请求参数
+type V1GetTestUser struct { 
+    PhoneNumber          interface{}    `form:"phoneNumber"` 
+}
+//用户注册-用户注册-请求参数
+type UserUserReRegReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+    Pwd                  string         `form:"pwd"`
+    RealName             string         `form:"realName"`
+}
+//用户管理-用户申请加入租户-请求参数
+type AddTenantReq struct {
+    TenantCode           string         `form:"tenantCode"`
+}
+//用户管理-新增用户-请求参数
+type AddUserV2Req struct {
+    IdCard               string         `form:"idCard"`
+    PhoneNumber          string         `form:"phoneNumber"`
+    RealName             string         `form:"realName"`
+    RoleIds              string         `form:"roleIds"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//用户管理-权限转移-请求参数
+type AuthorityTransferReq struct {
+    TenantCode           string         `form:"tenantCode"`
+    UserId               int64          `form:"userId"`
+}
+//用户管理-加密-请求参数
+type CreatePasswordReq struct {
+    Password             string         `json:"password"`
+}
+//用户管理-删除用户(逻辑删除)-请求参数
+type DeleteByUserIdsReq struct {
+    TenantCode           string         `json:"tenantCode"`
+    UserIds              int64          `json:"userIds"`
+}
+//用户管理-人员离职-请求参数
+type DeletePersonReq struct {
+    PkId                 string         `json:"pkId"`
+    UnitId               int64          `json:"unitId"`
+}
+//用户管理-删除用户(支持批量操作)-请求参数
+type DeleteUserInfoReq struct {
+    UserIds              string         `json:"userIds"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//用户管理-获取租户下所有可用的用户-请求参数
+type GetAllUsableUserReq struct {
+    Current              string         `json:"current"`
+    Size                 string         `json:"size"`
+}
+//用户管理-获取平台所有用户-请求参数
+type GetAllUsersReq struct {
+    Current              string         `json:"current"`
+    Size                 string         `json:"size"`
+}
+//用户管理-通过手机号查用户信息-请求参数
+type GetUserByPhoneReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+    UserIds              interface{}    `json:"userIds"`
+}
+//用户管理-获取单位管理用户Id列表-请求参数
+type GetManagerUserIdListReq struct {
+    UnitIdList           interface{}    `json:"unitIdList"`
+}
+//用户管理-根据租住编码获取用户-请求参数
+type ListReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//分页查询用户
+type ListPageReq struct {
+	Current     int64       `form:"current"`
+	Size        int64       `form:"size"`
+	Id          int64 		`form:"id,optional,default=-1"`
+	IsDeleted   int64       `form:"isDeleted,optional,default=0"`
+	UserName    string 		`form:"userName,optional"`
+	PhoneNumber string 		`form:"phoneNumber,optional"`
+	TenantCode  string 		`form:"tenantCode,optional"` 
+}
+//用户管理-传入:用户id;用户号码;租户编码-请求参数
+type RemoveReq struct {
+    CreateTime           string         `json:"createTime"`
+    CreateUser           int64          `json:"createUser"`
+    Id                   int64          `json:"id"`
+    IsAdmin              int64          `json:"isAdmin"`
+    IsCreated            int64          `json:"isCreated"`
+    IsDeleted            int64          `json:"isDeleted"`
+    IsMaster             int64          `json:"isMaster"`
+    OpenId               string         `json:"openId"`
+    PhoneNumber          string         `json:"phoneNumber"`
+    Status               int64          `json:"status"`
+    TenantApplyingState  int64          `json:"tenantApplyingState"`
+    TenantCode           string         `json:"tenantCode"`
+    UpdateTime           string         `json:"updateTime"`
+    UpdateUser           int64          `json:"updateUser"`
+    UserName             string         `json:"userName"`
+} 
+//用户管理-删除-请求参数
+type RemoveReq1 struct {
+    Ids                  string         `form:"ids"`
+}
+//用户管理-删除-请求参数
+type RemoveByIdsReq struct {
+    Ids                  string         `form:"ids"`
+}
+//用户管理-重置密码-请求参数
+type ResetPasswordReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+}
+//用户管理-新增或修改-请求参数
+type SubmitReq struct {
+    User                 interface{}    `json:"user"`
+}
+//用户管理-筛选申请加入租户的用户-请求参数
+type TenantUserReq struct {
+    Count                int64          `form:"count"`
+    Current              int64          `form:"current"`
+    realName             string         `form:"realName,optional"`
+    Size                 int64          `form:"size"`
+    TenantCode           string         `form:"tenantCode,optional"`
+}
+//用户管理-getTenantUserId-请求参数
+type TokenGetTenantUserIdReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+    Platform             int64          `json:"platform"`
+}
+//用户管理-更改登录默认租户-请求参数
+type UpdateLoginTenantReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//用户管理-修改密码-请求参数
+type UpdatePasswordReq struct {
+    NewPassword          string         `form:"newPassword"`
+    NewPassword1         string         `form:"newPassword1"`
+    OldPassword          string         `form:"oldPassword"`
+    UserId               int64          `form:"userId"`
+}
+//用户管理-重置密码-请求参数
+type ResetPasswordReq1 struct { 
+    UserIds               int64          `form:"userIds"`
+}
+//用户管理-修改用户手机号和姓名-请求参数
+type UpdateUserInfoReq struct {
+    Name                 string         `form:"name"`
+    PhoneNumber          string         `form:"phoneNumber"`
+    UserId               int64          `form:"userId"`
+}
+//用户管理-用户退出单位-请求参数
+type UserQuitTenantReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//用户管理-单位管理员审核用户-请求参数
+type ReViewUserReq struct {
+    IsPass               int64          `form:"isPass"`
+    UserIds              string          `form:"userIds"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//用户管理-用户取消申请加入租户-请求参数
+type WithdrawApplicationReq struct {
+    TenantCodeList       interface{}    `json:"tenantCodeList"`
+    TenantCodes          interface{}    `json:"tenantCodes"`
+}
+//用户管理-获取租户下的用户-请求参数
+type GetUserTenantCodeReq struct {
+    TenantCode                  string         `form:"tenantCode"`
+}

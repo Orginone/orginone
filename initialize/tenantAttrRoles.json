@@ -1,0 +1,72 @@
+[
+    {
+        "roleId": 3,
+        "attrId": 1,
+        "isDefault": 1
+    },
+    {
+        "roleId": 2,
+        "attrId": 1,
+        "isDefault": 0
+    },
+    {
+        "roleId": 3,
+        "attrId": 1,
+        "isDefault": 0
+    },
+    {
+        "roleId": 1,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 2,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 3,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 4,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 5,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 6,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 7,
+        "attrId": 2,
+        "isDefault": 0
+    },
+    {
+        "roleId": 2,
+        "attrId": 4,
+        "isDefault": 0
+    },
+    {
+        "roleId": 3,
+        "attrId": 4,
+        "isDefault": 0
+    },
+    {
+        "roleId": 2,
+        "attrId": 5,
+        "isDefault": 0
+    },
+    {
+        "roleId": 3,
+        "attrId": 5,
+        "isDefault": 0
+    }
+]

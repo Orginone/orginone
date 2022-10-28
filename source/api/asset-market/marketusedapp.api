@@ -1,0 +1,31 @@
+//用户常用应用
+
+@server(
+   jwt: Auth
+   group: marketusedapp
+   prefix: /asset-market/marketusedapp
+)
+
+service market-api {
+    //获取常用应用--use
+    @handler getUsedApp
+    get /getUsedApp(GetUsedAppReq) returns (CommonResponse)
+    //获取常用应用菜单--use
+    @handler getUsedAppMenu
+    get /getUsedAppMenu(GetUsedAppMenuReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq15) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq15) returns (CommonResponse)
+    //删除--use
+    @handler removeByRelation
+    post /removeByRelation(RemoveByRelationReq) returns (CommonResponse)
+    //常用应用排序--use
+    @handler sortUsedApp
+    post /sortUsedApp(SortUsedAppReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq15) returns (CommonResponse)
+}

@@ -1,0 +1,23 @@
+@url=http://localhost:2021/asset-system
+@market=http://localhost:2022/asset-market
+@accessToken=bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiMjAyMDA1MjAxMzE0IiwiZXhwIjoxNjUwMzU3OTY0LCJpYXQiOjE2NTAzNTA3NjQsInRlbmFudENvZGUiOiIwMDAwMDAiLCJ1c2VySWQiOjF9.nkNWboM2j2LqgIGgLJIHLA7_7GQptJBDwXtFh0AYvsQ
+
+### 查询单位信息
+get {{url}}/scenes/query?id=1 HTTP/1.1
+Authorization: {{accessToken}}
+
+###
+get {{url}}/grouptenantrelations/joined/control/groupList?current=1&size=30&groupName=&tenantId=1&type=1 HTTP/1.1
+Authorization: {{accessToken}}
+
+### 查询行政区域树
+get {{url}}/administrative/tree HTTP/1.1
+Authorization: {{accessToken}}
+
+### 查询行政区域树
+get {{url}}/allgroup/getSimpleGroupById?groupId=1405434611979104257 HTTP/1.1
+Authorization: {{accessToken}}
+
+### 查询租户应用
+get {{market}}/marketapp/listByPurchaseTenantId?tenantId=ZH200903021124xS76I2&current=1&size=30&appName= HTTP/1.1
+Authorization: {{accessToken}}

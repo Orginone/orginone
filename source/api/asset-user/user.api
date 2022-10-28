@@ -1,0 +1,115 @@
+//用户管理
+
+@server(
+   jwt: Auth
+   group: user
+   prefix: /asset-user/user
+)
+
+service user-api {
+    //用户申请加入租户--use
+    @handler addtenant
+    post /add/tenant(AddTenantReq) returns (CommonResponse)
+    //新增用户--use
+    @handler adduserv2
+    post /add/user/v2(AddUserV2Req) returns (CommonResponse)
+    //权限转移--use
+    @handler authoritytransfer
+    post /authority/transfer(AuthorityTransferReq) returns (CommonResponse)
+    //checkToken
+    @handler checktoken
+    get /check/token(Nil) returns (CommonResponse)
+    //加密
+    @handler createPassword
+    get /createPassword(CreatePasswordReq) returns (CommonResponse)
+    //删除用户(逻辑删除)
+    @handler deletebyuserIds
+    delete /delete/by/userIds(DeleteByUserIdsReq) returns (CommonResponse)
+    //人员离职
+    @handler deleteperson
+    post /delete/person(DeletePersonReq) returns (CommonResponse)
+    //删除用户(支持批量操作)--use
+    @handler deleteuserInfo
+    delete /delete/userInfo(DeleteUserInfoReq) returns (CommonResponse)
+    //查看详情
+    @handler detail
+    get /detail(Nil) returns (CommonResponse)
+    //传入:用户id;用户号码;租户编码
+    @handler get
+    get /get(Nil) returns (CommonResponse)
+    //获取租户下所有可用的用户
+    @handler getallusableuser
+    get /get/all/usable/user(GetAllUsableUserReq) returns (CommonResponse)
+    //获取测试用户--use
+    @handler v1gettestuser
+    get /v1/get/test/user(V1GetTestUser) returns (CommonResponse)
+    //获取所有可用的用户--use
+    @handler getalluser
+    get /get/all/user(Nil) returns (CommonResponse)
+    //获取平台所有用户
+    @handler getallusers
+    get /get/all/users(GetAllUsersReq) returns (CommonResponse)
+    //获取在线用户数--use
+    @handler getonlineusercount
+    get /get/online/user/count(Nil) returns (CommonResponse)
+    //(v2)获取租户下可用的用户--use
+    @handler getpersontenantCodev2
+    get /get/person/tenantCode/v2(Nil) returns (CommonResponse)
+    //通过手机号查用户信息
+    @handler getuserbyphone
+    get /get/user/by/phone(GetUserByPhoneReq) returns (CommonResponse)
+    //获取租户下的用户--use
+    @handler getusertenantCode
+    get /get/user/tenantCode(GetUserTenantCodeReq) returns (CommonResponse)
+    //获取单位管理用户Id列表
+    @handler getManagerUserIdList
+    post /getManagerUserIdList(GetManagerUserIdListReq) returns (CommonResponse)
+    //根据租住编码获取用户
+    @handler list
+    get /list(ListReq) returns (CommonResponse)
+    //分页--use
+    @handler listPage
+    get /listPage(ListPageReq) returns (CommonResponse)
+    //传入:用户id;用户号码;租户编码--use
+    @handler remove
+    delete /remove(RemoveReq1) returns (CommonResponse)
+    //删除--use
+    @handler removeByIds
+    post /removeByIds(RemoveByIdsReq) returns (CommonResponse)
+    //重置密码--use
+    @handler resetPassword
+    post /resetPassword(ResetPasswordReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq) returns (CommonResponse)
+    //筛选申请加入租户的用户--use
+    @handler tenantuser
+    get /tenant/user(TenantUserReq) returns (CommonResponse)
+    //getTenantUserId
+    @handler tokengetTenantUserId
+    get /token/getTenantUserId(TokenGetTenantUserIdReq) returns (CommonResponse)
+    //更改登录默认租户
+    @handler updatelogintenant
+    post /update/login/tenant(UpdateLoginTenantReq) returns (CommonResponse)
+    //修改密码--use
+    @handler updatepassword
+    post /update/password(UpdatePasswordReq) returns (CommonResponse)
+    //重置密码--use
+    @handler resetpassword
+    post /reset-password(ResetPasswordReq1) returns (CommonResponse)
+    //修改用户手机号和姓名--use
+    @handler updateuserinfo
+    post /update/user/info(UpdateUserInfoReq) returns (CommonResponse)
+    //修改--use
+    @handler update
+    put /update(Nil) returns (CommonResponse)
+    //用户退出单位--use
+    @handler userquittenant
+    post /user/quit/tenant(UserQuitTenantReq) returns (CommonResponse)
+    //单位管理员审核用户--use
+    @handler reViewuser
+    put /v1/reView/user(ReViewUserReq) returns (CommonResponse)
+    //用户取消申请加入租户--use
+    @handler withdrawapplication
+    post /withdraw/application(WithdrawApplicationReq) returns (CommonResponse)
+}

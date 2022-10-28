@@ -1,0 +1,37 @@
+//集团性质分配
+
+@server(
+   jwt: Auth
+   group: propertiesdistribution
+   prefix: /asset-system/propertiesdistribution
+)
+
+service system-api {
+    //增加某个租户的性质--use
+    @handler adddistributeproperties
+    post /add/distribute/properties(AddDistributePropertiesReq) returns (CommonResponse)
+    //集团创建性质并进行分配--use
+    @handler createdistributeproperties
+    post /create/distribute/properties(CreateDistributePropertiesReq) returns (CommonResponse)
+    //给性质分配租户--use
+    @handler distributeproperties
+    post /distribute/properties(DistributePropertiesReq) returns (CommonResponse)
+    //获取性质里的租户列表--use
+    @handler getpropertiesunit
+    get /get/properties/unit(GetPropertiesUnitReq) returns (CommonResponse)
+    //获取性质里的租户列表分页--use
+    @handler getpropertiesunitlist
+    get /get/properties/unit/list(GetPropertiesUnitListReq) returns (CommonResponse)
+    //将租户从性质移出--use
+    @handler removedistributedproperties
+    post /remove/distributed/properties(RemoveDistributedPropertiesReq) returns (CommonResponse)
+    //批量删除--use
+    @handler removeProperties
+    post /removeProperties(RemovePropertiesReq) returns (CommonResponse)
+    //集团修改性质并分配
+    @handler updatedistributeproperties
+    post /update/distribute/properties(UpdateDistributePropertiesReq) returns (CommonResponse)
+    //修改某个租户的性质--use
+    @handler updatedistributedproperties
+    post /update/distributed/properties(UpdateDistributedPropertiesReq) returns (CommonResponse)
+}

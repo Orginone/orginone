@@ -1,0 +1,28 @@
+//租户分类管理
+
+@server(
+   jwt: Auth
+   group: tenant
+   prefix: /asset-system/tenant
+)
+
+service system-api {
+    //获取租户组默认角色
+    @handler attrgetdefaultroleId
+    get /attr/get/default/roleId(AttrGetDefaultRoleIdReq) returns (CommonResponse)
+    //租户分类列表--use
+    @handler attrlist
+    get /attr/list(AttrListReq) returns (CommonResponse)
+    //删除分类信息--use
+    @handler attrremove
+    delete /attr/remove(AttrRemoveReq) returns (CommonResponse)
+    //租户组角色分配--use
+    @handler attrrolealloc
+    post /attr/role/alloc(AttrRoleAllocReq) returns (CommonResponse)
+    //新增或编辑分类信息--use
+    @handler attrsubmit
+    post /attr/submit(AttrSubmitReq) returns (CommonResponse)
+    //修改租户组默认角色
+    @handler attrupdatedefaultrole
+    put /attr/update/default/role(AttrUpdateDefaultRoleReq) returns (CommonResponse)
+}

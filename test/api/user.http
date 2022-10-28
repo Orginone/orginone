@@ -1,0 +1,27 @@
+@url = http://localhost:2020
+### 登录
+POST {{url}}/blade-auth/token?account=18868878263 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+account=202005201314&tenantCode=&password=$1234qwer
+
+### 切换租户
+POST {{url}}/blade-auth/switch-tenant HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiMjAyMDA1MjAxMzE0IiwiZXhwIjoxNjUwNDQ2NzU3LCJpYXQiOjE2NTA0Mzk1NTcsInRlbmFudENvZGUiOiIwMDAwMDAiLCJ1c2VySWQiOjF9.13BTtviSwHpkpYrhwBJ0HmJriaIqZMp4S9iuSagdOBs
+
+account=202005201314&tenantCode=000000
+
+### 注册
+post {{url}}/token/user/v1/user/reReg HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+phoneNumber=18403835111&realName=吴胖胖&pwd=$123QWEasd
+
+
+###
+POST https://hzoa.zjipx.com/login.do HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Cookie: JSESSIONID=5F2B7F3B6A79946B18645D7578870895
+
+userId=admin&password=1234567890

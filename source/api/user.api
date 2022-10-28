@@ -1,0 +1,83 @@
+syntax = "v1"
+
+info(
+	title: "用户模块"
+	desc: "奥吉能系统用户模块"
+	author: "realVeer"
+	email: "realVeer@qkbyte.com"
+	version: 1.0
+)
+
+//用户登录请求
+type UserLoginReq {
+	Account    string `form:"account"`
+	TenantCode string `form:"tenantCode,optional"`
+	Password   string `form:"password"`
+}
+//应用授权请求
+type AppTokenReq {
+	appkey    string `form:"appkey"`
+	appsecret string `form:"appsecret"`
+}
+//用户注册请求
+type UserOptReq {
+	PhoneNumber string `form:"phoneNumber"`
+	RealName    string `form:"realName"`
+	Pwd         string `form:"pwd"`
+}
+//切换单位请求
+type SwitchReq {
+	Account    string `form:"account"`
+	TenantCode string `form:"tenantCode"`
+}
+
+//检验密码复杂度
+type GetSimplePwdReq {
+	Account  string `json:"account"`
+	Password string `json:"password"`
+}
+
+//无参数
+type Nil struct{}
+//通用返回模型
+type CommonResponse {
+	Code    int64       `json:"code"`
+	Data    interface{} `json:"data"`
+	Msg     string      `json:"msg"`
+	Success bool        `json:"success"`
+}
+
+@server(
+	group: token
+  	prefix: /asset-user
+)
+service user-api {
+	//登录--use
+	@handler bladeauthtoken
+	post /token(UserLoginReq) returns (CommonResponse)
+	//注册--use
+	@handler useruserreReg
+	post /token/user/v1/user/reReg(UserOptReq) returns (CommonResponse)
+	//检验密码复杂度--use
+	@handler getSimplePwd
+	post /token/getSimplePwd(GetSimplePwdReq) returns (CommonResponse)
+}
+
+@server(
+	jwt: Auth
+	group: token
+  	prefix: /asset-user
+)
+service user-api {
+	//切换单位(更新token)--use
+	@handler switch
+	post /switch-tenant(SwitchReq) returns (CommonResponse)
+}
+
+import (
+	"asset-user/types.api"
+	"asset-user/token.api"
+	"asset-user/user.api"
+	// "asset-user/users.api"
+	// "asset-user/meta.api"
+)

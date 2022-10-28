@@ -1,0 +1,73 @@
+//字典
+
+@server(
+   jwt: Auth
+   group: dict
+   prefix: /asset-system/dict
+)
+
+service system-api {
+    //激活老版本
+    @handler actversion
+    get /actversion(DicActversionReq) returns (CommonResponse)
+    //新增版本
+    @handler addnewversion
+    get /addnewversion(DicAddnewversionReq) returns (CommonResponse)
+    //删除字典
+    @handler deldict
+    get /deldict(DicDeldictReq) returns (CommonResponse)
+    //删除老版本
+    @handler delversion
+    get /delversion(DicDelversionReq) returns (CommonResponse)
+    //获取字典及字典条目详情
+    @handler detail
+    get /detail(DicDetailReq) returns (CommonResponse)
+    //获取字典树
+    @handler dictionary
+    get /dictionary(DicDictionaryReq) returns (CommonResponse)
+    //根据过滤条件获取字典列表
+    @handler filterbydict
+    get /filterbydict(DicFilterbydictReq) returns (CommonResponse)
+    //获取一级字典列表
+    @handler getDictList
+    get /getDictList(Nil) returns (CommonResponse)
+    //获取字典列表
+    @handler getDictListByCode
+    get /getDictListByCode(DicGetDictListByCodeReq) returns (CommonResponse)
+    //获取字典列表
+    @handler getalldict
+    get /getalldict(DicGetalldictReq) returns (CommonResponse)
+    //根据字典名称获取字典列表
+    @handler getallitembydict
+    get /getallitembydict(DicGetallitembydictReq) returns (CommonResponse)
+    //得到枚举字典的所有版本
+    @handler getdictallversion
+    get /getdictallversion(DicGetdictallversionReq) returns (CommonResponse)
+    //得到枚举字典的最大版本
+    @handler getdictmax
+    get /getdictmax(DicGetdictmaxReq) returns (CommonResponse)
+    //得到枚举字典当前版本的枚举项
+    @handler getitembydict
+    get /getitembydict(DicGetitembydictReq) returns (CommonResponse)
+    //得到枚举字典的最新版本枚举项
+    @handler getnewitembydict
+    get /getnewitembydict(DicGetnewitembydictReq) returns (CommonResponse)
+    //根据条件获取字典和字典条目列表
+    @handler list
+    get /list(DicListReq) returns (CommonResponse)
+    //删除字典条目
+    @handler remove
+    post /remove(DicRemoveReq) returns (CommonResponse)
+    //删除
+    @handler removedict
+    post /removedict(DicRemovedictReq) returns (CommonResponse)
+    //新增或修改字典和字典条目
+    @handler submit
+    post /submit(DicSubmitReq) returns (CommonResponse)
+    //获取一级字典列表
+    @handler tokengetDictList
+    get /token/getDictList(Nil) returns (CommonResponse)
+    //获取字典列表
+    @handler tokengetDictListByCode
+    get /token/getDictListByCode(DicTokenGetDictListByCodeReq) returns (CommonResponse)
+}

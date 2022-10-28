@@ -1,0 +1,43 @@
+//portal接口
+
+@server(
+   jwt: Auth
+   group: portal
+   prefix: /asset-market/portal
+)
+
+service market-api {
+    //增加常用应用
+    @handler addUniApp
+    post /addUniApp(AddUniAppReq) returns (CommonResponse)
+    //取消常用应用
+    @handler cancelUniApp
+    post /cancelUniApp(CancelUniAppReq) returns (CommonResponse)
+    //得到所有应用（if_used=1时为常用应用）
+    @handler getAllApp
+    get /getAllApp(GetAllAppReq1) returns (CommonResponse)
+    //获取常用应用--use
+    @handler getCommonUseApp
+    get /getCommonUseApp(GetCommonUseAppReq) returns (CommonResponse)
+    //获取全部应用-常用应用--use
+    @handler getRemainApp
+    get /getRemainApp(GetRemainAppReq) returns (CommonResponse)
+    //获取用户的portal--use
+    @handler getUserPortal
+    get /getUserPortal(GetUserPortalReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq16) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq16) returns (CommonResponse)
+    //新增或更新用户的portal--use
+    @handler saveOrUpdateAllPortal
+    post /saveOrUpdateAllPortal(SaveOrUpdateAllPortalReq) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq16) returns (CommonResponse)
+    //获取常用应用v2
+    @handler v2getCommonUseApp
+    get /v2/getCommonUseApp(V2GetCommonUseAppReq) returns (CommonResponse)
+}

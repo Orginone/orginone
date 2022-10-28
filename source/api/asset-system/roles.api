@@ -1,0 +1,67 @@
+//角色管理
+
+@server(
+   jwt: Auth
+   group: roles
+   prefix: /asset-system/roles
+)
+
+service system-api {
+    //批量给用户分配角色--use
+    @handler addRolesToUsers
+    post /v1/addRolesToUsers(AddRolesToUsersReq) returns (CommonResponse)
+    //设置角色权限--use
+    @handler authorization
+    post /v1/authorization(AuthorizationReq) returns (CommonResponse)
+    //批量给用户删除角色--use
+    @handler deleteRolesToUsers
+    delete /v1/deleteRolesToUsers(DeleteRolesToUsersReq) returns (CommonResponse)
+    //开发运维人员配置菜单角色，绑定
+    @handler devRunconfigMenu
+    post /v1/devRun/configMenu(DevRunConfigMenuReq) returns (CommonResponse)
+    //开发运维人员配置菜单角色，解除绑定
+    @handler devRundeleteConfigMenu
+    post /v1/devRun/deleteConfigMenu(DevRunDeleteConfigMenuReq) returns (CommonResponse)
+    //获取所有角色列表--use
+    @handler getallrolesList
+    get /v1/get/all/rolesList(GetAllRolesListReq) returns (CommonResponse)
+    //获取所有角色列表
+    @handler getallrolesPage
+    get /v1/get/all/rolesPage(GetAllRolesPageReq) returns (CommonResponse)
+    //根据用户Id获取角色Id列表分页--use
+    @handler getRoleIdList
+    get /v1/getRoleIdList(GetRoleIdListReq) returns (CommonResponse)
+    //角色列表--use
+    @handler list
+    get /v1/list(ListReq2) returns (CommonResponse)
+    //获取租户拥有的角色id列表
+    @handler listroleIdList
+    get /v1/list/roleIdList(ListRoleIdListReq) returns (CommonResponse)
+    //获取角色列表
+    @handler listroleList
+    get /v1/list/roleList(ListRoleListReq) returns (CommonResponse)
+    //删除角色同时清空相关关系表--use
+    @handler remove
+    delete /v1/remove(RemoveReq3) returns (CommonResponse)
+    //新增角色--use
+    @handler save
+    post /v1/save(SaveReq) returns (CommonResponse)
+    //根据userId筛选RoleId
+    @handler selectRoelIdByUserId
+    get /v1/selectRoelIdByUserId(SelectRoelIdByUserIdReq) returns (CommonResponse)
+    //根据userId获取role列表
+    @handler selectRoelListByUserId
+    get /v1/selectRoelListByUserId(SelectRoelListByUserIdReq) returns (CommonResponse)
+    //根据roleId筛选userId
+    @handler selectuserIdByRoleId
+    get /v1/selectuserIdByRoleId(SelectuserIdByRoleIdReq) returns (CommonResponse)
+    //修改角色信息--use
+    @handler update
+    put /v1/update(UpdateReq2) returns (CommonResponse)
+    //批量给用户修改角色--use
+    @handler updateRolesToUsers
+    post /v1/updateRolesToUsers(UpdateRolesToUsersReq) returns (CommonResponse)
+    //获取租户组角色--use
+    @handler listbyattr
+    get /v1/v1/list-by-attr(ListByAttrReq) returns (CommonResponse)
+}

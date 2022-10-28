@@ -1,0 +1,67 @@
+//市场应用购买
+
+@server(
+   jwt: Auth
+   group: marketapppurchase
+   prefix: /asset-market/marketapppurchase
+)
+
+service market-api {
+    //详情
+    @handler detail
+    get /detail(DetailReq4) returns (CommonResponse)
+    //获取应用列表
+    @handler getlists
+    get /get/lists(GetListsReq) returns (CommonResponse)
+    //获取某个应用购买情况--use
+    @handler getAppPurchaseConfig
+    get /getAppPurchaseConfig(GetAppPurchaseConfigReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq8) returns (CommonResponse)
+    //租户所有应用分页
+    @handler listAppByTenantId
+    get /listAppByTenantId(ListAppByTenantIdReq) returns (CommonResponse)
+    //应用列表分页--use
+    @handler listByGroupIdVO
+    get /listByGroupIdVO(ListByGroupIdVOReq) returns (CommonResponse)
+    //应用列表个人单位分页（可以根据应用名模糊查询）--use
+    @handler listUnitAndPersonalVO
+    get /listUnitAndPersonalVO(ListUnitAndPersonalVOReq) returns (CommonResponse)
+    //应用列表分页--use
+    @handler listVO
+    get /listVO(ListVOReq) returns (CommonResponse)
+    //应用已购集团列表分页--use
+    @handler purchaseAppGroupList
+    get /purchaseAppGroupList(PurchaseAppGroupListReq) returns (CommonResponse)
+    //应用已购租户列表分页--use
+    @handler purchaseAppTenantList
+    get /purchaseAppTenantList(PurchaseAppTenantListReq) returns (CommonResponse)
+    //集团批量获取--use
+    @handler purchaseByGroups
+    post /purchaseByGroups(PurchaseByGroupsReq) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq8) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(MarketAppPurchasSubmitReq) returns (CommonResponse)
+    //集团取消订阅--use
+    @handler unitunsubscribe
+    post /unitunsubscribe(UnitunsubscribeReq) returns (CommonResponse)
+    //取消订阅--use
+    @handler unsubscribe
+    post /unsubscribe(UnsubscribeReq) returns (CommonResponse)
+    //修改集团启用停用状态--use
+    @handler updateGroupUseStatus
+    post /updateGroupUseStatus(UpdateGroupUseStatusReq) returns (CommonResponse)
+    //修改租户启用停用状态--use
+    @handler updateTenantUseStatus
+    post /updateTenantUseStatus(UpdateTenantUseStatusReq) returns (CommonResponse)
+    //撤回集团权限--use
+    @handler withdrawGroupAuthority
+    post /withdrawGroupAuthority(WithdrawGroupAuthorityReq) returns (CommonResponse)
+    //撤回租户权限--use
+    @handler withdrawTenantAuthority
+    post /withdrawTenantAuthority(WithdrawTenantAuthorityReq) returns (CommonResponse)
+}

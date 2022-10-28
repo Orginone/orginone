@@ -1,0 +1,153 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Type */}}
+
+{{ define "where" }}
+
+{{- with extend $ "Package" $.Package -}}
+	{{ template "header" . }}
+{{ end }}
+
+{{ template "import" $ }}
+
+// ID filters vertices based on their ID field.
+func ID(id {{ $.ID.Type }}) predicate.{{ $.Name }} {
+	return predicate.{{ $.Name }}(
+		{{- $tmpl := printf "dialect/%s/predicate/id" $.Storage }}
+		{{- xtemplate $tmpl $ -}}
+	)
+}
+
+{{ range $op := $.ID.Ops }}
+	{{ $arg := "id" }}{{ if $op.Variadic }}{{ $arg = "ids" }}{{ end }}
+	{{ $func := printf "ID%s" $op.Name }}
+	// {{ $func }} applies the {{ $op.Name }} predicate on the ID field.
+	func {{ $func }}({{ $arg }} {{ if $op.Variadic }}...{{ end }}{{ $.ID.Type }}) predicate.{{ $.Name }} {
+		return predicate.{{ $.Name }}(
+			{{- with extend $ "Arg" $arg "Op" $op "Storage" $.Storage -}}
+				{{ $tmpl := printf "dialect/%s/predicate/id/ops" $.Storage }}
+				{{- xtemplate $tmpl . }}
+			{{- end -}}
+		)
+	}
+{{ end }}
+
+{{ range $f := $.Fields }}
+	{{ $func := $f.StructField }}
+	{{/* JSON cannot be compared using "=" and Enum has a type defined with the field name */}}
+	{{ $hasP := not (or $f.IsJSON $f.IsEnum) }}
+	{{ $comparable := or $f.ConvertedToBasic $f.Type.Valuer }}
+	{{ $undeclared := (and (ne $func "Label") (ne $func "Hooks") (ne $func "Policy")) }}
+	{{- if and $hasP $comparable $undeclared }}
+		{{ $arg := "v" }}
+		// {{ $func }} applies equality check predicate on the {{ quote $f.Name }} field. It's identical to {{ $func }}EQ.
+		func {{ $func }}({{ $arg }} {{ $f.Type }}) predicate.{{ $.Name }} {
+			{{- if and $f.HasGoType (not $f.Type.Valuer) }}
+				vc := {{ $f.BasicType "v" }}
+				{{- $arg = "vc" }}
+			{{- end }}
+			return predicate.{{ $.Name }}(
+				{{- with extend $ "Arg" $arg "Field" $f -}}
+					{{ $tmpl := printf "dialect/%s/predicate/field" $.Storage }}
+					{{- xtemplate $tmpl . }}
+				{{- end -}}
+			)
+		}
+	{{- end }}
+{{ end }}
+
+{{ range $f := $.Fields }}
+	{{ range $op := $f.Ops }}
+		{{ $arg := "v" }}{{ if $op.Variadic }}{{ $arg = "vs" }}{{ end }}
+		{{ $stringOp := eq $op.Name "EqualFold" "Contains" "ContainsFold" "HasPrefix" "HasSuffix" }}
+		{{ $func := print $f.StructField $op.Name }}
+		{{ $type := $f.Type.String }}{{ if $f.IsEnum }}{{ $type = trimPackage $type $.Package }}{{ end }}
+		// {{ $func }} applies the {{ $op.Name }} predicate on the {{ quote $f.Name }} field.
+		func {{ $func }}({{ if not $op.Niladic }}{{ $arg }} {{ if $op.Variadic }}...{{ end }}{{ $type }}{{ end }}) predicate.{{ $.Name }} {
+			{{- if $op.Variadic }}
+				v := make([]interface{}, len({{ $arg }}))
+				for i := range v {
+					{{- if and $f.HasGoType (not $f.Type.Valuer) }}
+						v[i] = {{ $f.BasicType (printf "%s[i]" $arg) }}
+					{{- else }}
+						v[i] = {{ $arg }}[i]
+					{{- end }}
+				}
+				{{- $arg = "v" }}
+			{{- else if and (not $op.Niladic) $f.HasGoType (or $stringOp (not $f.Type.Valuer)) }}
+				vc := {{ $f.BasicType "v" }}
+				{{- $arg = "vc" }}
+			{{- end }}
+			return predicate.{{ $.Name }}(
+				{{- with extend $ "Arg" $arg "Field" $f "Op" $op "Storage" $.Storage -}}
+					{{ $tmpl := printf "dialect/%s/predicate/field/ops" $.Storage }}
+					{{- xtemplate $tmpl . }}
+				{{- end -}}
+			)
+		}
+	{{ end }}
+{{ end }}
+
+{{ range $e := $.Edges }}
+	{{ $func := print "Has" $e.StructField }}
+	// {{ $func }} applies the HasEdge predicate on the {{ quote $e.Name }} edge.
+	func {{ $func }}() predicate.{{ $.Name }} {
+		return predicate.{{ $.Name }}(
+			{{- with extend $ "Edge" $e -}}
+				{{ $tmpl := printf "dialect/%s/predicate/edge/has" $.Storage }}
+				{{- xtemplate $tmpl . }}
+			{{- end -}}
+		)
+	}
+	{{ $func = printf "%sWith" $func }}
+	// {{ $func }} applies the HasEdge predicate on the {{ quote $e.Name }} edge with a given conditions (other predicates).
+	func {{ $func }}(preds ...predicate.{{ $e.Type.Name }}) predicate.{{ $.Name }} {
+		return predicate.{{ $.Name }}(
+			{{- with extend $ "Edge" $e -}}
+				{{ $tmpl := printf "dialect/%s/predicate/edge/haswith" $.Storage }}
+				{{- xtemplate $tmpl . }}
+			{{- end -}}
+		)
+	}
+{{ end }}
+
+// And groups predicates with the AND operator between them.
+func And(predicates ...predicate.{{ $.Name }}) predicate.{{ $.Name }} {
+	return predicate.{{ $.Name }}(
+		{{- $tmpl = printf "dialect/%s/predicate/and" $.Storage }}
+		{{- xtemplate $tmpl . -}}
+	)
+}
+
+// Or groups predicates with the OR operator between them.
+func Or(predicates ...predicate.{{ $.Name }}) predicate.{{ $.Name }} {
+	return predicate.{{ $.Name }}(
+		{{- $tmpl = printf "dialect/%s/predicate/or" $.Storage }}
+		{{- xtemplate $tmpl . -}}
+	)
+}
+
+// Not applies the not operator on the given predicate.
+func Not(p predicate.{{ $.Name }}) predicate.{{ $.Name }} {
+	return predicate.{{ $.Name }}(
+		{{- $tmpl = printf "dialect/%s/predicate/not" $.Storage }}
+		{{- xtemplate $tmpl . -}}
+	)
+}
+
+{{ template "where/additional" $ }}
+
+{{ with $tmpls := matchTemplate "where/additional/*" }}
+	{{ range $tmpl := $tmpls }}
+		{{ xtemplate $tmpl $ }}
+	{{ end }}
+{{ end }}
+
+{{ end }}
+
+{{/* A template that can be overridden in order to add additional code for the type package. */}}
+{{ define "where/additional" }}{{ end }}

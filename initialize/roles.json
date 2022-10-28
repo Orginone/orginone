@@ -1,0 +1,79 @@
+[
+    {
+        "id": "1",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 1,
+        "roleAlisa": "administrator",
+        "roleName": "平台超级管理员",
+        "roleDescription": "系统最高权限"
+    },
+    {
+        "id": "2",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 2,
+        "roleAlisa": "tenant_admin",
+        "roleName": "单位管理员",
+        "roleDescription": "单位内最高权限，负责维护单位内用户、组织、部门等信息，购买、分配应用"
+    },
+    {
+        "id": "3",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 3,
+        "roleAlisa": "tenant_default",
+        "roleName": "普通用户",
+        "roleDescription": "单位内的普通用户，负责业务处理"
+    },
+    {
+        "id": "4",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 4,
+        "roleAlisa": "admin_data",
+        "roleName": "数据管理员",
+        "roleDescription": "负责维护平台数据"
+    },
+    {
+        "id": "5",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 5,
+        "roleAlisa": "admin_data",
+        "roleName": "数据管理员",
+        "roleDescription": "负责维护平台数据"
+    },
+    {
+        "id": "6",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 6,
+        "roleAlisa": "admin_app_check",
+        "roleName": "应用管理员",
+        "roleDescription": "负责维护平台应用审核"
+    },
+    {
+        "id": "7",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "sort": 7,
+        "roleAlisa": "group_admin",
+        "roleName": "集团管理员",
+        "roleDescription": "负责维护集团管理"
+    }
+]

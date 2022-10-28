@@ -1,0 +1,45 @@
+syntax = "v1"
+
+info(
+	title: "市场模块"
+	desc: "奥吉能系统市场模块"
+	author: "realVeer"
+	email: "realVeer@qkbyte.com"
+	version: 1.0
+)
+
+//无参数
+type Nil struct{}
+//通用返回模型
+type CommonResponse {
+	Code    int64       `json:"code"`
+	Data    interface{} `json:"data"`
+	Msg     string      `json:"msg"`
+	Success bool        `json:"success"`
+}
+
+import (
+	"asset-market/types.api"
+	"asset-market/api.api"
+	"asset-market/groupappdistributiondata.api"
+	"asset-market/kubesphere.api"
+	"asset-market/marketapp.api"
+	"asset-market/marketappalert.api"
+	"asset-market/marketappapply.api"
+	"asset-market/marketappcomponent.api"
+	"asset-market/marketappcomponenttemplate.api"
+	"asset-market/marketappgroupdistribution.api"
+	"asset-market/marketappgroupdistributionrelation.api"
+	"asset-market/marketappkeysecret.api"
+	"asset-market/marketappnotice.api"
+	"asset-market/marketapppurchase.api"
+	"asset-market/marketapprole.api"
+	"asset-market/marketapproledistributionnew.api"
+	"asset-market/marketapprolemenu.api"
+	"asset-market/marketappusertemplate.api"
+	"asset-market/marketmenu.api"
+	"asset-market/marketmenuusersort.api"
+	"asset-market/marketusedapp.api"
+	"asset-market/portal.api"
+	"asset-market/redeploy.api"
+)

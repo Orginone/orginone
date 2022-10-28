@@ -1,0 +1,121 @@
+syntax = "proto3";
+package user;
+option go_package = "./user";
+
+message PageRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+  bool searchCount = 3;
+  string filter = 4;
+}
+
+message UserByAccountReq{
+   //标识
+  int64 id = 1;       
+  //账户                    
+  string account = 2;     
+  //密码                 
+  string password = 3;                      
+}
+
+message CommonRpcRes{
+  //返回Json
+  string json = 1;                         
+}
+
+message UserReRegReq{
+  //电话
+	string phoneNumber = 1;   
+  //姓名                
+	string realName = 2;      
+  //密码                
+	string pwd = 3;                           
+}
+
+message updatePasswdReq {
+  //用户ID
+  int64 userId = 1;
+  //旧密码
+  string oldPwd = 2;
+  //新密码
+  string newPwd = 3;
+}
+
+message TenantCodeReq{
+  //用户ID
+  int64 userId = 1;
+  //账户  
+  string account = 2;    
+  //租户编号
+  string tenantCode = 3;
+}
+
+message FindUserListPageReq{
+  //人员ID
+  int64 id = 1;
+  //人员名称
+  string userName = 2;
+  //是否删除
+  int64 isDeleted = 3;
+  //电话号码
+  string phoneNumber = 4; 
+  //租户Code
+  string tenantCode = 5;
+  //分页参数
+  PageRequest page = 6;
+} 
+
+message SwitchTenantReq{      
+ //账户                    
+ string account = 2;     
+ //单位编号         
+ string tenantCode = 3;                      
+}
+
+message FindserTenantUserReq{
+  //人员ID
+  int64 id = 1;
+  //人员名称
+  string userName = 2;
+  //是否删除
+  repeated int64 tenantApplyinStateRange = 3; 
+  //租户Code
+  string tenantCode = 4;
+  //分页参数
+  PageRequest page = 5;
+}
+ 
+message DeleteUserInfoReq{  
+  //人员ID列表
+  repeated int64 userIds=1;
+  //租户编号
+  string tenantCode = 2; 
+} 
+
+message AuditUserReq{  
+  //人员ID列表
+  repeated  int64 userIds=1;
+  //是否通过
+  bool isPass = 2;  
+  //租户编号
+  string tenantCode = 3; 
+}
+
+message CancelJoinTenantReq {
+  //账户                    
+  string account = 1;     
+  //单位编号         
+  repeated string tenantCodes = 2;   
+}
+
+message RemoveUserByIdsReq{
+  //用户ID
+  repeated int64 ids = 1;
+}
+
+message GetMarketAppInfoReq{
+  //应用key
+  string appkey = 1;
+  //应用secret
+  string appsecret = 2;
+}

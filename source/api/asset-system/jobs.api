@@ -1,0 +1,82 @@
+//岗位管理
+
+@server(
+   jwt: Auth
+   group: jobs
+   prefix: /asset-system/jobs
+)
+
+service system-api {
+    //新增岗位的同时赋角色
+    @handler addjobrole
+    post /v1/add/job/role(AddJobRoleReq) returns (CommonResponse)
+    //新增岗位的同时分配用户--use
+    @handler addjobuser
+    post /v1/add/job/user(AddJobUserReq) returns (CommonResponse)
+    //批量给用户分配岗位--use
+    @handler addJobsToUsers
+    post /v1/addJobsToUsers(AddJobsToUsersReq) returns (CommonResponse)
+    //集团生成应用岗位
+    @handler createGroupDefaultJob
+    post /v1/createGroupDefaultJob(CreateGroupDefaultJobReq) returns (CommonResponse)
+    //批量给用户删除岗位
+    @handler deleteJobsToUsers
+    delete /v1/deleteJobsToUsers(DeleteJobsToUsersReq) returns (CommonResponse)
+    //岗位数据导出
+    @handler exportjob
+    get /v1/export/job(ExportJobReq) returns (CommonResponse)
+    //根据岗位Id获取部门Id
+    @handler getagencyIdjobId
+    get /v1/get/agencyId/jobId(GetAgencyIdJobIdReq) returns (CommonResponse)
+    //获取岗位、部门、角色(发起表单用)
+    @handler getdeptjobrole
+    get /v1/get/dept/job/role(GetDeptJobRoleReq) returns (CommonResponse)
+    //获取岗位列表
+    @handler getJobListByIds
+    get /v1/getJobListByIds(GetJobListByIdsReq) returns (CommonResponse)
+    //根据userId筛选岗位列表
+    @handler getJobListByUserId
+    get /v1/getJobListByUserId(GetJobListByUserIdReq) returns (CommonResponse)
+    //集团岗位信息导入--use
+    @handler importgroupjob
+    post /v1/import/groupjob(ImportGroupjobReq) returns (CommonResponse)
+    //集团岗位数据模板下载
+    @handler jobgroupmodel
+    get /v1/job/groupmodel(Nil) returns (CommonResponse)
+    //岗位数据模板下载
+    @handler jobmodel
+    get /v1/job/model(Nil) returns (CommonResponse)
+    //岗位列表--use
+    @handler listjob
+    get /v1/list/job(ListJobReq) returns (CommonResponse)
+    //岗位列表（分页）v2--use
+    @handler listv2
+    get /v1/list/v2(ListV2Req) returns (CommonResponse)
+    //删除岗位--use
+    @handler remove
+    delete /v1/remove(RemoveReq1) returns (CommonResponse)
+    //模糊搜索岗位列表--use
+    @handler searchJobList
+    get /v1/searchJobList(SearchJobListReq) returns (CommonResponse)
+    //根据部门id或岗位id或角色id获取数据
+    @handler selectById
+    get /v1/selectById(SelectByIdReq) returns (CommonResponse)
+    //根据personId筛选jobId
+    @handler selectJobIdByUserId
+    get /v1/selectJobIdByUserId(SelectJobIdByUserIdReq) returns (CommonResponse)
+    //根据userId获取job列表--use
+    @handler selectJobsByUserId
+    get /v1/selectJobsByUserId(SelectJobsByUserIdReq) returns (CommonResponse)
+    //根据jobId筛选userId
+    @handler selectuserIdByJobId
+    get /v1/selectuserIdByJobId(SelectuserIdByJobIdReq) returns (CommonResponse)
+    //新增或编辑岗位
+    @handler submit
+    post /v1/submit(SubmitReq3) returns (CommonResponse)
+    //修改岗位的同时分配用户--use
+    @handler updatejobuser
+    post /v1/update/job/user(UpdateJobUserReq) returns (CommonResponse)
+    //批量给用户修改岗位--use
+    @handler updateJobsToUsers
+    post /v1/updateJobsToUsers(UpdateJobsToUsersReq) returns (CommonResponse)
+}

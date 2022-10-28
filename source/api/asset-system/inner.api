@@ -1,0 +1,124 @@
+//内设机构管理模块
+
+@server(
+   jwt: Auth
+   group: inner
+   prefix: /asset-system/inner
+)
+
+service system-api {
+    //给App的单位增加部门
+    @handler agencyadddeptbyappid
+    post /agency/add/dept/by/appid(AgencyAddDeptByAppidReq) returns (CommonResponse)
+    //新增内设机构同时新增用户--use
+    @handler agencyaddinneruser
+    post /agency/add/inner/user(AgencyAddInnerUserReq) returns (CommonResponse)
+    //新增部门
+    @handler agencyaddnode
+    post /agency/add/node(AgencyAddNodeReq) returns (CommonResponse)
+    //批量添加部门
+    @handler agencyaddnodes
+    post /agency/add/nodes(AgencyAddNodesReq) returns (CommonResponse)
+    //给部门绑定用户--use
+    @handler agencyaddUsersToAgency
+    post /agency/addUsersToAgency(AgencyAddUsersToAgencyReq) returns (CommonResponse)
+    //删除岗位或部门下的用户--use
+    @handler agencydeletejobdeptusers
+    delete /agency/delete/job/dept/users(AgencyDeleteJobDeptUsersReq) returns (CommonResponse)
+    //批量删除部门--use
+    @handler agencydeletenodes
+    delete /agency/delete/nodes(AgencyDeleteNodesReq) returns (CommonResponse)
+    //给部门删除用户
+    @handler agencydeleteUsersToAgency
+    delete /agency/deleteUsersToAgency(AgencyDeleteUsersToAgencyReq) returns (CommonResponse)
+    //删除部门
+    @handler agencydeletedinnernode
+    delete /agency/deleted/inner/node(AgencyDeletedInnerNodeReq) returns (CommonResponse)
+    //分配部门人员
+    @handler agencydistributedeptpersons
+    post /agency/distribute/dept/persons(AgencyDistributeDeptPersonsReq) returns (CommonResponse)
+    //部门数据导出--use
+    @handler agencyexportinnerAgencyv2
+    get /agency/export/innerAgency/v2(AgencyExportInnerAgencyV2Req) returns (CommonResponse)
+    //部门数据导出--use
+    @handler agencyexportInnerAgencyData
+    post /agency/exportInnerAgencyData(AgencyExportInnerAgencyDataReq) returns (CommonResponse)
+    //部门父级树形结构--use
+    @handler agencygetallpNode
+    get /agency/get/all/pNode(AgencyGetAllPNodeReq) returns (CommonResponse)
+    //部门子级树形人员列表--use
+    @handler agencygetdeptallperson
+    get /agency/get/dept/all/person(AgencyGetDeptAllPersonReq) returns (CommonResponse)
+    //获取岗位或部门数据
+    @handler agencygetjobdept
+    get /agency/get/job/dept(AgencyGetJobDeptReq) returns (CommonResponse)
+    //获取部门下的岗位列表
+    @handler agencygetjobs
+    get /agency/get/jobs(AgencyGetJobsReq) returns (CommonResponse)
+    //获取部门下的岗位列表(分页)
+    @handler agencygetjobspage
+    get /agency/get/jobs/page(AgencyGetJobsPageReq) returns (CommonResponse)
+    //检索内设组织结构信息(支持模糊检索)
+    @handler agencygetnode
+    get /agency/get/node(AgencyGetNodeReq) returns (CommonResponse)
+    //获取部门列表
+    @handler agencygetAgencyListByIds
+    get /agency/getAgencyListByIds(AgencyGetAgencyListByIdsReq) returns (CommonResponse)
+    //获取全新的部门编码--use
+    @handler agencygetDeptCode
+    get /agency/getDeptCode(AgencyGetDeptCodeReq) returns (CommonResponse)
+    //获取租户下的所有部门
+    @handler agencygetInnerAgencyByTenantCode
+    get /agency/getInnerAgencyByTenantCode(AgencyGetInnerAgencyByTenantCodeReq) returns (CommonResponse)
+    //查询本单位部门信息
+    @handler agencygetOrgDepartment
+    post /agency/getOrgDepartment(AgencyGetOrgDepartmentReq) returns (CommonResponse)
+    //部门数据导入
+    @handler agencyimportdept
+    post /agency/import/dept(AgencyImportDeptReq) returns (CommonResponse)
+    //部门数据导入
+    @handler agencyimportinnerAgencyv2
+    post /agency/import/innerAgency/v2(AgencyImportInnerAgencyV2Req) returns (CommonResponse)
+    //树形结构--use
+    @handler agencyinnertree
+    get /agency/inner/tree(AgencyInnerTreeReq) returns (CommonResponse)
+    //部门模板下载--use
+    @handler agencyinnerAgencymodelv2
+    get /agency/innerAgency/model/v2(Nil) returns (CommonResponse)
+    //内设机构列表（树形结构）
+    @handler agencylistinner
+    get /agency/list/inner(AgencyListInnerReq) returns (CommonResponse)
+    //部门列表--use
+    @handler agencylistv2
+    get /agency/list/v2(AgencyListV2Req) returns (CommonResponse)
+    //部门列表
+    @handler agencylistv3
+    get /agency/list/v3(AgencyListV3Req) returns (CommonResponse)
+    //部门导入模板下载
+    @handler agencymodeldowndept
+    get /agency/model/down/dept(Nil) returns (CommonResponse)
+    //搜索部门树--use
+    @handler agencysearchDeptTree
+    get /agency/searchDeptTree(AgencySearchDeptTreeReq) returns (CommonResponse)
+    //根据部门或者岗位获取user列表,传一个，两个都传则两个条件筛选
+    @handler agencyselectusersbyagencyIdOrJobId
+    get /agency/select/users/by/agencyIdOrJobId(AgencySelectUsersByAgencyIdOrJobIdReq) returns (CommonResponse)
+    //根据userId筛选agencyId
+    @handler agencyselectAgencyIdByUserId
+    get /agency/selectAgencyIdByUserId(AgencySelectAgencyIdByUserIdReq) returns (CommonResponse)
+    //根据agencyId筛选userIds
+    @handler agencyselectUserIdsByAgencyId
+    get /agency/selectUserIdsByAgencyId(AgencySelectUserIdsByAgencyIdReq) returns (CommonResponse)
+    //根据agencyId获取userId列表
+    @handler agencyselectUsersByAgencyId
+    get /agency/selectUsersByAgencyId(AgencySelectUsersByAgencyIdReq) returns (CommonResponse)
+    //编辑部门信息（加缓存）
+    @handler agencyupdateinnernode
+    put /agency/update/inner/node(AgencyUpdateInnerNodeReq) returns (CommonResponse)
+    //修改部门层级关系及用户所在部门
+    @handler agencyupdateinneruser
+    put /agency/update/inner/user(AgencyUpdateInnerUserReq) returns (CommonResponse)
+    //给部门更新用户
+    @handler agencyupdateUsersToAgency
+    post /agency/updateUsersToAgency(AgencyUpdateUsersToAgencyReq) returns (CommonResponse)
+}

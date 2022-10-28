@@ -1,0 +1,31 @@
+//预警消息
+
+@server(
+   jwt: Auth
+   group: marketappalert
+   prefix: /asset-market/marketappalert
+)
+
+service market-api {
+    //取消已读/标为未读
+    @handler cancelCheckAlert
+    get /cancelCheckAlert(CancelCheckAlertReq) returns (CommonResponse)
+    //标为已读--use
+    @handler checkAlert
+    get /checkAlert(CheckAlertReq) returns (CommonResponse)
+    //分页--use
+    @handler list
+    get /list(ListReq2) returns (CommonResponse)
+    //我的预警消息 body结构：{"role":[],"job":[]}--use
+    @handler myAlertList
+    post /myAlertList(MyAlertListReq) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq1) returns (CommonResponse)
+    //发送预警
+    @handler sendAlert
+    post /sendAlert(SendAlertReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq1) returns (CommonResponse)
+}

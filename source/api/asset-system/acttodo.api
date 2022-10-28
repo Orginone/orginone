@@ -1,0 +1,64 @@
+//act-todo-controller
+
+@server(
+   jwt: Auth
+   group: acttodo
+   prefix: /asset-system/acttodo
+)
+
+service system-api {
+    //增加已完成任务信息
+    @handler addacthistory
+    post /addacthistory(AddacthistoryReq) returns (CommonResponse)
+    //增加待办任务信息
+    @handler addacttodo
+    post /addacttodo(AddacttodoReq) returns (CommonResponse)
+    //审批通过、不通过行为
+    @handler approvelist
+    get /approvelist(Nil) returns (CommonResponse)
+    //批量退回
+    @handler batchback
+    post /batchback(BatchbackReq) returns (CommonResponse)
+    //批量审核
+    @handler batchpass
+    post /batchpass(BatchpassReq) returns (CommonResponse)
+    //procid
+    @handler deleteacttodo
+    delete /deleteacttodo(DeleteacttodoReq) returns (CommonResponse)
+    //procid
+    @handler deleteallacttodo
+    delete /deleteallacttodo(DeleteallacttodoReq) returns (CommonResponse)
+    //流程结束行为
+    @handler finishproc
+    get /finishproc(Nil) returns (CommonResponse)
+    //获取单位待办任务数量
+    @handler getUnitActTodoNumber
+    get /getUnitActTodoNumber(GetUnitActTodoNumberReq) returns (CommonResponse)
+    //获取待办任务
+    @handler getallacttodo
+    get /getallacttodo(GetallacttodoReq) returns (CommonResponse)
+    //获取待办任务
+    @handler getallacttodobysearch
+    get /getallacttodobysearch(GetallacttodobysearchReq) returns (CommonResponse)
+    //获取待办任务数量
+    @handler getallacttodonum
+    get /getallacttodonum(Nil) returns (CommonResponse)
+    //获取已办任务
+    @handler getallfinishacttodo
+    get /getallfinishacttodo(GetallfinishacttodoReq) returns (CommonResponse)
+    //获取已完成任务
+    @handler getallhistoryacttodo
+    get /getallhistoryacttodo(GetallhistoryacttodoReq) returns (CommonResponse)
+    //获取已完成任务
+    @handler getallhistoryacttodobysearch
+    get /getallhistoryacttodobysearch(GetallhistoryacttodobysearchReq) returns (CommonResponse)
+    //获取已完成任务
+    @handler getallmysendacttodo
+    get /getallmysendacttodo(GetallmysendacttodoReq) returns (CommonResponse)
+    //获取已完成任务
+    @handler getallmysendacttodoBySearch
+    get /getallmysendacttodoBySearch(GetallmysendacttodoBySearchReq) returns (CommonResponse)
+    //修改待办任务信息
+    @handler updateacttodo
+    post /updateacttodo(UpdateacttodoReq) returns (CommonResponse)
+}

@@ -1,0 +1,13 @@
+//Kubesphere接口
+
+@server(
+   jwt: Auth
+   group: kubesphere
+   prefix: /asset-market/kubesphere
+)
+
+service market-api {
+    //获取token
+    @handler getToken
+    post /getToken(GetTokenReq) returns (CommonResponse)
+}

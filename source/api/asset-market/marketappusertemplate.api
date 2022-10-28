@@ -1,0 +1,40 @@
+//Portal用户模板
+
+@server(
+   jwt: Auth
+   group: marketappusertemplate
+   prefix: /asset-market/marketappusertemplate
+)
+
+service market-api {
+    //获取用户默认模板id--use
+    @handler getDefaultTemplate
+    get /getDefaultTemplate(GetDefaultTemplateReq) returns (CommonResponse)
+    //获取当前登录用户正在使用模板id
+    @handler getTemplateIdByLoginInUse
+    get /getTemplateIdByLoginInUse(Nil) returns (CommonResponse)
+    //根据用户id获取正在使用模板id--use
+    @handler getTemplateIdByUserIdInUse
+    get /getTemplateIdByUserIdInUse(GetTemplateIdByUserIdInUseReq) returns (CommonResponse)
+    //获取当前登录用户模板id列表
+    @handler getTemplateIdListByLogin
+    get /getTemplateIdListByLogin(Nil) returns (CommonResponse)
+    //根据用户id获取模板id列表--use
+    @handler getTemplateIdListByUserId
+    get /getTemplateIdListByUserId(GetTemplateIdListByUserIdReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq12) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq12) returns (CommonResponse)
+    //设置默认模板--use
+    @handler setDefaultTemplate
+    post /setDefaultTemplate(SetDefaultTemplateReq) returns (CommonResponse)
+    //设置集团单位默认模板-use
+    @handler setGroupTenantDefaultTemplate
+    post /setGroupTenantDefaultTemplate(SetGroupTenantDefaultTemplateReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq12) returns (CommonResponse)
+}

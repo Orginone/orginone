@@ -1,0 +1,25 @@
+//元数据用户管理
+
+@server(
+   jwt: Auth
+   group: meta
+   prefix: /asset-user/meta
+)
+
+service user-api {
+    //查看详情
+    @handler userdetail
+    post /user/v1/detail(UserDetailReq) returns (CommonResponse)
+    //列表
+    @handler userlist
+    post /user/v1/list(UserListReq) returns (CommonResponse)
+    //删除
+    @handler userremove
+    delete /user/v1/remove(UserRemoveReq) returns (CommonResponse)
+    //新增
+    @handler usersave
+    post /user/v1/save(UserSaveReq) returns (CommonResponse)
+    //修改
+    @handler userupdate
+    put /user/v1/update(UserUpdateReq) returns (CommonResponse)
+}

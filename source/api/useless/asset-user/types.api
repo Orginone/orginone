@@ -1,0 +1,39 @@
+//元数据用户管理-查看详情-请求参数
+type UserDetailReq struct {
+    Values               interface{}    `json:"values"`
+}
+//元数据用户管理-列表-请求参数
+type UserListReq struct {
+    Current              string         `json:"current"`
+    Size                 string         `json:"size"`
+    Values               interface{}    `json:"values"`
+}
+//元数据用户管理-删除-请求参数
+type UserRemoveReq struct {
+    Ids                  string         `json:"ids"`
+}
+//元数据用户管理-删除-请求参数
+type GetUserTenantCodeReq struct {
+    TenantCode                  string         `form:"tenantCode"`
+}
+//元数据用户管理-新增-请求参数
+type UserSaveReq struct {
+    Values               interface{}    `json:"values"`
+}
+//元数据用户管理-修改-请求参数
+type UserUpdateReq struct {
+    Values               interface{}    `json:"values"`
+}
+
+//其它用户管理-获取岗位人员-请求参数
+type PageByJobReq struct {
+    Current              int64          `json:"current"`
+    JobId                int64          `json:"jobId"`
+    Size                 int64          `json:"size"`
+}
+//其它用户管理-岗位人员反选-请求参数
+type PageByJobInverseReq struct {
+    Current              int64          `json:"current"`
+    JobId                int64          `json:"jobId"`
+    Size                 int64          `json:"size"`
+}

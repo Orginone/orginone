@@ -1,0 +1,12 @@
+Name: system-api
+Host: 0.0.0.0
+Port: 2021
+Timeout: 0
+Auth:
+  AccessSecret: 1234qwer
+  AccessExpire: 7200
+SystemRpc:
+  Etcd:
+    Hosts:
+    - localhost:2379
+    Key: system.rpc

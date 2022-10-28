@@ -1,0 +1,225 @@
+//审批-元数据,字典审核-请求参数
+type DictOrFieldReq struct {
+    Audit                interface{}    `json:"audit"`
+    Dict                 interface{}    `json:"dict"`
+    Field                interface{}    `json:"field"`
+}
+//审批-审批失败-请求参数
+type FailReq struct {
+    AuditList            interface{}    `json:"auditList"`
+}
+//审批-获取审批-请求参数
+type GetallauditReq struct {
+    Current              int32          `json:"current"`
+    Size                 int32          `json:"size"`
+}
+//审批-审批成功-请求参数
+type SuccessReq struct {
+    AuditList            interface{}    `json:"auditList"`
+}
+//home-controller-根据recid删除容器信息-请求参数
+type ContainReq struct {
+    Recid                int64          `json:"recid"`
+}
+//home-controller-根据recid删除公共容器信息-请求参数
+type PublicContainReq struct {
+    Recid                int64          `json:"recid"`
+}
+//home-controller-增加容器对象信息-请求参数
+type AddContainReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//home-controller-增加公共容器对象信息-请求参数
+type AddPublicContainReq struct {
+    ContainValueDTO      interface{}    `json:"containValueDTO"`
+}
+//home-controller-增加portal对象信息-请求参数
+type AddportalReq struct {
+    PortalValueDTO       interface{}    `json:"portalValueDTO"`
+}
+//home-controller-根据portalid以及查询条件查找容器集合信息-请求参数
+type GetallcontainReq struct {
+    Filtertext           string         `json:"filtertext"`
+    Portalid             int64          `json:"portalid"`
+}
+//home-controller-根据人员得到portal中所有容器-请求参数
+type GetallcontainbyuseridReq struct {
+    Filtertext           string         `json:"filtertext"`
+    Userid               int64          `json:"userid"`
+}
+//home-controller-得到所有portal（加条件）-请求参数
+type GetallportalReq struct {
+    Filtertext           string         `json:"filtertext"`
+}
+//home-controller-得到所有公共容器（加条件）-请求参数
+type GetpubliccontainbyfilterReq struct {
+    Filtertext           string         `json:"filtertext"`
+}
+//home-controller-根据recid删除portal模板信息-请求参数
+type PortalReq struct {
+    Recid                int64          `json:"recid"`
+}
+//home-controller-portal关联角色-请求参数
+type RelportalReq struct {
+    Recid                int64          `json:"recid"`
+    Roleid               int64          `json:"roleid"`
+}
+//home-controller-portal关联人员-请求参数
+type RelportalReq1 struct {
+    Recid                int64          `json:"recid"`
+    Userid               int64          `json:"userid"`
+}
+//home-controller-修改容器对象信息-请求参数
+type UpdateContainReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//home-controller-修改公共容器对象信息-请求参数
+type UpdatePublicContainReq struct {
+    ContainValueDTO      interface{}    `json:"containValueDTO"`
+}
+//home-controller-修改portal对象信息-请求参数
+type UpdateportalReq struct {
+    PortalValueDTO       interface{}    `json:"portalValueDTO"`
+}
+//it-ops-controller-删除租户-请求参数
+type DeletetenantReq struct {
+    Itopsdetailid        int64          `json:"itopsdetailid"`
+}
+//it-ops-controller-根据扫描表得到所有修复记录-请求参数
+type GetallitopsdetailReq struct {
+    Ifmodify             int32          `json:"ifmodify"`
+    Itopsid              int64          `json:"itopsid"`
+}
+//it-ops-controller-得到多个手机号（根据userid)-请求参数
+type GetmultiphoneReq struct {
+    Userid               int64          `json:"userid"`
+}
+//it-ops-controller-得到多个超级管理员-请求参数
+type GetmultisupermanagerReq struct {
+    Tenant_code          string         `json:"tenant_code"`
+}
+//it-ops-controller-得到多个租户（根据phone_number)-请求参数
+type GetmultitenantReq struct {
+    Phone_number         string         `json:"phone_number"`
+}
+//it-ops-controller-得到多个用户名（根据userid)-请求参数
+type GetmultiusernameReq struct {
+    Userid               int64          `json:"userid"`
+}
+//it-ops-controller-得到租户具体信息-请求参数
+type GettenantReq struct {
+    Tenant_code          string         `json:"tenant_code"`
+}
+//it-ops-controller-租户人员数据导入-请求参数
+type ImportTenantuserReq struct {
+    File                 interface{}    `json:"file"`
+}
+//it-ops-controller-修复一个单位中有多少超级管理员的-请求参数
+type ModifysupermanagerReq struct {
+    Itopsdetailid        int64          `json:"itopsdetailid"`
+    User_id              int64          `json:"user_id"`
+}
+//it-ops-controller-修复一个用户中有多个密码的-请求参数
+type ModifyuserReq struct {
+    Itopsdetailid        int64          `json:"itopsdetailid"`
+    Phone_number         string         `json:"phone_number"`
+}
+//it-ops-controller-修复用户和人员表中名字不一致的-请求参数
+type ModifyusernameReq struct {
+    Itopsdetailid        int64          `json:"itopsdetailid"`
+    User_name            string         `json:"user_name"`
+}
+//it-ops-controller-修复用户和人员表中手机号不一致的-请求参数
+type ModifyuserphoneReq struct {
+    Itopsdetailid        int64          `json:"itopsdetailid"`
+    Phone_number         string         `json:"phone_number"`
+}
+//菜单-详情-请求参数
+type DetailReq1 struct {
+    Action               int32          `json:"action"`
+    Alias                string         `json:"alias"`
+    Category             int32          `json:"category"`
+    Code                 string         `json:"code"`
+    Id                   int32          `json:"id"`
+    IsDeleted            int32          `json:"isDeleted"`
+    IsOpen               int32          `json:"isOpen"`
+    Name                 string         `json:"name"`
+    ParentId             int32          `json:"parentId"`
+    Path                 string         `json:"path"`
+    Remark               string         `json:"remark"`
+    Sort                 int32          `json:"sort"`
+    Source               string         `json:"source"`
+}
+//菜单-列表-请求参数
+type ListReq1 struct {
+    Code                 string         `json:"code"`
+    Name                 string         `json:"name"`
+}
+//菜单-删除-请求参数
+type RemoveReq1 struct {
+    Ids                  string         `json:"ids"`
+}
+//菜单-角色所分配的树-请求参数
+type RoleTreeKeysReq struct {
+    RoleIds              string         `json:"roleIds"`
+}
+//菜单-新增或修改-请求参数
+type SubmitReq1 struct {
+    Menu                 interface{}    `json:"menu"`
+}
+//meta-data-controller-根据字段所在表的code查找字段集合信息-请求参数
+type FieldReq struct {
+    Current              int32          `json:"current"`
+    Mtcode               string         `json:"mtcode"`
+    Size                 int32          `json:"size"`
+}
+//meta-data-controller-根据字段recid获取字段对象-请求参数
+type FieldReq1 struct {
+    Recid                string         `json:"recid"`
+}
+//meta-data-controller-根据字段所在表的code以及查询条件查找字段集合信息(分页）-请求参数
+type FilterbyfieldReq struct {
+    Current              int32          `json:"current"`
+    Filtertext           string         `json:"filtertext"`
+    Mtcode               string         `json:"mtcode"`
+    Size                 int32          `json:"size"`
+}
+//meta-data-controller-根据字段所在表的code以及查询条件查找字段集合信息-请求参数
+type FilterfieldReq struct {
+    Filtertext           string         `json:"filtertext"`
+    Mtcode               string         `json:"mtcode"`
+}
+//meta-data-controller-根据表mtcode发布表-请求参数
+type Req struct {
+    Mtcode               string         `json:"mtcode"`
+}
+//接口-详情-请求参数
+type DetailReq2 struct {
+    CreateTime           string         `json:"createTime"`
+    CreateUser           int32          `json:"createUser"`
+    Id                   int32          `json:"id"`
+    IsDeleted            int32          `json:"isDeleted"`
+    ParamKey             string         `json:"paramKey"`
+    ParamName            string         `json:"paramName"`
+    ParamValue           string         `json:"paramValue"`
+    Remark               string         `json:"remark"`
+    Status               int32          `json:"status"`
+    UpdateTime           string         `json:"updateTime"`
+    UpdateUser           int32          `json:"updateUser"`
+}
+//接口-分页-请求参数
+type ListReq2 struct {
+    Current              int32          `json:"current"`
+    ParamKey             string         `json:"paramKey"`
+    ParamName            string         `json:"paramName"`
+    ParamValue           string         `json:"paramValue"`
+    Size                 int32          `json:"size"`
+}
+//接口-逻辑删除-请求参数
+type RemoveReq2 struct {
+    Ids                  string         `json:"ids"`
+}
+//接口-新增或修改-请求参数
+type SubmitReq2 struct {
+    Param                interface{}    `json:"param"`
+}

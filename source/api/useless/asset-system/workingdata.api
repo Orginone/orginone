@@ -1,0 +1,34 @@
+//在途业务用户数据处理
+
+@server(
+   jwt: Auth
+   group: workingdata
+   prefix: /asset-system/workingdata
+)
+
+service system-api {
+    //绑定在途业务人员
+    @handler apptokenbindWorkingUser
+    post /apptoken/bindWorkingUser(ApptokenBindWorkingUserReq) returns (CommonResponse)
+    //解除绑定在途业务人员
+    @handler apptokencancelBindWorkingUser
+    post /apptoken/cancelBindWorkingUser(ApptokenCancelBindWorkingUserReq) returns (CommonResponse)
+    //判断用户是否可以删除
+    @handler apptokencheckDelete
+    get /apptoken/checkDelete(ApptokenCheckDeleteReq) returns (CommonResponse)
+    //获取用户无法删除类型
+    @handler apptokengetAllWorkingUserType
+    get /apptoken/getAllWorkingUserType(ApptokenGetAllWorkingUserTypeReq) returns (CommonResponse)
+    //获取某个应用下用户无法删除类型
+    @handler apptokengetAppWorkingUserType
+    get /apptoken/getAppWorkingUserType(ApptokenGetAppWorkingUserTypeReq) returns (CommonResponse)
+    //分页
+    @handler listPage
+    get /listPage(ListPageReq6) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq8) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq10) returns (CommonResponse)
+}

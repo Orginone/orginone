@@ -1,0 +1,44 @@
+syntax = "v1"
+
+info(
+	title: "系统模块"
+	desc: "奥吉能系统系统模块"
+	author: "realVeer"
+	email: "realVeer@qkbyte.com"
+	version: 1.0
+)
+
+//无参数
+type Nil struct{}
+//通用返回模型
+type CommonResponse {
+	Code    int64       `json:"code"`
+	Data    interface{} `json:"data"`
+	Msg     string      `json:"msg"`
+	Success bool        `json:"success"`
+}
+
+import (
+	"asset-system/types.api"
+	"asset-system/administrative.api"
+	"asset-system/allgroup.api"
+	"asset-system/api.api"
+	"asset-system/appjob.api"
+	"asset-system/async.api"
+	"asset-system/grouptenantrelations.api"
+	"asset-system/inner.api"
+	"asset-system/jobs.api"
+	"asset-system/menus.api"
+	"asset-system/organs.api"
+	"asset-system/person.api"
+	"asset-system/properties.api"
+	"asset-system/propertiesdistribution.api"
+	"asset-system/roles.api"
+	"asset-system/scenes.api"
+	"asset-system/tenant.api"
+	"asset-system/tenanticon.api"
+	"asset-system/token.api"
+	"asset-system/message.api"
+	"asset-system/acttodo.api"
+	"asset-system/dict.api"
+)

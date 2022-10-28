@@ -1,0 +1,51 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.typeScope */}}
+
+{{ define "dialect/sql/group" }}
+{{ $builder := pascal $.Scope.Builder }}
+{{ $receiver := receiver $builder }}
+
+func ({{ $receiver }} *{{ $builder }}) sqlScan(ctx context.Context, v interface{}) error {
+	for _, f := range {{ $receiver }}.fields {
+		if !{{ $.Package }}.ValidColumn(f) {
+			return &ValidationError{Name: f, err: fmt.Errorf("invalid field %q for group-by", f)}
+		}
+	}
+	selector := {{ $receiver }}.sqlQuery()
+	if err := selector.Err(); err != nil {
+		return err
+	}
+	rows := &sql.Rows{}
+	query, args := selector.Query()
+	if err := {{ $receiver }}.driver.Query(ctx, query, args, rows); err != nil {
+		return err
+	}
+	defer rows.Close()
+	return sql.ScanSlice(rows, v)
+}
+
+
+func ({{ $receiver }} *{{ $builder }}) sqlQuery() *sql.Selector {
+	selector := {{ $receiver }}.sql.Select()
+	aggregation := make([]string, 0, len({{ $receiver}}.fns))
+	for _, fn := range {{ $receiver }}.fns {
+		aggregation = append(aggregation, fn(selector))
+	}
+	// If no columns were selected in a custom aggregation function, the default
+	// selection is the fields used for "group-by", and the aggregation functions.
+	if len(selector.SelectedColumns()) == 0 {
+		columns := make([]string, 0, len({{ $receiver }}.fields) + len({{ $receiver}}.fns))
+		for _, f := range {{ $receiver }}.fields {
+			columns = append(columns, selector.C(f))
+		}
+		columns = append(columns, aggregation...)
+		selector.Select(columns...)
+	}
+	return selector.GroupBy(selector.Columns({{ $receiver }}.fields...)...)
+}
+{{ end }}

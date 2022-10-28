@@ -1,0 +1,13 @@
+//用户注册获取租户和角色
+
+@server(
+   jwt: Auth
+   group: token
+   prefix: /asset-system/token
+)
+
+service system-api {
+    //检索用户身份证是否注册--use
+    @handler registrationretrieveidCard
+    get /registration/retrieve/idCard(RegistrationRetrieveIdCardReq) returns (CommonResponse)
+}

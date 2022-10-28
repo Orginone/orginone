@@ -1,0 +1,2011 @@
+//行政区划管理-分页-请求参数
+type ListAllReq struct { 
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+}
+//行政区划管理-删除-请求参数
+type RemoveByIdsReq struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//行政区划管理-新增或修改-请求参数
+type SubmitReq struct {
+    AdministrativeArea   interface{}    `json:"administrativeArea"`
+}
+//集团管理-租户创建集团-请求参数
+type CreateGroupReq struct {
+    GroupCode            string         `form:"groupCode"`
+    GroupDescription     string         `form:"groupDescription"`
+    GroupId              int64          `form:"groupId"`
+    GroupName            string         `form:"groupName"`
+    Shape                string         `form:"shape"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//集团管理-获取集团详细信息-请求参数
+type GetGroupByIdReq struct {
+    GroupId              int64          `form:"groupId"`
+}
+//集团管理-获取集团管理单位的detail-请求参数
+type GetGroupManagerUnitReq struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团管理-获取集团管理单位的tenantCode-请求参数
+type GetGroupManagerUnitIdReq struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团管理-获取单位管理实集团id列表-请求参数
+type GetGroupIdListByTenantCodeReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//集团管理-获取单位管理集团id列表-请求参数
+type GetManagerGroupIdListReq struct {
+    UnitId               int64          `json:"unitId"`
+}
+//集团管理-获取集团列表的管理单位列表-请求参数
+type GetManagerUnitIdListReq struct {
+    GroupIds             string         `json:"groupIds"`
+}
+//集团管理-获取集团管理单位的unitId-请求参数
+type GetManagerUnitIdReq struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团管理-获取用户对应单位管理集团id列表-请求参数
+type GetUserManagerGroupIdListReq struct {
+    Type                 int64          `json:"type"`
+    UserId               int64          `json:"userId"`
+}
+//集团管理-获取根集团简易集团详细信息-请求参数
+type GetSimpleGroupByIdReq struct {
+    GroupId              int64          `form:"groupId"`
+}
+//集团管理-获取根集团下所有管理单位为tenantCode的集团列表-请求参数
+type GetTenantCodeControlGroupReq struct {
+    SourceGroupId        string         `json:"sourceGroupId"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//集团管理-集团列表(兼模糊检索)-请求参数
+type ListReq struct {
+    GroupName            string         `form:"groupName"`
+    Type                 int64          `form:"type"`
+}
+//集团管理-获取管理租户的集团列表-请求参数
+type ListByTenantCodeReq struct {
+    TenantCode           string         `json:"tenantCode"`
+    Type                 int64          `json:"type"`
+}
+//集团管理-获取当前单位为管理租户的集团列表-请求参数
+type ListNowTenantCodeReq struct {
+    Type                 int64          `form:"type"`
+}
+//集团管理-分页-请求参数
+type ListAllReq1 struct {
+	Current    int64       `form:"current"`
+	Size       int64       `form:"size"`
+	Id         int64       `form:"id,optional,default=-1"`
+	GroupName  string      `form:"groupName,optional"`
+	TenantCode string      `form:"tenantCode,optional"`
+	Type       int64       `form:"type,optional,default=-1"`
+	GroupCode  string      `form:"groupCode,optional"`
+	IsDeleted  int64       `form:"isDeleted,optional,default=-1"`
+}
+//集团管理-集团列表分页(兼模糊检索)-请求参数
+type ListPageReq struct {
+    Current              int64          `json:"current"`
+    GroupName            string         `json:"groupName"`
+    Size                 int64          `json:"size"`
+    Type                 int64          `json:"type"`
+}
+//集团管理-删除-请求参数
+type RemoveByIdsReq1 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//集团管理-修改-请求参数
+type SubmitReq1 struct {
+    Group                interface{}    `json:"group"`
+}
+//api-tenant-controller-获取元数据列表-请求参数
+type TenantListReq struct {
+    TenantCode           interface{}    `json:"tenantCode"`
+}
+//应用岗位管理-创建应用岗位-请求参数
+type CreateAppJobReq struct {
+    AppId                int64          `json:"appId"`
+    JobId                int64          `json:"jobId"`
+    JobName              string         `json:"jobName"`
+}
+//应用岗位管理-获取全部应用岗位分页-请求参数
+type GetAllAppJobPageReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//应用岗位管理-获取选定应用岗位分页-请求参数
+type GetAppJobPageReq struct {
+    AppId                int64          `json:"appId"`
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//应用岗位管理-分页-请求参数
+type ListPageReq1 struct {
+    AppJob               interface{}    `json:"appJob"`
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//应用岗位管理-删除-请求参数
+type RemoveReq struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//应用岗位管理-新增或修改-请求参数
+type SubmitReq2 struct {
+    AppJob               interface{}    `json:"appJob"`
+}
+//已完成-集团成员管理导出-请求参数
+type ExportGroupUnitDataReq struct {
+    GroupId              int64          `form:"groupId"`
+    UnitIdList           interface{}    `json:"unitIdList"`
+}
+//已完成-人员数据导出-请求参数
+type ExportPersonDataReq struct {
+    PersonIdList         interface{}    `json:"personIdList"`
+    TenantCode           string         `form:"tenantCode"`
+    List         interface{}    `json:"list"`
+}
+//异步接口-getImportProgress-请求参数
+type GetImportProgressReq struct {
+    ProgressId           string         `form:"progressId"`
+}
+//已完成-集团应用分发-请求参数
+type GroupAppDistributeReq struct {
+    AppId                int64          `form:"appId"` 
+    GroupId              int64          `form:"groupId"`
+}
+//异步接口-部门数据导入-请求参数
+type ImportDeptReq struct {
+    File                 io.Reader   `json:"file,optional"`
+    TenantCode           string      `json:"tenantCode,optional"` 
+	FileName             string      `json:"fileName,optional"`
+}
+//异步接口-导入集团间关系-请求参数
+type ImportGroupRelationReq struct {
+	File                io.Reader    `form:"file,optional"`
+	SourceGroupId       int64        `form:"sourceGroupId"`
+	TenantCode          string       `form:"tenantCode"`
+	FileName            string       `form:"fileName,optional"`
+}
+//异步接口-岗位信息导入-请求参数
+type ImportJobReq struct {
+    File                 io.Reade       `form:"file,optional"`
+    TenantCode           string         `form:"tenantCode"`
+	FileName             string         `form:"fileName,optional"`
+}
+//已完成-主单位导入-请求参数
+type ImportMasterUnitReq struct {
+    File                 interface{}    `form:"file"`
+}
+//异步接口-importNoAdminUnitTenant-请求参数
+type ImportNoAdminUnitTenantReq struct {
+    File                 interface{}    `json:"file"`
+}
+//异步接口-人员导入-请求参数
+type ImportPersonReq struct {
+    File                 interface{}    `form:"file"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//异步接口-补充手机号导入-请求参数
+type ImportPhoneNumberReq struct {
+    File                 interface{}    `form:"file"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//已完成-补充管理员导入-请求参数
+type ImportReplenishAdminReq struct {
+    File                 interface{}    `form:"file"`
+}
+//已完成-单位租户导入-请求参数
+type ImportTenantReq struct {
+	File                io.Reader       `form:"file,optional"`
+	TenantCode          string          `form:"tenantCode"`
+	FileName            string          `form:"fileName,optional"`
+}
+//已完成-ExportTenantExcelReq-请求参数
+type ExportTenantExcelReq struct { 
+    TenantNames           string        `form:"tenantNames"`
+}
+//异步接口-导入集团单位关系-请求参数
+type ImportTenantRelationReq struct {
+    File                 interface{}    `json:"file"`
+    SourceGroupId        int64          `json:"sourceGroupId"`
+    TenantCode           string         `json:"tenantCode"`
+    Type                 int64          `json:"type"`
+}
+//异步接口-info-请求参数
+type InfoReq struct {
+    Name                 string         `json:"name"`
+}
+//异步接口-实体子集团合并加入父集团-请求参数
+type RealGroupMergeReq struct {
+    ParentGroupId        string         `form:"parentGroupId"`
+    SonGroupId           string         `form:"sonGroupId"`
+    SourceGroupId        string         `form:"sourceGroupId"`
+}
+//异步接口-removeCache-请求参数
+type RemoveCacheReq struct {
+    CacheName            string         `json:"cacheName"`
+}
+//异步接口-removeInfo-请求参数
+type RemoveInfoReq struct {
+    Name                 string         `json:"name"`
+}
+//异步接口-removeProgress-请求参数
+type RemoveProgressReq struct {
+    ProgressId           string         `form:"progressId"`
+}
+//异步接口-修改集团信息-请求参数
+type UpdateGroupInformationReq struct {
+    GroupDescription     string         `json:"groupDescription"`
+    GroupName            string         `json:"groupName"`
+    ParentGroupId        string         `json:"parentGroupId"`
+    SonGroupId           string         `json:"sonGroupId"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//异步接口-模板-导出
+type DownloadImportTemplateReq struct {
+    TempType            int64       `form:"type"`
+}
+//集团关系-租户取消申请加入集团-请求参数
+type CancelApplyReq struct {  
+    GroupId              interface{}    `form:"groupId"`
+    TenantName            interface{}    `form:"tenantName"`
+}
+//集团关系-集团批量审核租户申请-请求参数
+type CheckApplyReq struct {
+	Flag      int64 	`json:"flag,string"`
+	GroupId   int64 	`json:"groupId,string"`
+	TenantIds string 	`json:"tenantIds"`
+}
+//集团关系-集团批量解散-请求参数
+type DisbandAllGroupReq struct {
+    Data                 interface{}    `json:"data"`
+    GroupIds             interface{}    `json:"groupIds"`
+    SourceGroupId        interface{}    `json:"sourceGroupId"`
+}
+//集团关系-集团解散-请求参数
+type DisbandGroupReq struct {
+    GroupId              int64    `json:"groupId,string"`
+    SourceGroupId        int64    `json:"sourceGroupId,string"`
+}
+//集团关系-获取集团id下级集团列表-请求参数
+type GetBelowGroupReq struct {
+    GroupId              string         `form:"groupId"`
+}
+//集团关系-获取集团id下级结点-请求参数
+type GetBelowLayerReq struct {
+    GroupId              int64         `form:"groupId"`
+    SourceGroupId        int64         `form:"sourceGroupId,optional"`
+}
+//集团关系-获取组织模块下级结点-请求参数
+type GetLayerGroupReq struct {
+    GroupId              string         `form:"groupId"`
+    SourceGroupId        string         `form:"sourceGroupId"`
+}
+//集团关系-获取集团下单位列表分页-请求参数
+type GetBelowUnitReq struct {
+    Current              int64          `form:"current"`
+    GroupId              int64          `form:"groupId"`
+    Name                 string         `form:"name,optional"`
+    Size                 int64          `form:"size"`
+}
+//集团关系-获取集团下单位列表-请求参数
+type GetBelowUnitListReq struct {
+    GroupId              int64          `form:"groupId"`
+}
+//集团关系-获取集团内所有叶子节点-请求参数
+type GetGroupAllUnitReq struct {
+    Current              int64          `form:"current"`
+    GroupId              int64          `form:"groupId"`
+    Name                 string         `form:"name,optional"`
+    Size                 int64          `form:"size"`
+}
+//集团关系-获取集团内所有叶子节点列表-请求参数
+type GetGroupAllUnitListReq struct {
+    GroupId              string         `json:"groupId"`
+}
+//集团关系-获取导入状态详请-请求参数
+type GetImportStatusReq struct {
+	Current     int64   `form:"current"`
+	Size        int64   `form:"size"`
+	TableName   string  `form:"tableName,optional"`
+	FileName    string  `form:"fileName,optional"`
+	Type        int64   `form:"type,optional,default=-1"`
+	TenantCode  string  `form:"tenantCode,optional"`
+	Status      int64   `form:"status,optional,default=-1"`
+}
+//集团关系-获取集团内所有叶子节点中性质未分配列表-请求参数
+type GetNoPropertiesTenantReq struct {
+    GroupId              string         `form:"groupId"`
+}
+//集团关系-获取集团内所有叶子节点中性质已分配列表-请求参数
+type GetPropertiesTenantReq struct {
+    GroupId              string         `json:"groupId"`
+}
+//集团关系-获取简易集团信息-请求参数
+type GetSimpleGroupReq struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团关系-租户获取申请加入集团记录列表分页-请求参数
+type GetTenantApplyRecordReq struct {
+    Current              int64          `form:"current"`
+    Flag                 int64          `form:"flag"`
+    LikeName             string         `form:"likeName,optional"`
+    Size                 int64          `form:"size"`
+}
+//集团关系-获取各集团所属行政区划的接口-请求参数
+type GetAdministrativeDivisionReq struct {
+    GroupIds             interface{}    `json:"groupIds"`
+}
+//集团关系-获取根集团下所有节点管理单位id列表-请求参数
+type GetAllControlUnitListReq struct {
+    SourceGroupId        string         `json:"sourceGroupId"`
+}
+//集团关系-获取集团IdList-请求参数
+type GetAllUnionIdListReq struct {
+    SourceGroupId        string         `json:"sourceGroupId"`
+    Type                 string         `json:"type"`
+}
+//集团关系-获取资产云集团树形-请求参数
+type GetAssetGroupTenantTreeReq struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团关系-获取根集团下一级虚节点管理单位列表-请求参数
+type GetBelowControlUnitListReq struct {
+    SourceGroupId        string         `json:"sourceGroupId"`
+}
+//集团关系-获取租户是否为集团下成员-请求参数
+type GetDefaultGroupReq struct {
+    GroupIdList          string    `json:"groupIdList"`
+}
+//集团关系-获取集团管理单位信息-请求参数
+type GetDifferentGroupManagerUnitReq struct {
+    SourceGroupId        int64          `json:"sourceGroupId"`
+    UnitId               int64          `json:"unitId"`
+}
+//集团关系-获取根集团下所有单位tenantCode列表-请求参数
+type GetGroupAllTenantCodeListReq struct {
+    GroupId              string         `json:"groupId"`
+}
+//集团关系-获取集团下所有单位统一社会信代码-请求参数
+type GetGroupAllUnitSocialCreditCodeReq struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团关系-获取集团直接下级以及全部下级id列表-请求参数
+type GetGroupBelowUnitIdListReq struct {
+    GroupId              string         `json:"groupId"`
+    Type                 string         `json:"type"`
+}
+//集团关系-获取各集团下人员的接口-请求参数
+type GetGroupPersonCountReq struct {
+    GroupIds             interface{}    `json:"groupIds"`
+}
+//集团关系-获取各集团所有集团单位id-请求参数
+type GetGroupUnionIdListReq struct {
+    GroupIds             interface{}    `json:"groupIds"`
+}
+//集团关系-获取集团下所有管理单位创建集团下所有单位的id列表-请求参数
+type GetManagerUnitIdListReq1 struct {
+    GroupId              int64          `json:"groupId"`
+}
+//集团关系-获取集团下单位的层级-请求参数
+type GetUnitLayerReq struct {
+    SourceGroupId        string         `json:"sourceGroupId"`
+    UnitId               string         `json:"unitId"`
+}
+//集团关系-获取用户所在租户上级集团信息-请求参数
+type GetUpGroupIdReq struct {
+    SourceGroupId        int64          `json:"sourceGroupId"`
+    UserId               int64          `json:"userId"`
+}
+//集团关系-获取当前单位上级集团管理单位-请求参数
+type GetUpGroupManagerUnitIdReq struct {
+    SourceGroupId        int64          `json:"sourceGroupId"`
+    UnitId               int64          `json:"unitId"`
+}
+//集团关系-获取所有下属集团-请求参数
+type GroupListReq struct {
+    Current              int64          `form:"current"`
+    GroupId              int64          `form:"groupId"`
+    Size                 int64          `form:"size"`
+}
+//集团关系-获取集团树-请求参数
+type GroupTreeReq struct {
+    GroupId              int64          `form:"groupId"` 
+    SourceGroupId        int64          `form:"sourceGroupId"`
+}
+//集团关系-获取平台监控集团数据-请求参数
+type GetGroupDataReq struct {
+    Flag                 int64          `form:"flag"` 
+}
+//集团关系-租户退出集团-请求参数
+type ExportGroupReq struct {
+    GroupId              int64          `form:"groupId"`   
+}
+//集团关系-编辑集团树关系-请求参数
+type BuildRelationReq struct {
+    GroupId              int64          `form:"groupId"`  
+    Sid                 interface{}    `form:"sId"`
+    Tid                 interface{}    `form:"tId"`
+} 
+//集团关系-集团移除租户-请求参数
+type RemoveTenantReq struct {
+    GroupId              int64          `form:"groupId"`    
+    TenantId             int64          `form:"tenantId"`
+}
+//集团关系-集团应用分发优化-请求参数
+type GroupAppDistributeReq1 struct {
+    Data                 interface{}    `json:"data"`
+}
+//集团关系-隐藏显示树形单位-请求参数
+type HideUnitInGroupReq struct {
+    SourceGroupId        int64          `form:"sourceGroupId"`
+    TenantId             int64          `form:"tenantId"`
+	Type                 int64          `form:"type,optional,default=1"`
+	GroupCode            string         `form:"GroupCode,optional"`
+}
+//集团关系-导入集团间关系-请求参数
+type ImportGroupRelationReq1 struct {
+    File                 int64          `json:"file"`
+    SourceGroupId        int64          `json:"sourceGroupId"`
+    Type                 int64          `json:"type"`
+}
+//集团关系-导入集团单位关系-请求参数
+type ImportTenantRelationReq1 struct {
+    File                 int64          `json:"file"`
+    SourceGroupId        int64          `json:"sourceGroupId"`
+    Type                 int64          `json:"type"`
+}
+//集团关系-租户获取已加入和管理的集团列表分页-请求参数
+type JoinedControlGroupListReq struct {
+	Current              int64           `form:"current"`
+	GroupName            string          `form:"groupName,optional"`
+	Size                 int64           `form:"size"`
+	Type                 int64           `form:"type,range=[1:3]"`
+	TenantId             int64           `form:"tenantId"`
+}
+//集团关系-集团获取申请加入当前集团的租户列表分页-请求参数
+type ListApplyTenantReq struct {
+    Current              int64          `form:"current"`
+    Flag                 int64          `form:"flag"`
+    GroupId              int64          `form:"groupId"`
+    LikeName             string         `form:"likeName"`
+    Size                 int64          `form:"size"`
+}
+//集团关系-分页-请求参数
+type ListPageReq2 struct {
+    Current              int64          `json:"current"`
+    GroupTenantRelations interface{}    `json:"groupTenantRelations"`
+    Size                 int64          `json:"size"`
+}
+//集团关系-实集团移除叶子节点租户-请求参数
+type RemoveLeafTenantsReq struct { 
+    GroupId              string          `json:"groupId"`
+    TenantIds            string         `json:"tenantIds"`
+}
+//集团关系-集团移出下属租户-请求参数
+type RemoveTenantsReq struct {
+    Data                 interface{}    `json:"data"`
+    GroupId              interface{}    `json:"groupId"`
+    SourceGroupId        interface{}    `json:"sourceGroupId"`
+    TenantIds            interface{}    `json:"tenantIds"`
+}
+//集团关系-删除-请求参数
+type RemoveByIdsReq2 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//集团关系-集团单位树模块模糊查询-请求参数
+type SearchGroupUnitReq struct {
+    Name                 string         `form:"name"`
+    SourceGroupId        string         `form:"sourceGroupId"`
+}
+//集团关系-模糊搜索集团单位名称-请求参数
+type SearchGroupUnitByNameReq struct {
+    Name                 string         `json:"name"`
+    SourceGroupId        int64          `json:"sourceGroupId"`
+}
+//集团关系-获取简易集团租户树-请求参数
+type SimpleTenantGroupTreeReq struct {
+    GroupId              int64          `form:"groupId"`
+}
+//集团关系-懒加载排序-请求参数
+type SortLazyTreeReq struct {
+    AfterId              string         `form:"afterId"`
+    BeforeId             string         `form:"beforeId"`
+    OrderStatus          string         `form:"orderStatus"`
+    SourceGroupId        string         `form:"sourceGroupId"`
+}
+//集团关系-获取集团租户树-请求参数
+type TenantGroupTreeReq struct {
+    GroupId              int64          `form:"groupId"`
+}
+//集团关系-租户申请加入集团-请求参数
+type TenantJoinGroupReq struct {
+    Data                 interface{}    `json:"data"`
+    Flag                 interface{}    `json:"flag"`
+    GroupId              interface{}    `json:"groupId"`
+    TenantId             interface{}    `json:"tenantId"`
+}
+//集团关系-租户批量加入集团-请求参数
+type TenantsJoinGroupReq struct {
+	GroupId       int64 	`json:"groupId,string"`
+	SourceGroupId int64 	`json:"sourceGroupId,string"`
+	TenantIds     string  	`json:"tenantIds"`
+}
+//集团关系-获取上级集团树-请求参数
+type UpGroupTreeReq struct {
+    GroupId              int64          `form:"groupId"`
+    SourceGroupId        int64          `form:"sourceGroupId"`
+} 
+type ExportImageReq struct { 
+	FileName             string         `form:"fileName"`
+}
+//集团关系-批量调整租户上级-请求参数
+type UpdateFatherTenantReq struct {
+    GroupId              int64          `form:"groupId"`
+    TenantIds            string         `form:"tenantIds"`
+}
+//集团关系-批量调整租户上级-请求参数
+type UpdateFatherGroupReq struct {
+    SonGroupId              int64          `form:"sonGroupId"`
+    ParentGroupId            string         `form:"parentGroupId"`
+}
+//集团关系-修改集团信息-请求参数
+type UpdateGroupInformationReq1 struct {
+    GroupDescription     string         `form:"groupDescription"`
+    GroupName            string         `form:"groupName"`
+    ParentGroupId        string         `form:"parentGroupId"`
+    SocialCreditCode     string         `form:"socialCreditCode"`
+    SonGroupId           string         `form:"sonGroupId"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//内设机构管理模块-给App的单位增加部门-请求参数
+type AgencyAddDeptByAppidReq struct {
+    AppId                string         `json:"appId"`
+    DeptNames            string         `json:"deptNames"`
+}
+//内设机构管理模块-新增内设机构同时新增用户-请求参数
+type AgencyAddInnerUserReq struct {
+    AgencyCode           string         `form:"agencyCode"`
+    AgencyName           string         `form:"agencyName"`
+    ParentId             int64          `form:"parentId"`
+    TenantCode           string          `form:"tenantCode"`
+    UserIds              string         `form:"userIds,optional"`
+}
+//内设机构管理模块-新增部门-请求参数
+type AgencyAddNodeReq struct {
+    AgencyName           interface{}    `json:"agencyName"`
+    InnerAgency          interface{}    `json:"innerAgency"`
+    TenantCode           interface{}    `json:"tenantCode"`
+}
+//内设机构管理模块-批量添加部门-请求参数
+type AgencyAddNodesReq struct {
+    AgencyName           interface{}    `json:"agencyName"`
+    InnerAgencyList      interface{}    `json:"innerAgencyList"`
+    TenantCode           interface{}    `json:"tenantCode"`
+}
+//内设机构管理模块-给部门绑定用户-请求参数
+type AgencyAddUsersToAgencyReq struct {
+    AgencyId             int64          `form:"agencyId"`
+    OldagencyId          int64          `form:"oldagencyId"`
+    UserIds              string         `form:"userIds"`
+}
+//内设机构管理模块-删除岗位或部门下的用户-请求参数
+type AgencyDeleteJobDeptUsersReq struct {
+	DeptId              int64           `form:"deptId,optional,default=-1"`
+	JobId               int64           `form:"jobId,optional,default=-1"`
+	UserIds             int64           `form:"userIds"`
+}
+//内设机构管理模块-批量删除部门-请求参数
+type AgencyDeleteNodesReq struct {
+    Ids                  string         `form:"ids"`
+}
+//内设机构管理模块-给部门删除用户-请求参数
+type AgencyDeleteUsersToAgencyReq struct {
+    AgencyId             int64          `json:"agencyId"`
+    UserIds              string         `json:"userIds"`
+}
+//内设机构管理模块-删除部门-请求参数
+type AgencyDeletedInnerNodeReq struct {
+    Id                   int64          `json:"id"`
+}
+//内设机构管理模块-分配部门人员-请求参数
+type AgencyDistributeDeptPersonsReq struct {
+	DeptId string       `json:"deptId"`
+	Type   int64        `json:"type"`
+	PersonIdList []string `json:"personIdList"`
+}
+//内设机构管理模块-部门数据导出-请求参数
+type AgencyExportInnerAgencyV2Req struct {
+    InnerAgencyIds       int64          `form:"innerAgencyIds"`
+}
+//已完成-部门数据导出-请求参数
+type AgencyExportInnerAgencyDataReq struct {
+    InnerAgencyList      []string       `form:"innerAgencyList,optional"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//内设机构管理模块-部门父级树形结构-请求参数
+type AgencyGetAllPNodeReq struct {
+    DeptId               int64          `form:"deptId"`
+}
+//内设机构管理模块-部门子级树形人员列表-请求参数
+type AgencyGetDeptAllPersonReq struct {
+    Current              int64          `form:"current"`
+    DeptId               int64          `form:"deptId"`
+    IsActivate           int64          `form:"isActivate"`
+    Size                 int64          `form:"size"`
+	FuzzyVal             string         `form:"fuzzyVal,optional"`
+}
+//内设机构管理模块-获取岗位或部门数据-请求参数
+type AgencyGetJobDeptReq struct {
+    TableName            string         `json:"tableName"`
+    Type                 int64          `json:"type"`
+}
+//内设机构管理模块-获取部门下的岗位列表-请求参数
+type AgencyGetJobsReq struct {
+    DeptId               int64          `json:"deptId"`
+}
+//内设机构管理模块-获取部门下的岗位列表(分页)-请求参数
+type AgencyGetJobsPageReq struct {
+    Current              string         `json:"current"`
+    DeptId               interface{}    `json:"deptId"`
+    Size                 string         `json:"size"`
+}
+//内设机构管理模块-检索内设组织结构信息(支持模糊检索)-请求参数
+type AgencyGetNodeReq struct {
+    AgencyName           interface{}    `json:"agencyName"`
+}
+//内设机构管理模块-获取部门列表-请求参数
+type AgencyGetAgencyListByIdsReq struct {
+    Ids                  string         `json:"ids"`
+}
+//内设机构管理模块-获取全新的部门编码-请求参数
+type AgencyGetDeptCodeReq struct {
+    TenantCode           string         `form:"tenantCode"`
+}
+//内设机构管理模块-获取租户下的所有部门-请求参数
+type AgencyGetInnerAgencyByTenantCodeReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//内设机构管理模块-查询本单位部门信息-请求参数
+type AgencyGetOrgDepartmentReq struct {
+    Param                interface{}    `json:"param"`
+}
+//内设机构管理模块-部门数据导入-请求参数
+type AgencyImportDeptReq struct {
+    File                 interface{}    `json:"file"`
+}
+//内设机构管理模块-部门数据导入-请求参数
+type AgencyImportInnerAgencyV2Req struct {
+    File                 interface{}    `json:"file"`
+}
+//内设机构管理模块-树形结构-请求参数
+type AgencyInnerTreeReq struct {
+    TenantCode           string         `form:"tenantCode"`
+}
+//内设机构管理模块-内设机构列表（树形结构）-请求参数
+type AgencyListInnerReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//内设机构管理模块-部门列表-请求参数
+type AgencyListV2Req struct {
+	Current    int64 `form:"current"`
+	FuzzyVal   string `form:"fuzzyVal,optional"`
+	Size       int64 `form:"size"`
+	TenantCode string `form:"tenantCode"`
+}
+//内设机构管理模块-部门列表-请求参数
+type AgencyListV3Req struct {
+    FuzzyVal             string         `json:"fuzzyVal"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//内设机构管理模块-搜索部门树-请求参数
+type AgencySearchDeptTreeReq struct {
+    Name                 string         `form:"name,optional"`
+}
+//内设机构管理模块-根据部门或者岗位获取user列表,传一个，两个都传则两个条件筛选-请求参数
+type AgencySelectUsersByAgencyIdOrJobIdReq struct {
+    AgencyId             int64          `json:"agencyId"`
+    JobId                int64          `json:"jobId"`
+}
+//内设机构管理模块-根据userId筛选agencyId-请求参数
+type AgencySelectAgencyIdByUserIdReq struct {
+    UserId               int64          `json:"userId"`
+}
+//内设机构管理模块-根据agencyId筛选userIds-请求参数
+type AgencySelectUserIdsByAgencyIdReq struct {
+    AgencyId             int64          `json:"agencyId"`
+}
+//内设机构管理模块-根据agencyId获取userId列表-请求参数
+type AgencySelectUsersByAgencyIdReq struct {
+    AgencyId             int64          `json:"agencyId"`
+}
+//内设机构管理模块-编辑部门信息（加缓存）-请求参数
+type AgencyUpdateInnerNodeReq struct {
+    InnerAgency          interface{}    `json:"innerAgency"`
+}
+//内设机构管理模块-修改部门层级关系及用户所在部门-请求参数
+type AgencyUpdateInnerUserReq struct {
+    AgencyCode           interface{}    `json:"agencyCode"`
+    Data                 interface{}    `json:"data"`
+    DeptId               interface{}    `json:"deptId"`
+    DeptName             interface{}    `json:"deptName"`
+    PId                  interface{}    `json:"pId"`
+    PersonIds            interface{}    `json:"personIds"`
+}
+//内设机构管理模块-给部门更新用户-请求参数
+type AgencyUpdateUsersToAgencyReq struct {
+    AgencyId             int64          `json:"agencyId"`
+    UserIds              string         `json:"userIds"`
+}
+//岗位管理-新增岗位的同时赋角色-请求参数
+type AddJobRoleReq struct {
+    JobName              string         `json:"jobName"`
+    RoleIds              string         `json:"roleIds"`
+}
+//岗位管理-新增岗位的同时分配用户-请求参数
+type AddJobUserReq struct {
+    JobName              string         `form:"jobName"`
+    UserIds              string         `form:"userIds,optional"`
+    DeptId               string         `form:"deptId,optional"`
+}
+//岗位管理-批量给用户分配岗位-请求参数
+type AddJobsToUsersReq struct {
+    JobIds               string         `form:"jobIds"`
+    UserIds              string         `form:"userIds"`
+}
+//岗位管理-集团生成应用岗位-请求参数
+type CreateGroupDefaultJobReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//岗位管理-批量给用户删除岗位-请求参数
+type DeleteJobsToUsersReq struct {
+    JobIds               string         `json:"jobIds"`
+    UserIds              string         `json:"userIds"`
+}
+//岗位管理-岗位数据导出-请求参数
+type ExportJobReq struct {
+    JobIds               int64          `json:"jobIds"`
+}
+//岗位管理-根据岗位Id获取部门Id-请求参数
+type GetAgencyIdJobIdReq struct {
+    JobId                int64          `json:"jobId"`
+}
+//岗位管理-获取岗位、部门、角色(发起表单用)-请求参数
+type GetDeptJobRoleReq struct {
+    Flag                 string         `json:"flag"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//岗位管理-获取岗位列表-请求参数
+type GetJobListByIdsReq struct {
+    Ids                  string         `json:"ids"`
+}
+//岗位管理-根据userId筛选岗位列表-请求参数
+type GetJobListByUserIdReq struct {
+    UserId               int64          `json:"userId"`
+}
+//岗位管理-集团岗位信息导入-请求参数
+type ImportGroupjobReq struct {
+    File                 interface{}    `form:"file"`
+}
+//岗位管理-岗位列表-请求参数
+type ListJobReq struct {
+	Current              int64 `form:"current,default=1"`
+	Size                 int64 `form:"size,default=1000"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//岗位管理-岗位列表（分页）v2-请求参数
+type ListV2Req struct {
+    Current              int64         `form:"current"`
+    Size                 int64         `form:"size"`
+    TenantCode           string      `form:"tenantCode"`
+}
+//岗位管理-删除岗位-请求参数
+type RemoveReq1 struct { 
+    Ids                   string         `form:"ids"` 
+}
+//岗位管理-模糊搜索岗位列表-请求参数
+type SearchJobListReq struct {
+    Current              int64          `form:"current"`
+    Name                 string         `form:"name,optional"`
+    Size                 int64          `form:"size"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//岗位管理-根据部门id或岗位id或角色id获取数据-请求参数
+type SelectByIdReq struct {
+    InnerId              int64          `json:"innerId"`
+    JobId                int64          `json:"jobId"`
+    RoleId               int64          `json:"roleId"`
+}
+//岗位管理-根据personId筛选jobId-请求参数
+type SelectJobIdByUserIdReq struct {
+    UserId               int64          `json:"userId"`
+}
+//岗位管理-根据userId获取job列表-请求参数
+type SelectJobsByUserIdReq struct {
+    UserId               int64          `form:"userId"`
+}
+//岗位管理-根据jobId筛选userId-请求参数
+type SelectuserIdByJobIdReq struct {
+    JobId                int64          `json:"jobId"`
+}
+//岗位管理-新增或编辑岗位-请求参数
+type SubmitReq3 struct {
+    Job                  interface{}    `json:"job"`
+}
+//岗位管理-修改岗位的同时分配用户-请求参数
+type UpdateJobUserReq struct {
+	JobId               int64           `form:"jobId"`
+	JobName             string          `form:"jobName"`
+	Sort                string          `form:"sort,optional,default=0"`
+	UserIds             string          `form:"userIds,optional"`
+	DeptId              string          `form:"deptId,optional"`
+}
+//岗位管理-批量给用户修改岗位-请求参数
+type UpdateJobsToUsersReq struct {
+    JobIds               string         `form:"jobIds"`
+    UserIds              string         `form:"userIds"`
+}
+//组织结构管理-新增或者修改-请求参数
+type V2AddOrUpdateReq struct {
+    Unit                 interface{}    `json:"unit"`
+}
+//组织结构管理-查询详情-请求参数
+type V2DetailReq struct {
+    Id                   string         `json:"id"`
+}
+//组织结构管理-组织信息导出-请求参数
+type V2ExcelOrganReq struct {
+    Ids                  int64          `json:"ids"`
+}
+//组织结构管理-获取unitCodeMap-请求参数
+type V2GetUnitCodeMapReq struct {
+    UnitIdList           interface{}    `json:"unitIdList"`
+}
+//组织结构管理-获取getUnitIdMap-请求参数
+type V2GetUnitIdMapReq struct {
+    UnitCodeList         interface{}    `json:"unitCodeList"`
+}
+//组织结构管理-组织单位信息导入-请求参数
+type V2ImportOrganReq struct {
+    File                 interface{}    `json:"file"`
+}
+//组织结构管理-获取组织单位列表（分页兼模糊查询）-请求参数
+type V2ListReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    UnitName             interface{}    `json:"unitName"`
+}
+//组织结构管理-分页-请求参数
+type V2ListPageReq struct {
+	Current          int64       `form:"current"`
+	Size             int64       `form:"size"`
+	UnitName         string 	 `form:"unitName,optional"`
+	Id               int64 	     `form:"id,optional,default=-1"`
+	SocialCreditCode string      `form:"socialCreditCode,optional"`
+	TenantId         int64       `form:"tenantId,optional,default=-1"`
+	IsDeleted        int64       `form:"isDeleted,optional,default=-1"`
+}
+//组织结构管理-检索组织节点-请求参数
+type V2NodeReq struct {
+    UnitName             string         `json:"unitName"`
+}
+//组织结构管理-删除单位节点-请求参数
+type V2NodeReq1 struct {
+    Id                   string         `json:"id"`
+}
+//组织结构管理-批量添加单位节点-请求参数
+type V2NodesReq struct {
+    Sort                 interface{}    `json:"sort"`
+    UnitName             interface{}    `json:"unitName"`
+    Units                interface{}    `json:"units"`
+}
+//组织结构管理-批量删除组织节点-请求参数
+type V2NodesReq1 struct {
+    Ids                  string         `json:"ids"`
+}
+//组织结构管理-删除-请求参数
+type V2RemoveByIdsReq struct {
+    Ids                  string         `form:"ids"`
+}
+//组织结构管理-新增或修改-请求参数
+type V2SubmitReq struct {
+    Unit                 interface{}    `json:"unit"`
+}
+//组织结构管理-新增或修改-请求参数
+type V2NodesReq2 struct {
+    Ids                  string         `form:"ids"`
+}
+//组织结构管理-新增或修改-请求参数
+type V2NodeReq2 struct {
+    Id                  string         `form:"id"`
+}
+//组织结构管理-修改单位信息-请求参数
+type V2UpdateUnitReq struct {
+    Unit                 interface{}    `json:"unit"`
+}
+//人员管理-（v2）激活用户-请求参数
+type ActivateUserReq struct {
+    Phones               string    `form:"phones"`
+}
+//人员管理-新增人员-请求参数
+type AddReq struct {
+    Person               interface{}    `json:"person"`
+}
+//人员管理-新增人员-请求参数
+type AddPersonReq struct {
+	TenantCode 	string 		`json:"tenantCode"`
+	Name	  	string 		`json:"name"`
+	Phone 		string 		`json:"phone"`
+	UserCode 	string 		`json:"userCode"`
+	Role 		string 		`json:"role"`
+	Depart 		[]string 	`json:"depart"` 
+}
+//人员管理-账号停用-请求参数
+type BanUserReq struct {    
+    Phones               string         `form:"phones"`
+}
+//人员管理-人员数据导出-请求参数
+type ExportExcelReq struct {
+    UserIds              string         `form:"userIds"`
+}//人员管理-人员数据导出-请求参数
+type ExportExcelReq1 struct {
+    GroupId              string         `form:"groupId"`
+}
+//人员管理-统计用户日活、月活-请求参数
+type GetActiveDayMonthReq struct {
+    Flag                 string         `json:"flag"`
+}
+//人员管理-多条件筛选用户-请求参数
+type GetAllConsPersonReq struct {
+    DeptId               string         `json:"deptId"`
+    JobId                string         `json:"jobId"`
+    RoleId               string         `json:"roleId"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-多条件筛选用户V2-请求参数
+type GetAllConsPersonV2Req struct {
+    Dto                  interface{}    `json:"dto"`
+}
+//人员管理-获取（租户或全部）人员信息-请求参数
+type GetAllPersonReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-获取该部门下所有的用户-请求参数
+type GetAllPersonInDeptReq struct {
+    TenantCode           string         `json:"tenantCode"`
+    UserId               string         `json:"userId"`
+}
+//人员管理-获取租户下所有的可用的人员信息-请求参数
+type GetAllPersonInTenantReq struct {
+	Current    int64  `form:"current"`
+	FuzzyVal   string `form:"fuzzyVal,optional"`
+	IsActivate int64 `form:"isActivate,optional"`
+	Size       int64  `form:"size"`
+	TenantCode string `form:"tenantCode"`
+	Version    string `path:"v,optional"`
+}
+//人员管理-获取平台所有用户-请求参数
+type GetAllPersonsReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//人员管理-getAppRolePerson-请求参数
+type GetAppRolePersonReq struct {
+    AppId                int64          `json:"appId"`
+    Id                   int64          `json:"id"`
+    RoleId               int64          `json:"roleId"`
+    TenantCode           string         `json:"tenantCode"`
+    Type                 int64          `json:"type"`
+}
+//人员管理-getInitPerson-请求参数
+type GetInitPersonReq struct {
+    Flag                 int64          `json:"flag"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-获取人员信息-请求参数
+type GetPersonByIdReq struct {
+    UserId               string         `json:"userId"`
+}
+//人员管理-模糊查询人员列表-请求参数
+type GetPersonByLikeNameReq struct {
+    Current              int64          `json:"current"`
+    LikeName             string         `json:"likeName"`
+    Size                 int64          `json:"size"`
+}
+//人员管理-根据人员Id获取人员信息-请求参数
+type GetPersonByPersonIdReq struct {
+    Id                   int64          `json:"id"`
+}
+//人员管理-获取租户下的所有用户-请求参数
+type GetTenantIntoPersonsReq struct {
+    TenantCode           string         `form:"tenantCode"`
+} 
+//人员管理-获取租户下所有的可用的人员信息-请求参数
+type GetAllPersonInTenantReq1 struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-获取租户下所有的可用的人员信息-请求参数
+type GetAllPersonInTenantSimpleReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-getMasterUnit-请求参数
+type GetMasterUnitReq struct {
+    PhoneNumberList      interface{}    `json:"phoneNumberList"`
+}
+//人员管理-查询本单位员工信息-请求参数
+type GetOrgEmployeeReq struct {
+    Param                interface{}    `json:"param"`
+}
+//人员管理-根据员工手机号获取该用户加入的组织-请求参数
+type GetOrgsReq struct {
+    Mobile               string         `json:"mobile"`
+}
+//人员管理-获取人员列表-请求参数
+type GetPersonListByIdsReq struct {
+    Ids                  string         `json:"ids"`
+}
+//人员管理-获取人员编码-请求参数
+type GetUserCodeReq struct {
+    TenantCode           string         `form:"tenantCode"`
+}
+//人员管理-根据手机号获取用户信息-请求参数
+type GetUserInfoByMobileReq struct {
+    Mobile               string         `json:"mobile"`
+    OrgCode              string         `json:"orgCode"`
+}
+//人员管理-根据手机号获取用户信息-请求参数
+type GetUserInfo struct {
+    Id               int64         `form:"id,optional"` 
+}
+//人员管理-单位管理员导入-请求参数
+type ImportAdminReq struct {
+    File                 interface{}    `json:"file"`
+}
+//已完成-补充管理员导入-请求参数
+type ImportReplenishAdminReq1 struct {
+    File                 interface{}    `json:"file"`
+}
+//人员管理-补充手机号导入-请求参数
+type ImportReplenishPhoneNumberReq struct {
+    File                 interface{}    `form:"file"`
+}
+//人员管理-人员数据导入-请求参数
+type ImportTenantPersonUserReq struct {
+    File                 interface{}    `form:"file"`
+}
+//已完成-单位租户导入-请求参数
+type ImportUnitTenantReq struct {
+    File                 interface{}    `json:"file"`
+}
+//人员管理-用户数据导入-请求参数
+type ImportExcelReq struct {
+    File                 interface{}    `json:"file"`
+}
+//人员管理-（v2）人员数据导入-请求参数
+type ImportExcelV2Req struct {
+    File                 interface{}    `json:"file"`
+}
+//人员管理-用户数据导入-请求参数
+type ImportExcel2Req struct {
+    File                 interface{}    `json:"file"`
+    Type                 int64          `json:"type"`
+}
+//人员管理-分页-请求参数
+type ListPageReq3 struct {
+	Current     int64       `form:"current"` 
+	Id          int64 		`form:"id,optional,default=-1"`
+	Size        int64       `form:"size"`
+	RealName    string      `form:"realName,optional"`
+	PhoneNumber string      `form:"phoneNumber,optional"`
+	TenantCode  string      `form:"tenantCode,optional"`
+	IsDeleted   int64       `form:"isDeleted,optional,default=-1"`
+}
+//人员管理-合并单位用户-请求参数
+type MergeUnitReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//人员管理-人员入职-请求参数
+type PersonJoinStaffReq struct {
+    DeptName             string         `json:"deptName"`
+    JobName              string         `json:"jobName"`
+    Name                 string         `json:"name"`
+    PhoneNumber          string         `json:"phoneNumber"`
+    UnitId               int64          `json:"unitId"`
+}
+//人员管理-人员离职-请求参数
+type PersonLeaveStaffReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+    UnitId               int64          `json:"unitId"`
+}
+//人员管理-获取应用流程消息用户id逗号分隔字符串-请求参数
+type ProcessMessageUserIdsReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//人员管理-删除-请求参数
+type RemoveReq2 struct {
+    Ids                  string         `form:"ids"`
+}
+//人员管理-将用户移除单位-请求参数
+type RemoveUserReq struct {
+    PersonIds            interface{}    `form:"personIds"`
+}
+//人员管理-补充手机号-请求参数
+type ReplenishPhoneNumberReq struct {
+    PersonId             int64          `form:"personId"`
+    PhoneNumber          string         `form:"phoneNumber"`
+}
+//人员管理-replenishUserCode-请求参数
+type ReplenishUserCodeReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-searchDeptPerson-请求参数
+type SearchDeptPersonReq struct {
+    Name                 string         `form:"name"`
+}
+//人员管理-（v2）根据岗位和部门获取所有用户信息-请求参数
+type SearchUserAllinfoReq struct {
+    Current              int64          `form:"current,optional"`
+    DeptId               int64          `form:"deptId,optional"`
+    JobId                int64          `form:"jobId,optional"`
+    Size                 int64          `form:"size,optional"`
+    TenantCode           string         `form:"tenantCode"`
+	Version              string         `path:"v,optional"`
+}
+//人员管理-根据岗位和部门获取用户信息-请求参数
+type SearchUserInfoReq struct {
+    Current              int64          `form:"current"`
+    DeptId               int64          `form:"deptId"`
+    FuzzyVal             string         `form:"fuzzyVal"`
+    IsActivate           int64          `form:"isActivate"`
+    JobId                int64          `form:"jobId"`
+    Size                 int64          `form:"size"`
+    TenantCode           string         `form:"tenantCode"`
+    RealName             string         `form:"realName"`
+	Version	             string         `path:"v,optional"`
+}
+//人员管理-模糊搜索人员列表-请求参数
+type SearchPersonListReq struct {
+    Current              int64          `form:"current"`
+    Name                 string         `form:"name"`
+    Size                 int64          `form:"size"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//人员管理-设置主单位-请求参数
+type SetMasterUnitReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//人员管理-全列表-请求参数
+type SingleListReq struct {
+    PersonSingle         interface{}    `json:"personSingle"`
+}
+//人员管理-分页全列表-请求参数
+type SingleListPageReq struct {
+    Current              int64          `json:"current"`
+    PersonSingle         interface{}    `json:"personSingle"`
+    Size                 int64          `json:"size"`
+}
+//人员管理-根据手机号同步人员信息-请求参数
+type SingleSynchronizePersonByPhoneNumberReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+}
+//人员管理-新增或修改-请求参数
+type SubmitReq4 struct {
+    Person               interface{}    `json:"person"`
+}
+//人员管理-synchronizeTenantUserName-请求参数
+type SynchronizeTenantUserNameReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//人员管理-筛选申请加入租户的用户-请求参数
+type TenantPersonReq struct {
+    TenantCode           string         `json:"tenantCode"`
+    Count                int64          `form:"count"`
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+}
+//人员管理-是否存在该手机号-请求参数
+type TokenIsExistPhoneNumberReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+}
+//人员管理-修改用户信息-请求参数
+type UpdateReq struct {
+    Id                   int64          `json:"id"`
+    IcCard               interface{}    `json:"icCard"`
+    Gender               interface{}    `json:"gender"`
+    IdCard               string         `json:"idCard"`
+    RealName             string         `json:"realName"`
+    RoleIds              string         `json:"roleIds"`
+    UserEmail              string         `json:"userEmail"`
+    userAddress              string         `json:"userAddress"`
+}
+//人员管理-修改人员信息-请求参数
+type UpdateUserReq struct { 
+    Id                   int64          `form:"id"`
+    IdCard               string         `form:"idCard"`
+    RealName             string         `form:"realName"`
+}
+//人员管理-修改用户地址-请求参数
+type UpdateUserAddressReq struct {
+    City                 string         `json:"city"`
+    Province             string         `json:"province"`
+    StreetAddress        string         `json:"streetAddress"`
+}
+//人员管理-修改邮箱-请求参数
+type UpdateUserEmailReq struct {
+    Email                string         `json:"email"`
+}
+//人员管理-修改用户手机号-请求参数
+type UpdateUserPhoneNumberReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+}
+//人员管理-updateUserGetImgReq-请求参数
+type updateUserGetImgReq struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+}
+//人员管理-修改用户头像-请求参数
+type UpdateUserPhotoReq struct {
+    UserPhoto            string         `json:"userPhoto"`
+}
+//人员管理-修改用户姓名-请求参数
+type UpdateUserRealNameReq struct {
+	RealName string `form:"realName"`
+	UserCode string `form:"userCode,optional"`
+	IdCard   string `form:"idCard,optional"`
+	UserId   int64  `form:"userId"`
+}
+//人员管理-修改人员信息-请求参数
+type UpdateReq1 struct {
+    Person               interface{}    `json:"person"`
+}
+//人员管理-update-请求参数
+type UpdateV2Req struct {
+    PhoneNumber          string         `json:"phoneNumber"`
+    Photo                string         `json:"photo"`
+}
+//集团性质-分页-请求参数
+type ListReq1 struct { 
+    Current              int64          `form:"current,optional,default=1"`
+    LikeName             string         `form:"likeName"`
+    Size                 int64          `form:"size,optional,default=20"`
+	GroupId	   int64      `form:"groupId"`
+}
+//集团性质-列表-请求参数
+type ListAllReq2 struct {
+    Properties           interface{}    `json:"Properties"`
+}
+//集团性质-新增或修改-请求参数
+type SubmitReq5 struct {
+    Properties           interface{}    `json:"properties"`
+}
+//集团性质分配-增加某个租户的性质-请求参数
+type AddDistributePropertiesReq struct {
+    PropertiesId         int64         `form:"propertiesId"`
+    TenantIds            string         `form:"tenantIds"`
+}
+//集团性质分配-集团创建性质并进行分配-请求参数
+type CreateDistributePropertiesReq struct {
+    GroupId              int64         `form:"groupId"`
+    PropertiesName       string         `form:"propertiesName"`
+    TenantIds            string         `form:"tenantIds,optional"`
+}
+//集团性质分配-给性质分配租户-请求参数
+type DistributePropertiesReq struct {
+    PropertiesId         int64         `form:"propertiesId"`
+    PropertiesName       string         `form:"propertiesName"`
+    TenantIds            string         `form:"tenantIds,optional"`
+}
+//集团性质分配-获取性质里的租户列表-请求参数
+type GetPropertiesUnitReq struct {
+    PropertiesId         int64         `form:"propertiesId"`
+}
+//集团性质分配-获取性质里的租户列表分页-请求参数
+type GetPropertiesUnitListReq struct {
+    Current              int64          `form:"current"`
+    PropertiesId         int64         `form:"propertiesId"`
+    Size                 int64          `form:"size"`
+}
+//集团性质分配-将租户从性质移出-请求参数
+type RemoveDistributedPropertiesReq struct {
+    PropertiesId         string         `form:"propertiesId"`
+    TenantIds            string         `form:"tenantIds"`
+}
+//集团性质分配-批量删除-请求参数
+type RemovePropertiesReq struct {
+    PropertiesIds        string         `form:"propertiesIds"`
+}
+//集团性质分配-集团修改性质并分配-请求参数
+type UpdateDistributePropertiesReq struct {
+    GroupId              string         `json:"groupId"`
+    OldTenantIds         string         `json:"oldTenantIds"`
+    PropertiesId         string         `json:"propertiesId"`
+    PropertiesName       string         `json:"propertiesName"`
+    TenantIds            string         `json:"tenantIds"`
+}
+//集团性质分配-修改某个租户的性质-请求参数
+type UpdateDistributedPropertiesReq struct {
+    GroupId              string         `form:"groupId"`
+    PropertiesId         string         `form:"propertiesId"` 
+    TenantIds            string         `form:"tenantIds"`
+}
+//角色管理-批量给用户分配角色-请求参数
+type AddRolesToUsersReq struct {
+    RoleIds              string         `form:"roleIds"`
+    UserIds              string         `form:"userIds"`
+}
+//角色管理-设置角色权限-请求参数
+type AuthorizationReq struct {
+    MenuIds              string         `form:"menuIds"`
+    RoleId               int64          `form:"roleId"`
+}
+//角色管理-批量给用户删除角色-请求参数
+type DeleteRolesToUsersReq struct {
+    RoleIds              string         `form:"roleIds"`
+    UserIds              string         `form:"userIds"`
+}
+//角色管理-开发运维人员配置菜单角色，绑定-请求参数
+type DevRunConfigMenuReq struct {
+    MenuIds              string         `json:"menuIds"`
+    RoleId               int64          `json:"roleId"`
+}
+//角色管理-开发运维人员配置菜单角色，解除绑定-请求参数
+type DevRunDeleteConfigMenuReq struct {
+    MenuId               int64          `json:"menuId"`
+    RoleId               int64          `json:"roleId"`
+}
+//角色管理-获取所有角色列表-请求参数
+type GetAllRolesListReq struct {
+    TenantCode           string         `form:"tenantCode,optional"`
+}
+//角色管理-获取所有角色列表-请求参数
+type GetAllRolesPageReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//角色管理-根据用户Id获取角色Id列表分页-请求参数
+type GetRoleIdListReq struct {
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+    UserId               int64          `form:"userId"`
+}
+//角色管理-角色列表-请求参数
+type ListReq2 struct {
+    Current              int64          `form:"current"`
+    RoleAlias            string         `form:"roleAlias,optional"`
+    RoleName             string         `form:"roleName,optional"`
+    Size                 int64          `form:"size"` 
+}
+//角色管理-获取租户拥有的角色id列表-请求参数
+type ListRoleIdListReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//角色管理-获取角色列表-请求参数
+type ListRoleListReq struct {
+    RoleIds              string         `json:"roleIds"`
+}
+//角色管理-删除角色同时清空相关关系表-请求参数
+type RemoveReq3 struct {
+    Ids                  string         `form:"ids"`
+}
+//角色管理-新增角色-请求参数
+type SaveReq struct {
+    Role                 interface{}    `json:"role"`
+}
+//角色管理-根据userId筛选RoleId-请求参数
+type SelectRoelIdByUserIdReq struct {
+    UserId               int64          `json:"userId"`
+}
+//角色管理-根据userId获取role列表-请求参数
+type SelectRoelListByUserIdReq struct {
+    UserId               int64          `json:"userId"`
+}
+//角色管理-根据roleId筛选userId-请求参数
+type SelectuserIdByRoleIdReq struct {
+    RoelId               int64          `json:"roelId"`
+}
+//角色管理-修改角色信息-请求参数
+type UpdateReq2 struct {
+	Id              int64  `form:"id,optional,default=-1"`
+	RoleAlias       string `form:"roleAlias"`
+	RoleDescription string `form:"roleDescription"`
+	RoleName        string `form:"roleName"`
+	Sort            int64  `form:"sort"`
+	Status          int64  `form:"status"`
+}
+//角色管理-批量给用户修改角色-请求参数
+type UpdateRolesToUsersReq struct {
+    RoleIds              string         `form:"roleIds"`
+    UserIds              string         `form:"userIds"`
+}
+//角色管理-获取租户组角色-请求参数
+type ListByAttrReq struct {
+    AttrId               int64          `form:"attrId"`
+}
+//租户管理-增加租户及其单位管理员-请求参数
+type AddAdminTenantReq struct {
+    AdminName            string         `json:"adminName"`
+    PhoneNumber          string         `json:"phoneNumber"`
+    SocialCreditCode     string         `json:"socialCreditCode"`
+    TenantName           string         `json:"tenantName"`
+    UnitCode             string         `json:"unitCode"`
+    UserCode             string         `json:"userCode"`
+}
+//租户管理-个人创建租户-请求参数
+type CreateTenantReq struct {
+    SocialCreCode        string         `form:"socialCreCode"`
+    TenantName           string         `form:"tenantName"` 
+	UserId               int64          `form:"userId,optional"`
+} 
+//租户管理-GetApplicationRecordReq-请求参数
+type GetApplicationRecordReq struct {   
+    GroupName            string         `form:"groupName"`
+    TenantIds            interface{}    `form:"tenantIds"`
+    Flag                 string         `form:"flag"` 
+}
+//租户管理-批量删除单位-请求参数
+type DeleteTenantReq struct {
+    TenantCode           string         `form:"tenantCode"`
+}
+//租户管理-检索（模糊）租户-请求参数
+type GetAllTenantReq struct {
+    TenantName           string         `form:"tenantName"`
+    Version              string         `path:"v,optional"`
+}
+//租户管理-获取导入状态详请-请求参数
+type GetImportStatusReq1 struct {
+    Current              string         `json:"current"`
+    Size                 string         `json:"size"`
+    Type                 string         `json:"type"`
+}
+//租户管理-获取平台监控租户数据-请求参数
+type GetTenantDataReq struct {
+    Flag                 string         `form:"flag"`
+}
+//租户管理-根据租户编码获取租户对应组织信息-请求参数
+type GetUnitByCodeReq struct {
+    TenantCode           string         `form:"tenantCode"`
+}
+//租户管理-getAppPurchaseGroupMap-请求参数
+type GetAppPurchaseGroupMapReq struct {
+    AppId                int64          `json:"appId"`
+}
+//租户管理-getTenantByCode-请求参数
+type GetTenantByCodeReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//租户管理-getUnitPersonCount-请求参数
+type GetUnitPersonCountReq struct {
+    UnitId               int64          `json:"unitId"`
+}
+//已完成-无管理员单位租户导入-请求参数
+type ImportNoAdminUnitTenantReq1 struct {
+    File                 interface{}    `form:"file"`
+}
+//租户管理-（v2）租户及其单位管理员导入-请求参数
+type InputTenantReq struct {
+    File                 interface{}    `json:"file"`
+}
+//租户管理-分页-请求参数
+type ListPageReq4 struct {
+	Current    int64  `form:"current"`
+	Size       int64  `form:"size"`
+	TenantName string `form:"tenantName,optional"`
+	TenantCode string `form:"tenantCode,optional"`
+	Id         int64 `form:"id,optional,default=-1"`
+	IsDeleted  int64  `form:"isDeleted,optional,default=0"`
+}
+//租户管理-查询详情(租户对应组织单位)-请求参数
+type QueryReq struct {
+    Id                   int64         `form:"id"`
+}
+//租户管理-查询详情(租户对应组织单位)-请求参数
+type QueryByNameReq struct {
+    TenantName           string         `json:"tenantName"`
+}
+//租户管理-查询详情(租户)-请求参数
+type QueryTenInfoReq struct {
+    Id                   string         `form:"id"`
+}
+//租户管理-筛选用户所在租户-请求参数
+type QueryTenantReq struct {
+    Count                int64          `form:"count"`
+    Size                 int64          `form:"size"`
+    Current              int64          `form:"current"`
+    PhoneNumber          string         `form:"phoneNumber"`
+    TenantName           string         `form:"tenantName,optional"`
+}
+//租户管理-queryTenantV2-请求参数
+type QueryTenantV2Req struct {
+    Count                int64          `json:"count"`
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//租户管理-删除租户-请求参数
+type RemoveReq4 struct {
+    Id                   string         `json:"id"`
+}
+//租户管理-删除-请求参数
+type RemoveByIdsReq3 struct {
+    Ids                  string         `form:"ids"`
+}
+//租户管理-新增或修改-请求参数
+type SubmitReq6 struct {
+    Tenant               interface{}    `json:"tenant"`
+}
+//租户管理-租户权限移交-请求参数
+type TransferAuthorityReq struct {
+    UserId               int64          `form:"userId"`
+}
+//租户管理-修改租户信息-请求参数
+type UpdateReq3 struct {
+    Tenant               interface{}    `json:"tenant"`
+}
+//租户管理-修改租户及其单位管理员-请求参数
+type UpdateAdminTenantReq struct {
+    AdminName            string         `json:"adminName"`
+    PhoneNumber          string         `json:"phoneNumber"`
+    SocialCreditCode     string         `json:"socialCreditCode"`
+    TenantCode           string         `json:"tenantCode"`
+    UnitCode             string         `json:"unitCode"`
+    UserCode             string         `json:"userCode"`
+    UserId               string         `json:"userId"`
+}
+
+//租户管理-修改单位信息-请求参数
+type UpdateUnitInfoReq {
+	ID                                   int64  `json:"id,string"`
+	UnitName                             string `json:"unitName"`
+	UnitNameEn                           string `json:"unitNameEn,optional"`
+	OrganizationForm                     int64  `json:"organizationForm,optional"`
+	UnitType                             int64  `json:"unitType"`
+	ParentNodeName                       string `json:"parentNodeName,optional"`
+	ChargeSectionID                      int64  `json:"chargeSectionID,optional"`
+	ChargeSectionCode                    string `json:"chargeSectionCode,optional"`
+	ChargeSectionName                    string `json:"chargeSectionName,optional"`
+	LocalFinancialCode                   string `json:"localFinancialCode,optional"`
+	LocalFinancialName                   string `json:"localFinancialName,optional"`
+	LocalFinancialID                     string `json:"localFinancialID,optional"`
+	OfficeAdministrationCode             string `json:"officeAdministrationCode,optional"`
+	OfficeAdministrationName             string `json:"officeAdministrationName,optional"`
+	AdministrationDivisionCode           string `json:"administrationDivisionCode,optional"`
+	AdministrationDivisionName           string `json:"administrationDivisionName,optional"`
+	BudgetCode                           int64  `json:"budgetCode,optional,string"`
+	CollegeCode                          string `json:"collegeCode,optional"`
+	OrganizationCode                     string `json:"organizationCode,optional"`
+	UnitTypeCode                         int64  `json:"unitTypeCode,optional"`
+	UnitTypeName                         int64  `json:"unitTypeName,optional,string"`
+	UnitBasicProperty                    int64  `json:"unitBasicProperty,optional,optional"`
+	SocialCreditCode                     string `json:"socialCreditCode,optional"`
+	BudgetUnitName                       string `json:"budgetUnitName,optional"`
+	BudgetUnitCode                       string `json:"budgetUnitCode,optional"`
+	BudgetManagementLevel                int64  `json:"budgetManagementLevel,optional"`
+	FirmName                             string `json:"firmName,optional"`
+	FirmCode                             string `json:"firmCode,optional"`
+	TelephoneNumber                      string `json:"telephoneNumber,optional"`
+	PhoneNumber                          string `json:"phoneNumber,optional"`
+	FaxNumber                            string `json:"faxNumber,optional"`
+	EmailAddress                         string `json:"emailAddress,optional"`
+	Province                             string `json:"province,optional"`
+	City                                 string `json:"city,optional"`
+	County                               string `json:"county,optional"`
+	StreetAddress                        string `json:"streetAddress,optional"`
+	PostalCode                           string `json:"postalCode,optional"`
+	FundSupplyModeCode                   int64  `json:"fundSupplyModeCode,optional,string"`
+	DepartmentCategoryName               int64  `json:"departmentCategoryName,optional"`
+	BusinessDepartmentClassificationCode int64  `json:"businessDepartmentClassificationCode,optional"`
+	Principal                            string `json:"principal,optional"`
+	Contact                              string `json:"contact,optional"`
+	CorporateRepresentative              string `json:"corporateRepresentative,optional"`
+	EconomicType                         int64  `json:"economicType,optional"`
+	FinancialAffiliation                 string `json:"financialAffiliation,optional"`
+	FinancialUnit                        int64  `json:"financialUnit,optional"`
+	VerticalUnit                         int64  `json:"verticalUnit,optional"`
+	VirtualUnit                          bool   `json:"virtualUnit,optional"`
+	AccountingSystem                     int64  `json:"accountingSystem,optional"`
+	CorporateTag                         string `json:"corporateTag,optional"`
+	MaintainerMark                       string `json:"maintainerMark,optional"`
+	SupplierMark                         string `json:"supplierMark,optional"`
+	ManufactureMark                      string `json:"manufactureMark,optional"`
+	AssetDisposalAgencyTag               string `json:"assetDisposalAgencyTag,optional"`
+	StateAssetManagementCompany          string `json:"stateAssetManagementCompany,optional"`
+	InstitutionNumber                    int64  `json:"institutionNumber,optional"`
+	AuthorizedNumber                     int64  `json:"authorizedNumber,optional"`
+	OfSideNumber                         int64  `json:"ofSideNumber,optional,string"`
+	InstitutionAuthority                 string `json:"institutionAuthority,optional"`
+	AdministrationAuthority              string `json:"administrationAuthority,optional"`
+	UnitRemark                           string `json:"unitRemark,optional"`
+	AssetDownloadStatus                  string `json:"assetDownloadStatus,optional"`
+	LatitudeAndLongitude                 string `json:"latitudeAndLongitude,optional"`
+	Sort                                 int64  `json:"sort,optional"`
+	OrganCode                            string `json:"organCode,optional"`
+	UpdateUser                           int64  `json:"updateUser,optional"`
+	IsDeleted                            int64  `json:"isDeleted,optional"`
+	Status                               int64  `json:"status,optional"`
+	HadInnerNumber                       int64  `json:"hadInnerNumber,optional"`
+	ApproveInnerNumber                   int64  `json:"approveInnerNumber,optional"`
+	Img                                  string `json:"img,optional"`
+	LinkMan                              string `json:"linkMan,optional"`
+	LinkPhone                            string `json:"linkPhone,optional"`
+	TenantID                             int64  `json:"tenantId,string"`
+	UnitCode                             string `json:"unitCode,optional"`
+	AuthorityTotal                       int64  `json:"authorityTotal,optional"`
+	StaffOnActiveDuty                    int64  `json:"staffOnActiveDuty,optional,string"`
+	RetiredStaff                         int64  `json:"retiredStaff,optional,string"`
+	OtherStaff                           int64  `json:"otherStaff,optional,string"`
+	IsVirtual                            string `json:"isVirtual,optional,default=1"`
+	PersonExpenditure                    int64  `json:"personExpenditure,optional"`
+	InstitutionType                      string `json:"institutionType,optional"`
+	DepartmentIdentification             int64  `json:"departmentIdentification,optional"`
+	TotalHeadcount                       int64  `json:"totalHeadcount,optional,string"`
+}
+//已完成-修改租户主题-请求参数
+type UpdateThemeReq struct {
+    Tenant               interface{}    `json:"tenant"`
+}
+//租户管理-获取租户列表（分页）-请求参数
+type V2ListReq1 struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantName           string         `json:"tenantName"`
+}
+//租户管理-获取用户所属租户列表-请求参数
+type V2UserListReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+}
+//租户分类管理-获取租户组默认角色-请求参数
+type AttrGetDefaultRoleIdReq struct {
+    AttrId               int64          `json:"attrId"`
+}
+//租户分类管理-租户分类列表-请求参数
+type AttrListReq struct {
+	Current      int64      `form:"current"`
+	Size         int64      `form:"size"`
+	AttrName     string     `form:"attrName,optional"`
+}
+//租户分类管理-删除分类信息-请求参数
+type AttrRemoveReq struct {
+    Id                   string          `form:"id"`
+}
+//租户分类管理-租户组角色分配-请求参数
+type AttrRoleAllocReq struct {
+    AttrId               string         `form:"attrId"`
+    RoleIds              string         `form:"roleIds"`
+}
+//租户分类管理-新增或编辑分类信息-请求参数
+type AttrSubmitReq struct {
+	AttrName   string `form:"attrName,optional"`
+	AttrRemark string `form:"attrRemark,optional"`
+	Id         int64  `form:"id,optional,default=-1"`
+	IsDeleted  int64  `form:"isDeleted,optional"`
+	ParentId   int64  `form:"parentId,optional"`
+}
+//租户分类管理-修改租户组默认角色-请求参数
+type AttrUpdateDefaultRoleReq struct {
+    AttrId               int64          `json:"attrId"`
+    RoleId               int64          `json:"roleId"`
+}
+//租户图标库-详情-请求参数
+type DetailReq struct {
+    Id                   int64          `json:"id"`
+}
+//租户图标库-详情-请求参数
+type GroupDetailReq struct {
+    Id                   int64          `form:"id"`
+}
+//集团关系-获取集团已加入的集团列表-请求参数
+type GetJoinGroupReq struct {
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+    GroupId              int64          `form:"groupId"`
+}
+//集团关系-集团申请加入上级集团-请求参数
+type GrouprelationsJoinGroupReq struct { 
+    SonGroupId                 int64          `form:"sonGroupId"`
+    ParentGroupId              int64          `form:"parentGroupId"`
+} 
+//集团关系-集团申请加入集团记录列表-请求参数
+type GetGroupApplyRecordReq struct {  
+    Size                 int64          `form:"size"` 
+    Current              int64          `form:"current"`
+    GroupId              int64          `form:"groupId"`
+}
+//租户图标库-列表-请求参数
+type ListReq3 struct {
+    TenantIcon           string    `form:"tenantIcon,optional"`
+}
+//租户图标库-分页-请求参数
+type ListPageReq5 struct {
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+    TenantIcon           string    `form:"tenantIcon"`
+}
+//租户图标库-删除-请求参数
+type RemoveReq5 struct {
+    Ids                  string         `form:"ids"`
+}
+//租户图标库-新增或修改-请求参数
+type SubmitReq7 struct {
+    TenantIcon           interface{}    `json:"tenantIcon"`
+}
+//租户图标库-批量上传-请求参数
+type SubmitIconsReq struct {
+    TenantCode           string         `form:"tenantCode"`
+    Urls                 string         `form:"urls"`
+}
+//用户注册获取租户和角色-检索用户身份证是否注册-请求参数
+type RegistrationRetrieveIdCardReq struct {
+    IdCard               string         `form:"idCard"`
+}
+//菜单管理-终端聚合菜单数据-请求参数
+type AllRoutesReq struct {
+    Platform             int64          `form:"platform"`
+    RoleIds              string         `form:"roleIds"`
+}
+//菜单管理-前端按钮数据-请求参数
+type ButtonsReq struct {
+    RoleIds              string         `json:"roleIds"`
+}
+//菜单管理-查看详情-请求参数
+type DetailReq2 struct {
+    MenuId               int64          `json:"menuId"`
+}
+//菜单管理-获取角色已有的的菜单-请求参数
+type GetMenusByRoleIdReq struct {
+    RoleId               int64          `json:"roleId"`
+}
+//菜单管理-列表-请求参数
+type ListReq5 struct {
+    Name                 string         `form:"name,optional"`
+}
+//菜单管理-批量删除-请求参数
+type RemoveReq7 struct {
+    MenuIds              string         `form:"menuIds"`
+}
+//菜单管理-角色所分配的树-请求参数
+type RoleTreeKeysReq struct {
+    RoleIds              string         `form:"roleIds"`
+}
+//菜单管理-终端菜单数据-请求参数
+type RoutesReq struct {
+    RoleIds              string         `json:"roleIds"`
+}
+//菜单管理-新增或修改-请求参数
+type SubmitReq9 struct {
+	Alias        string `json:"alias"`
+	Category     string `json:"category"`
+	Code         string `json:"code"`
+	Icon         string `json:"icon,optional"`
+	Id           string `json:"id,optional"`
+	IsOpen       int64  `json:"isOpen"`
+	Name         string `json:"name"`
+	ParentId     int64  `json:"parentId"`
+	Path         string `json:"path"`
+	ReformStatus int64  `json:"reformStatus,optional"`
+	Remark       string `json:"remark,optional"`
+	Sort         int64  `json:"sort"`
+	Status       int64  `json:"status,optional"`
+}
+
+//菜单管理-某类租户所分配的权限树-请求参数
+type TenantTreeKeysReq struct {
+    TenantTypes          string         `json:"tenantTypes"`
+}
+//balde-system
+//act-todo-controller-增加已完成任务信息-请求参数
+type AddacthistoryReq struct {
+    ActhistoryValueDTO   interface{}    `json:"acthistoryValueDTO"`
+}
+//act-todo-controller-增加待办任务信息-请求参数
+type AddacttodoReq struct {
+    ActtodoValueDTO      interface{}    `json:"acttodoValueDTO"`
+}
+//act-todo-controller-批量退回-请求参数
+type BatchbackReq struct {
+    RequestPar           interface{}    `json:"requestPar"`
+}
+//act-todo-controller-批量审核-请求参数
+type BatchpassReq struct {
+    RequestPar           interface{}    `json:"requestPar"`
+}
+//act-todo-controller-procid-请求参数
+type DeleteacttodoReq struct {
+    Procid               string         `json:"procid"`
+}
+//act-todo-controller-procid-请求参数
+type DeleteallacttodoReq struct {
+    Procid               string         `json:"procid"`
+}
+//act-todo-controller-获取单位待办任务数量-请求参数
+type GetUnitActTodoNumberReq struct {
+    PhoneNumber          string         `form:"phoneNumber"`
+}
+//act-todo-controller-获取待办任务-请求参数
+type GetallacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-获取待办任务-请求参数
+type GetallacttodobysearchReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-获取已办任务-请求参数
+type GetallfinishacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-获取已完成任务-请求参数
+type GetallhistoryacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-获取已完成任务-请求参数
+type GetallhistoryacttodobysearchReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-获取已完成任务-请求参数
+type GetallmysendacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-获取已完成任务-请求参数
+type GetallmysendacttodoBySearchReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//act-todo-controller-修改待办任务信息-请求参数
+type UpdateacttodoReq struct {
+    ActtodoValueDTO      interface{}    `form:"acttodoValueDTO"`
+}
+//api-act-todo-controller-增加已完成任务信息-请求参数
+type ActtodoAddacthistoryReq struct {
+    ActhistoryValueDTO   interface{}    `form:"acthistoryValueDTO"`
+}
+//api-act-todo-controller-增加待办任务信息-请求参数
+type ActtodoAddacttodoReq struct {
+    ActtodoValueDTO      interface{}    `form:"acttodoValueDTO"`
+}
+//api-act-todo-controller-procid-请求参数
+type ActtodoDeleteacttodoReq struct {
+    Procid               string         `form:"procid"`
+    UserId               int64          `form:"userId"`
+}
+//api-act-todo-controller-procid-请求参数
+type ActtodoDeleteallacttodoReq struct {
+    Procid               string         `form:"procid"`
+}
+//api-act-todo-controller-获取待办任务-请求参数
+type ActtodoGetallacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//api-act-todo-controller-获取已办任务-请求参数
+type ActtodoGetallfinishacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//api-act-todo-controller-获取已完成任务-请求参数
+type ActtodoGetallhistoryacttodoReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}
+//api-act-todo-controller-修改待办任务信息-请求参数
+type ActtodoUpdateacttodoReq struct {
+    ActtodoValueDTO      interface{}    `form:"acttodoValueDTO"`
+}
+
+
+//字典-激活老版本-请求参数
+type DicActversionReq struct {
+    Currversion          int32          `form:"currversion"`
+    Parentid             int64          `form:"parentid"`
+}
+//字典-新增版本-请求参数
+type DicAddnewversionReq struct {
+    Currversion          int32          `form:"currversion"`
+    Parentid             int64          `form:"parentid"`
+}
+//字典-删除字典-请求参数
+type DicDeldictReq struct {
+    Dict                 string         `form:"dict"`
+}
+//字典-删除老版本-请求参数
+type DicDelversionReq struct {
+    Currversion          int32          `form:"currversion"`
+    Parentid             int64          `form:"parentid"`
+}
+//字典-获取字典及字典条目详情-请求参数
+type DicDetailReq struct {
+    Code                 string         `form:"code"`
+    Currversion          int32          `form:"currversion"`
+    DictKey              int32          `form:"dictKey"`
+    DictValue            string         `form:"dictValue"`
+    DictparentId         int32          `form:"dictparentId"`
+    Id                   int64          `form:"id"`
+    IsDeleted            int32          `form:"isDeleted"`
+    ParentId             int64          `form:"parentId"`
+    Remark               string         `form:"remark"`
+    Sort                 int32          `form:"sort"`
+    Version              int32          `form:"version"`
+}
+//字典-获取字典树-请求参数
+type DicDictionaryReq struct {
+    Code                 string         `form:"code"`
+}
+//字典-根据过滤条件获取字典列表-请求参数
+type DicFilterbydictReq struct {
+    Current              int32          `form:"current"`
+    Filtertext           string         `form:"filtertext"`
+    Size                 int32          `form:"size"`
+}
+//字典-获取字典列表-请求参数
+type DicGetDictListByCodeReq struct {
+    Code                 string         `form:"code"`
+}
+//字典-获取字典列表-请求参数
+type DicGetalldictReq struct {
+    Code                 string         `form:"code,optional"`
+    Current              int64          `form:"current"`
+    DictKey              int64          `form:"dictValue,optional,default=-1"`
+    Size                 int64          `form:"size"`
+}
+//字典-根据字典名称获取字典列表-请求参数
+type DicGetallitembydictReq struct {
+    Filtertext           string         `form:"filtertext,optional"`
+}
+//字典-得到枚举字典的所有版本-请求参数
+type DicGetdictallversionReq struct {
+    Parentid             int64          `form:"parentid"`
+}
+//字典-得到枚举字典的最大版本-请求参数
+type DicGetdictmaxReq struct {
+    Parentid             int64          `form:"parentid"`
+    Version             int64          `form:"version"`
+}
+//字典-得到枚举字典当前版本的枚举项-请求参数
+type DicGetitembydictReq struct {
+    Parentid             int64          `form:"parentid"`
+    Version              int32          `form:"version"`
+}
+//字典-得到枚举字典的最新版本枚举项-请求参数
+type DicGetnewitembydictReq struct {
+    Parentid             int64          `form:"parentid"`
+}
+//字典-根据条件获取字典和字典条目列表-请求参数
+type DicListReq struct {
+    Filtertext           string         `form:"filtertext"`
+}
+//字典-删除字典条目-请求参数
+type DicRemoveReq struct {
+    Ids                  string         `form:"ids"`
+}
+//字典-删除-请求参数
+type DicRemovedictReq struct {
+    Id                   string         `form:"id"`
+}
+//字典-新增或修改字典和字典条目-请求参数
+type DicSubmitReq struct {
+    Dict                 interface{}    `form:"dict"`
+}
+//字典-获取字典列表-请求参数
+type DicTokenGetDictListByCodeReq struct {
+    Code                 string         `form:"code"`
+}
+
+//
+type receiverListReq struct {
+    Current              int32          `form:"current"`
+    Size                 int32          `form:"size"`
+}

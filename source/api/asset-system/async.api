@@ -1,0 +1,73 @@
+//异步接口
+
+@server(
+   jwt: Auth
+   group: async
+   prefix: /asset-system/async
+)
+
+service system-api {
+    //集团成员管理导出--use
+    @handler exportGroupUnitData
+    post /exportGroupUnitData(ExportGroupUnitDataReq) returns (CommonResponse)
+    //人员数据导出--use
+    @handler exportPersonData
+    post /exportPersonData(ExportPersonDataReq) returns (CommonResponse)
+    //getImportProgress--use
+    @handler getImportProgress
+    get /getImportProgress(GetImportProgressReq) returns (CommonResponse)
+    //集团应用分发--use
+    @handler groupAppDistribute
+    post /groupAppDistribute(GroupAppDistributeReq) returns (CommonResponse)
+    //部门数据导入
+    @handler importDept
+    post /importDept(ImportDeptReq) returns (CommonResponse)
+    //导入集团间关系--use
+    @handler importGroupRelation
+    post /importGroupRelation(ImportGroupRelationReq) returns (CommonResponse)
+    //岗位信息导入--use
+    @handler importJob
+    post /importJob(ImportJobReq) returns (CommonResponse)
+    //主单位导入--use
+    @handler importMasterUnit
+    post /importMasterUnit(ImportMasterUnitReq) returns (CommonResponse)
+    //importNoAdminUnitTenant--use
+    @handler importNoAdminUnitTenant
+    post /importNoAdminUnitTenant(ImportNoAdminUnitTenantReq) returns (CommonResponse)
+    //人员导入--use
+    @handler importPerson
+    post /importPerson(ImportPersonReq) returns (CommonResponse)
+    //补充手机号导入--use
+    @handler importPhoneNumber
+    post /importPhoneNumber(ImportPhoneNumberReq) returns (CommonResponse)
+    //补充管理员导入--use
+    @handler importReplenishAdmin
+    post /importReplenishAdmin(ImportReplenishAdminReq) returns (CommonResponse)
+    //单位租户导入--use
+    @handler importTenant
+    post /importTenant(ImportTenantReq) returns (CommonResponse)
+    //导入集团单位关系--use
+    @handler importTenantRelation
+    post /importTenantRelation(ImportTenantRelationReq) returns (CommonResponse)
+    //info
+    @handler info
+    get /info(InfoReq) returns (CommonResponse)
+    //实体子集团合并加入父集团--use
+    @handler realGroupMerge
+    post /realGroupMerge(RealGroupMergeReq) returns (CommonResponse)
+    //removeCache
+    @handler removeCache
+    post /removeCache(RemoveCacheReq) returns (CommonResponse)
+    //removeInfo
+    @handler removeInfo
+    get /removeInfo(RemoveInfoReq) returns (CommonResponse)
+    //removeProgress--use
+    @handler removeProgress
+    post /removeProgress(RemoveProgressReq) returns (CommonResponse)
+    //修改集团信息
+    @handler updategroupinformation
+    post /update/group/information(UpdateGroupInformationReq) returns (CommonResponse)
+    //导出模板
+    @handler downloadImportTemplate
+    post /downloadImportTemplate(DownloadImportTemplateReq) returns (CommonResponse)
+}

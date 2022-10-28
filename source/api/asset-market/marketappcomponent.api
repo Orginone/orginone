@@ -1,0 +1,25 @@
+//Portal组件
+
+@server(
+   jwt: Auth
+   group: marketappcomponent
+   prefix: /asset-market/marketappcomponent
+)
+
+service market-api {
+    //根据appId获取组件列表--use
+    @handler getComponentListByAppId
+    get /getComponentListByAppId(GetComponentListByAppIdReq) returns (CommonResponse)
+    //分页--use
+    @handler list
+    get /list(ListReq4) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq3) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq3) returns (CommonResponse)
+    //appComponentGroupByUser--use
+    @handler appComponentGroupByUser
+    post /appComponentGroupByUser(AppComponentGroupByUserReq) returns (CommonResponse)
+}

@@ -1,0 +1,73 @@
+//组织结构管理
+
+@server(
+   jwt: Auth
+   group: organs
+   prefix: /asset-system/organs
+)
+
+service system-api {
+    //新增或者修改
+    @handler v2addorupdate
+    post /v2/add/or/update(V2AddOrUpdateReq) returns (CommonResponse)
+    //查询详情
+    @handler v2detail
+    get /v2/detail(V2DetailReq) returns (CommonResponse)
+    //组织信息导出
+    @handler v2excelorgan
+    get /v2/excel/organ(V2ExcelOrganReq) returns (CommonResponse)
+    //获取当前单位信息
+    @handler v2getNowUnitInfo
+    get /v2/getNowUnitInfo(Nil) returns (CommonResponse)
+    //获取unitCodeMap
+    @handler v2getUnitCodeMap
+    post /v2/getUnitCodeMap(V2GetUnitCodeMapReq) returns (CommonResponse)
+    //获取getUnitIdMap
+    @handler v2getUnitIdMap
+    post /v2/getUnitIdMap(V2GetUnitIdMapReq) returns (CommonResponse)
+    //组织单位信息导入
+    @handler v2importorgan
+    post /v2/import/organ(V2ImportOrganReq) returns (CommonResponse)
+    //判断单位是否认证--use
+    @handler v2isidentification
+    get /v2/is/identification(Nil) returns (CommonResponse)
+    //获取组织单位列表（分页兼模糊查询）
+    @handler v2list
+    get /v2/list(V2ListReq) returns (CommonResponse)
+    //获取组织单位列表
+    @handler v2listAll
+    get /v2/listAll(Nil) returns (CommonResponse)
+    //分页--use
+    @handler v2listPage
+    get /v2/listPage(V2ListPageReq) returns (CommonResponse)
+    //检索组织节点
+    @handler v2node
+    get /v2/node(V2NodeReq) returns (CommonResponse)
+    //删除单位节点TODO
+    // @handler v2node
+    // delete /v2/node(V2NodeReq1) returns (CommonResponse)
+    //批量添加单位节点
+    @handler v2nodes
+    post /v2/nodes(V2NodesReq) returns (CommonResponse)
+    //批量删除组织节点TODO
+    // @handler v2nodes
+    // delete /v2/nodes(V2NodesReq1) returns (CommonResponse)
+    //组织信息模板下载
+    @handler v2organmodel
+    get /v2/organ/model(Nil) returns (CommonResponse)
+    //删除--use
+    @handler v2removeByIds
+    post /v2/removeByIds(V2RemoveByIdsReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler v2submit
+    post /v2/submit(V2SubmitReq) returns (CommonResponse)
+    //修改单位信息
+    @handler v2updateunit
+    post /v2/update/unit(V2UpdateUnitReq) returns (CommonResponse)
+    //批量删除单位--use
+    @handler v2Nodes
+    delete /v2/nodes(V2NodesReq2) returns (CommonResponse)
+    //删除单位--use
+    @handler v2Node
+    delete /v2/node(V2NodeReq2) returns (CommonResponse)
+}

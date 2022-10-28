@@ -1,0 +1,28 @@
+//应用岗位管理
+
+@server(
+   jwt: Auth
+   group: appjob
+   prefix: /asset-system/appjob
+)
+
+service system-api {
+    //创建应用岗位
+    @handler createAppJob
+    post /createAppJob(CreateAppJobReq) returns (CommonResponse)
+    //获取全部应用岗位分页
+    @handler getAllAppJobPage
+    get /getAllAppJobPage(GetAllAppJobPageReq) returns (CommonResponse)
+    //获取选定应用岗位分页
+    @handler getAppJobPage
+    get /getAppJobPage(GetAppJobPageReq) returns (CommonResponse)
+    //分页
+    @handler listPage
+    get /listPage(ListPageReq1) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq2) returns (CommonResponse)
+}

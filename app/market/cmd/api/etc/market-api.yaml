@@ -1,0 +1,11 @@
+Name: market-api
+Host: 0.0.0.0
+Port: 2022
+Auth:
+  AccessSecret: 1234qwer
+  AccessExpire: 7200
+MarketRpc:
+  Etcd:
+    Hosts:
+    - localhost:2379
+    Key: market.rpc

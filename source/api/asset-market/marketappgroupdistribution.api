@@ -1,0 +1,40 @@
+//市场应用集团分配
+
+@server(
+   jwt: Auth
+   group: marketappgroupdistribution
+   prefix: /asset-market/marketappgroupdistribution
+)
+
+service market-api {
+    //详情
+    @handler detail
+    get /detail(DetailReq2) returns (CommonResponse)
+    //集团已分配租户列表--use
+    @handler distributeAppTenantList
+    get /distributeAppTenantList(DistributeAppTenantListReq) returns (CommonResponse)
+    //获取租户被分配集团id列表
+    @handler getDistributedGroupIdList
+    get /getDistributedGroupIdList(GetDistributedGroupIdListReq) returns (CommonResponse)
+    //获取集团分配单位应用列表
+    @handler getGroupDistributeTenantApp
+    get /getGroupDistributeTenantApp(GetGroupDistributeTenantAppReq) returns (CommonResponse)
+    //获取当前租户被分配集团id列表--use
+    @handler getGroupIdList
+    get /getGroupIdList(GetGroupIdListReq) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq5) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq5) returns (CommonResponse)
+    //新增多个
+    @handler submitAll
+    post /submitAll(SubmitAllReq1) returns (CommonResponse)
+    //集团取消分发--use
+    @handler unitCancelDistribute
+    post /unitCancelDistribute(UnitCancelDistributeReq) returns (CommonResponse)
+    //集团分发
+    @handler unitDistribute
+    post /unitDistribute(UnitDistributeReq) returns (CommonResponse)
+}

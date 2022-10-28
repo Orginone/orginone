@@ -1,0 +1,37 @@
+//集团关系
+
+@server(
+   jwt: Auth
+   group: group
+   prefix: /asset-system/group
+)
+
+service system-api {
+    //租户取消申请加入集团--use
+    @handler cancelapply
+    put /cancel/apply(CancelApplyReq) returns (CommonResponse)
+    //获取集团详情--use
+    @handler cancelapply
+    get /detail(GroupDetailReq) returns (CommonResponse)
+    //获取平台监控集团数据--use
+    @handler getgroupdata
+    get /get/group/data(GetGroupDataReq) returns (CommonResponse)
+    //编辑集团树关系--use
+    @handler buildrelation
+    post /build/relation(BuildRelationReq) returns (CommonResponse)
+    //租户退出集团--use
+    @handler exportgroup
+    post /export/group(ExportGroupReq) returns (CommonResponse)
+    //下载导入模板--use
+    @handler modeldown
+    get /model/down(Nil) returns (CommonResponse)
+    //集团移除租户--use
+    @handler removetenant"
+    post /remove/tenant(RemoveTenantReq) returns (CommonResponse)
+    //组织管理表导出--use
+    @handler exportExcel
+    get /exportExcel(ExportExcelReq1) returns (CommonResponse)
+    //getApplicationRecord--use
+    @handler getApplicationRecord
+    get /get/Application/record(GetApplicationRecordReq) returns (CommonResponse)
+}

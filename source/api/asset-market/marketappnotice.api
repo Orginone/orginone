@@ -1,0 +1,28 @@
+//通知公告
+
+@server(
+   jwt: Auth
+   group: marketappnotice
+   prefix: /asset-market/marketappnotice
+)
+
+service market-api {
+    //下架--use
+    @handler cancelReleaseNote
+    get /cancelReleaseNote(CancelReleaseNoteReq) returns (CommonResponse)
+    //分页--use
+    @handler list
+    get /list(ListReq7) returns (CommonResponse)
+    //我的通知 body结构：{"role":[],"unit":[]}--use
+    @handler myNoticeList
+    post /myNoticeList(MyNoticeListReq) returns (CommonResponse)
+    //发布--use
+    @handler releaseNote
+    get /releaseNote(ReleaseNoteReq) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq7) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq7) returns (CommonResponse)
+}

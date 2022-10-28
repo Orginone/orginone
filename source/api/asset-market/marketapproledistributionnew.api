@@ -1,0 +1,67 @@
+//市场角色分配给用户、岗位、部门
+
+@server(
+   jwt: Auth
+   group: marketapproledistributionnew
+   prefix: /asset-market/marketapproledistributionnew
+)
+
+service market-api {
+    //appVerifyUser
+    @handler apptokenverifyuser
+    get /apptoken/verify/user(ApptokenVerifyUserReq) returns (CommonResponse)
+    //详情
+    @handler detail
+    get /detail(DetailReq6) returns (CommonResponse)
+    //getAppDistributedRole--use
+    @handler getAppDistributedRole
+    get /getAppDistributedRole(GetAppDistributedRoleReq) returns (CommonResponse)
+    //getAppIdByUserId--use
+    @handler getAppIdByUserId
+    get /getAppIdByUserId(GetAppIdByUserIdReq) returns (CommonResponse)
+    //已分配用户数--use
+    @handler getDistributeUserNum
+    get /getDistributeUserNum(Nil) returns (CommonResponse)
+    //获取应用分配部门--use
+    @handler getDistributedAgency
+    get /getDistributedAgency(GetDistributedAgencyReq) returns (CommonResponse)
+    //获取应用分配岗位--use
+    @handler getDistributedJob
+    get /getDistributedJob(GetDistributedJobReq) returns (CommonResponse)
+    //获取应用已分配的人员列表--use
+    @handler getDistributedPersonListByAppId
+    get /getDistributedPersonListByAppId(GetDistributedPersonListByAppIdReq) returns (CommonResponse)
+    //获取该角色已分配的部门
+    @handler getDistributionAgency
+    get /getDistributionAgency(GetDistributionAgencyReq) returns (CommonResponse)
+    //获取该角色已分配的岗位
+    @handler getDistributionJob
+    get /getDistributionJob(GetDistributionJobReq) returns (CommonResponse)
+    //获取租户下角色已分配的人员
+    @handler getDistributionPerson
+    get /getDistributionPerson(GetDistributionPersonReq) returns (CommonResponse)
+    //获取该角色已分配的用户--use
+    @handler getDistributionUser
+    get /getDistributionUser(GetDistributionUserReq) returns (CommonResponse)
+    //getRoleByUserId
+    @handler getRoleByUserId
+    get /getRoleByUserId(GetRoleByUserIdReq) returns (CommonResponse)
+    //详情
+    @handler getUserRoleList
+    get /getUserRoleList(GetUserRoleListReq) returns (CommonResponse)
+    //判断用户是否被分配--use
+    @handler isDistributed
+    get /isDistributed(IsDistributedReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq10) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq10) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq10) returns (CommonResponse)
+    //新增或修改--use
+    @handler submitv2
+    post /submit/v2(SubmitV2Req) returns (CommonResponse)
+}

@@ -1,0 +1,94 @@
+syntax = "proto3";
+package market;
+option go_package = "./market";
+
+import "source/rpc/asset-market/marketmsg.proto";
+
+service market {
+    //获取单位应用
+    rpc fintTenantPurchase(TenantPurchaseReq) returns (CommonRpcRes);
+    //获取集团应用
+    rpc fintGroupPurchase(GroupPurchaseReq) returns (CommonRpcRes);
+    //获取应用市场应用分页
+    rpc findMarketApp(MarketAppReq)returns(CommonRpcRes);
+    //提交应用市场应用注册
+    rpc submitMarketApp(CommonRpcReq)returns(CommonRpcRes);
+    //获取重新发布应用列表
+    rpc getRedeployAppList(GetRedeployReq)returns(CommonRpcRes);
+    //获取应用详情
+    rpc getMarketAppInfo(PrimaryKeyReq)returns(CommonRpcRes);
+    //集团租户应用购买列表
+    rpc getGroupDistributeAppTenantList(GroupPurchaseAppReq)returns(CommonRpcRes);
+    //获取集团分发配置
+    rpc getGroupDistributeConfigList(GroupAppByIdReq)returns(CommonRpcRes);
+    //单位应用退订
+    rpc unitAppUnsubscribe(unitAppUnsubscribeReq)returns(CommonRpcRes);
+    //集团应用退订
+    rpc groupAppUnsubscribe(groupAppUnsubscribeReq)returns(CommonRpcRes);
+    //获取应用已购租户
+    rpc getAppDisTenantList(AppLinkReq)returns(CommonRpcRes);
+    //获取应用已购集团
+    rpc getAppDisGroupList(AppLinkReq)returns(CommonRpcRes);
+    //获取通知列表
+    rpc findMarkAppNoticeList(FindMarkAppNoticeListReq)returns(CommonRpcRes);
+    //根据ID列表移除应用通知
+    rpc removeMarkAppNoticeList(MarkAppNoticeIdsReq)returns(CommonRpcRes); 
+    //根据ID列表获取应用通知
+    rpc findMarkAppNoticeByIds(MarkAppNoticeIdsReq)returns(CommonRpcRes); 
+    //单位获取应用
+    rpc unitAppPurchas(UnitAppPurchasReq)returns(CommonRpcRes);
+    //集团获取应用
+    rpc groupAppPurchas(GroupAppPurchasReq)returns(CommonRpcRes);
+    //获取应用对当前租户的分发情况
+    rpc getAppPurchasConfig(AppPurchasConfigReq)returns(CommonRpcRes);
+    //应用上下架
+    rpc marketAppOnOrOffSale(AppOnOrOffSaleReq)returns(CommonRpcRes);
+    //应用删除
+    rpc marketAppDelete(DeleteAppReq)returns(CommonRpcRes);
+    //应用部署
+    rpc marketAppDeploy(AppDeployReq)returns(CommonRpcRes);
+    //应用取消部署
+    rpc marketAppCancelApply(AppCancelApplyReq)returns(CommonRpcRes);
+    //应用发布
+    rpc marketAppPublish(CommonRpcReq)returns(CommonRpcRes);
+    //获取应用组件
+    rpc getAppComponmentList(AppLinkReq)returns(CommonRpcRes);
+    //应用权限分配
+    rpc appRoleDistribe(AppRoleDistribeRpcReq)returns(CommonRpcRes);
+    //获取应用权限分配数据
+    rpc getAppRoleDistribe(GetAppRoleDistribeReq)returns(CommonRpcRes);
+    //获取用户使用的应用Ids
+    rpc GetUserAppIds(GetUserAppIdsReq)returns(CommonRpcRes);
+    //获取应用组件
+    rpc GetAppComponments(GetComponmentReq)returns(CommonRpcRes);
+    //获取用户应用组件
+    rpc GetUserTemplates(GetUserTemplateReq)returns(CommonRpcRes);
+    //获取用户应用组件ID
+    rpc GetUserTemplateId(GetUserTemplateIdReq)returns(CommonRpcRes);
+    //新增或修改通知
+    rpc updateMarketAppNotice(UpdateMarketAppNoticeReq)returns(CommonRpcRes);
+    //更新应用通知状态
+    rpc updateMarkAppNoticesStatus(UpdateMarkAppNoticesStatusReq)returns(CommonRpcRes); 
+    //查询Portal模板
+    rpc getMarketappcomponenttemplateList(MarketappcomponenttemplateListReq)returns(CommonRpcRes);
+    //集团取消分发
+    rpc marketAppUnitCancelDistribute(MarketAppUnitCancelDistributeReq)returns(CommonRpcRes);
+    //获取常用应用菜单
+    rpc getUsedAppMenu(GetUsedAppMenuReq)returns(CommonRpcRes);  
+    //根据应用token获取应用角色信息
+    rpc apiRoleList(ApiRoleLitReq)returns(CommonRpcRes);
+    //删除
+    rpc removeByRelation(RemoveByRelationReq)returns(CommonRpcRes);
+    //常用应用排序
+    rpc sortUsedApp(SortUsedAppReq)returns(CommonRpcRes);
+    //新增或修改
+    rpc submitMarketUsedApp(SubmitMarketUsedAppReq)returns(CommonRpcRes);
+    //获取应用审核列表分页
+    rpc findMarketAppCheckList(FindMarketAppCheckListReq)returns(CommonRpcRes);
+    //通过或拒绝应用
+    rpc checkRedeploy(CheckRedeployReq)returns(CommonRpcRes); 
+    //通过或拒绝应用
+    rpc appCheck(AppCheckReq)returns(CommonRpcRes); 
+    //查询app角色是否可以删除(发布时)
+    rpc checkRoleCanDelete(CheckRoleReq)returns(CommonRpcRes); 
+}

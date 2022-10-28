@@ -1,0 +1,229 @@
+syntax = "proto3";
+package system;
+option go_package = "./system";
+
+import "source/rpc/asset-system/sysmsg.proto";
+
+service system {
+    /*系统字典(blade-system)*/
+    rpc findDicItemsByValue(FindDicItemReq)returns(CommonRpcRes);
+    //字典分页查询
+    rpc findAllDic(FindAllDicReq)returns(CommonRpcRes); 
+    /*系统模块(asset-system)*/
+    //设置主租户
+    rpc setMasterUnit(SetMasterUnitReq)returns(CommonRpcRes);
+    //修改用户名
+    rpc updateUserName(UpdateUserName)returns(CommonRpcRes);
+    //获取用户信息
+    rpc findPersonByUserId(PersonByUserReq) returns (CommonRpcRes);
+    //获取用户或角色信息
+    rpc findUserOrRoleInfo(RoleUserReq) returns (CommonRpcRes);
+    //获取用户信息
+    rpc findUserByUserId(PrimaryKeyReq) returns (CommonRpcRes);
+    //获取机构或人员信息
+    rpc findAgencyOrPerson(AgencyPersonReq) returns (CommonRpcRes);
+    //根据账户查找租户
+    rpc findTenantByAccount(ByAccountReq)returns(CommonRpcRes);
+    //根据账户查找租户分页
+    rpc findTenantInfoByAccount(AccountTenantReq)returns(CommonRpcRes);
+    //根据名称查询账户
+    rpc searchTeantByName(SearchTeantReq)returns(CommonRpcRes);
+    //加入租户
+    rpc joinTeantByCode(TenantCodeReq)returns(CommonRpcRes);
+    //创建租户
+    rpc createTenant(CreateTenantReq)returns(CommonRpcRes);
+    //获取租户详情
+    rpc findTenantById(TenantByIdReq)returns(CommonRpcRes);
+    //根据组织编号和类型
+    rpc findAllGroupByCodeAndType(SearchAllGroupReq)returns(CommonRpcRes);
+    //查询用户系统菜单树
+    rpc findRoleMenusByUser(RoleMenusByUserReq)returns(CommonRpcRes);
+    //查询用户应用菜单树
+    rpc findMarketAppRoleMenusByUser(RoleMenusByUserReq)returns(CommonRpcRes);
+    //更新单位信息
+    rpc updateUnitInfo(CommonRpcReq)returns(CommonRpcRes);  
+    //查询租户内设机构列表(树)
+    rpc findInnerAgencyTreeByTenantCode(TenantCodeReq)returns(CommonRpcRes);
+    //查询全新的部门编码
+    rpc findAgencyDeptCodeByTenantCode(TenantCodeReq)returns(CommonRpcRes);
+    //查询全新人员编号
+    rpc getNewPersonUserCode(TenantCodeReq)returns(CommonRpcRes);
+    //获取租户下人员信息
+    rpc findTenantPersons(SearchPersonByTenantCodeReq)returns(CommonRpcRes);    
+    //获取租户下集团信息
+    rpc findAllGroupByTentantCode(FindAllGroupByTenantCodeReq)returns(CommonRpcRes);
+    //获取行政区域树
+    rpc findAdministrativeTree(Nil)returns(CommonRpcRes);
+    //分页获取行政区域
+    rpc findAdministrativeList(PageRequest)returns(CommonRpcRes);
+    //获取岗位列表
+    rpc findJobList(FindJobListReq)returns(CommonRpcRes);
+    //获取所有单位列表（包含子集团）根据集团id
+    rpc findUnitPageByGroupId(FindUnitPageReq)returns(CommonRpcRes);
+    //获取所有单位列表（不含子集团）根据集团id
+    rpc findBlowUnitPageByGroupId(FindUnitPageReq)returns(CommonRpcRes);
+    //获取集团信息
+    rpc fingGroupInfoById(PrimaryKeyReq)returns(CommonRpcRes);
+    //分页查询租户
+    rpc findScenesListPage(FindScenesListPageReq)returns(CommonRpcRes); 
+    //删除租户
+    rpc removeScenesByIds(RemoveScenesByIdsReq)returns(CommonRpcRes); 
+    //分页查询单位
+    rpc findOrgansV2ListPage(FindOrgansV2ListPageReq)returns(CommonRpcRes);
+    //删除单位
+    rpc removeOrgansByIds(V2RemoveByIdsReq)returns(CommonRpcRes); 
+    //分页查询人员
+    rpc findPersonListPage(FindPersonListPageReq)returns(CommonRpcRes);
+    //删除人员
+    rpc removePersonByIds(RemovePersonByIdsReq)returns(CommonRpcRes); 
+    //删除集团
+    rpc removeAllGroupByIds(RemoveAllGroupByIdsReq)returns(CommonRpcRes); 
+    //分页查询集团
+    rpc findAllGroupListAll(FindAllGroupListAllReq)returns(CommonRpcRes);
+    //分页查询角色
+    rpc findRoleListPage(FindRoleListReq)returns(CommonRpcRes);
+    //查询集团层级根据集团id
+    rpc findGroupLayerById(GroupLayerByIdReq)returns(CommonRpcRes);
+    //分页查询租户特性
+    rpc findTenantAttrList(FindTenantAttrListReq)returns(CommonRpcRes);
+    //获取导入状态详情
+    rpc findImportStatusList(FindImportStatusListReq)returns(CommonRpcRes);
+    //新增组织人员
+    rpc addPerson(AddPersonReq)returns(CommonRpcRes); 
+    //批量新增组织人员
+    rpc addPersons(CommonRpcReq)returns(CommonRpcRes); 
+    //查询租户图标
+    rpc findTenantIconList(FindTenantIconListReq)returns(CommonRpcRes);
+    //分页查询部门
+    rpc findInnerAgencyList(FindInnerAgencyListReq)returns(CommonRpcRes);
+    //获取所有角色列表
+    rpc findAllRolesList(FindAllRolesListReq)returns(CommonRpcRes);
+    //修改部门层级关系及用户所在部门
+    rpc updateAgencyInnerUser(UpdateAgencyInnerUserReq)returns(CommonRpcRes);  
+    //创建集团
+    rpc createGroup(CreateGroupReq)returns(CommonRpcRes);
+    //查询集团
+    rpc queryGroup(QueryGroupReq)returns(CommonRpcRes);
+    //解散集团
+    rpc disbandGroupById(DisbandGroupReq)returns(CommonRpcRes);
+    //获取组织树
+    rpc getGroupTree(GroupTreeReq)returns(CommonRpcRes);
+    //获取集团信息
+    rpc getAllgroupInfoById(PrimaryKeyReq)returns(CommonRpcRes);
+    //集团应用分发
+    rpc groupAppDistribute(GroupAppDistributeReq)returns(CommonRpcRes);
+    //申请加入集团租户列表
+    rpc listApplyTenant(ListApplyTenantReq)returns(CommonRpcRes);
+    //分配部门人员
+    rpc distributeDeptPersons(DistributeDeptPersonsReq)returns(CommonRpcRes); 
+    //根据名字查询人员
+    rpc searchPersonByName(SerarchDeptPersonReq)returns(CommonRpcRes); 
+    //分配名字查询部门
+    rpc searchDeptByName(SerarchDeptPersonReq)returns(CommonRpcRes);
+    //更新人员电话 补充电话
+    rpc updatePersonPhoneNumber(UpdatePersonPhoneNumberReq)returns(CommonRpcRes);  
+    //租户加入申请及审批集团
+    rpc tenantsJoinGroup(TenantsJoinGroupReq)returns(CommonRpcRes);
+    //模糊搜索岗位列表
+    rpc searchJobList(SearchJobListReq)returns(CommonRpcRes);  
+    //修改岗位并分配人员
+    rpc updateJobUser(UpdateJobUserReq)returns(CommonRpcRes);   
+    //新增岗位并分配人员
+    rpc addJobUser(AddJobUserReq)returns(CommonRpcRes); 
+    //删除岗位
+    rpc RemoveJob(RemoveJobReq)returns(CommonRpcRes);  
+    //批量修改岗位并分配人员
+    rpc updateJobUsers(UpdateJobUsersReq)returns(CommonRpcRes);    
+    //隐藏、显示树形单位
+    rpc updateGroupIsHide(UpdateGroupIsHideReq)returns(CommonRpcRes); 
+    //移除实集团叶子节点租户
+    rpc removeLeafTenants(RemoveLeafTenantsReq)returns(CommonRpcRes);   
+    //取性质里的租户列表分页
+    rpc findPropertiesUnitList(FindPropertiesUnitListReq)returns(CommonRpcRes);
+    //取性质里的租户列表分页
+    rpc createDistributeProperties(CreateDistributePropertiesReq)returns(CommonRpcRes);
+    //集团创建性质并进行分配
+    rpc createAndDistributeProperties(CreateAndDistributePropertiesReq)returns(CommonRpcRes);
+    //分配性质给租户
+    rpc distributeProperties(DistributePropertiesReq)returns(CommonRpcRes);
+    //获取所有下属集团
+    rpc findGroupListByRelations(FindGroupListByRelationsReq)returns(CommonRpcRes);
+    //批量调整租户上级
+    rpc updateFatherTenant(UpdateFatherTenantReq)returns(CommonRpcRes);
+    //人员停用
+    rpc banPersonUser(BanPersonUserReq)returns(CommonRpcRes);
+    //更新用户角色
+    rpc updateUserRole(UpdateUserRoleReq)returns(CommonRpcRes);
+    //删除用户角色
+    rpc deleteUserRole(UpdateUserRoleReq)returns(CommonRpcRes);
+    //新增内部机构并分配人员
+    rpc addInnerUser(AddInnerUserReq)returns(CommonRpcRes); 
+    //新增内部机构并分配人员
+    rpc activeUser(ActiveUserReq)returns(CommonRpcRes); 
+    //移除内部机构人员
+    rpc removeDeptJobUser(RemoveDeptUserJobReq)returns(CommonRpcRes);  
+    //分页查询性质
+    rpc findPropertiesList(FindPropertiesListReq)returns(CommonRpcRes);  
+    //分页角色
+    rpc findRoleListByUserId(FindRoleListByUserIdReq)returns(CommonRpcRes);
+    //分页角色Id
+    rpc findRoleIdListByUserId(FindRoleListByUserIdReq)returns(CommonRpcRes);
+    //更新人员信息
+    rpc updatePersonInfo(CommonRpcRes)returns(CommonRpcRes);
+    //更新单位信息
+    rpc updateOrgansInfo(CommonRpcRes)returns(CommonRpcRes);
+    //更新租户信息
+    rpc updateScenesInfo(CommonRpcRes)returns(CommonRpcRes);
+    //更新集团信息
+    rpc updateGroupInfo(UpdateGroupInfoReq)returns(CommonRpcRes);
+    //插入文件导入记录
+    rpc createInputRecord(CommonRpcReq)returns(CommonRpcRes);
+    //批量导入租户与集团关系
+    rpc updateTenantRelations(UpdateTenantRelationsReq)returns(CommonRpcRes);
+    //获取所有单位列表（包含子集团）根据集团id
+    rpc findUnitByIds(FindUnitByIdsReq)returns(CommonRpcRes);
+    //获取菜单树形结构
+    rpc treeMenu(Nil)returns(CommonRpcRes);
+    //新增或修改菜单
+    rpc submitMenu(CommonRpcRes)returns(CommonRpcRes);
+    //删除菜单
+    rpc removeMenu(RemoveMenuReq)returns(CommonRpcRes);
+    //角色权限
+    rpc roleTreeKeysMenu(RoleTreeKeysMenuReq)returns(CommonRpcRes);
+    //获取租户组角色
+    rpc listRoleByAttr(ListRoleByAttrReq)returns(CommonRpcRes);
+    //新增或修改角色
+    rpc updateRole(CommonRpcRes)returns(CommonRpcRes);
+    //设置角色权限
+    rpc authorizationRole(AuthorizationRoleReq)returns(CommonRpcRes);
+    //删除角色
+    rpc removeRoleByIds(RemoveRoleByIdsReq)returns(CommonRpcRes);
+    //租户组角色分配
+    rpc tenantAttrRoleAlloc(TenantAttrRoleAllocReq)returns(CommonRpcRes);
+    //新增或编辑分类信息
+    rpc tenantAttrSubmit(CommonRpcRes)returns(CommonRpcRes);
+    //删除分类信息
+    rpc tenantAttrRemove(TenantAttrRemoveReq)returns(CommonRpcRes);
+    //删除部门
+    rpc agencyRemove(AgencyRemoveReq)returns(CommonRpcRes);
+    //主单位导入
+    rpc updateMsterUnit(CommonRpcReq)returns(CommonRpcRes);
+    //岗位导入
+    rpc addJobs(CommonRpcReq)returns(CommonRpcRes);
+    //部门导入
+    rpc addAgencys(CommonRpcReq)returns(CommonRpcRes);
+    //部门导入
+    rpc addGroupRelations(CommonRpcReq)returns(CommonRpcRes);
+    //删除性质
+    rpc removeProperties(RemovePropertiesReq)returns(CommonRpcRes);
+    //保存字典
+    rpc submitDict(CommonRpcRes)returns(CommonRpcRes);
+    //通过名字查找租户列表
+    rpc findTenantByNames(CommonRpcReq)returns(CommonRpcRes);
+    //租户导入
+    rpc addTenants(CommonRpcReq)returns(CommonRpcRes); 
+    //租户图片批量导入
+    rpc importTenantIcon(ImportTenantIconReq)returns(CommonRpcRes); 
+    //租户图片批量导入
+    rpc removeTenantIcon(CommonRpcReq)returns(CommonRpcRes); 
+}

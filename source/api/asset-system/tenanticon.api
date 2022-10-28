@@ -1,0 +1,28 @@
+//租户图标库
+
+@server(
+   jwt: Auth
+   group: tenanticon
+   prefix: /asset-system/tenanticon
+)
+
+service system-api {
+    //详情
+    @handler detail
+    get /detail(DetailReq) returns (CommonResponse)
+    //列表--use
+    @handler list
+    get /list(ListReq3) returns (CommonResponse)
+    //分页--use
+    @handler listPage
+    get /listPage(ListPageReq5) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq5) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq7) returns (CommonResponse)
+    //批量上传--use
+    @handler submitIcons
+    post /submitIcons(SubmitIconsReq) returns (CommonResponse)
+}

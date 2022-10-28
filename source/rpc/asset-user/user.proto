@@ -1,0 +1,36 @@
+syntax = "proto3";
+package user;
+option go_package = "./user";
+
+import "source/rpc/asset-user/usermsg.proto" ;
+
+service user {
+    //用户注册
+    rpc userReReg(UserReRegReq) returns (CommonRpcRes);
+    //修改密码
+    rpc updatePasswd(updatePasswdReq)returns(CommonRpcRes); 
+    //切换主单位
+    rpc switchTenantByCode(SwitchTenantReq)returns(CommonRpcRes);
+    //查找用户
+    rpc findUserByAccount(UserByAccountReq) returns (CommonRpcRes);
+    //加入租户
+    rpc JoinTeantByCode(TenantCodeReq)returns(CommonRpcRes);    
+    //分页查询用户
+    rpc findUserListPage(FindUserListPageReq)returns(CommonRpcRes);
+    //分页查询用户
+    rpc findUserTenantUser(FindserTenantUserReq)returns(CommonRpcRes);
+    //删除用户
+    rpc deleteUserInfo(DeleteUserInfoReq)returns(CommonRpcRes); 
+    //审核租户
+    rpc auditUser(AuditUserReq)returns(CommonRpcRes); 
+    //取消加入租户申请
+    rpc cancelJoinTenantRequest(CancelJoinTenantReq)returns(CommonRpcRes);
+    //更新用户信息
+    rpc updateUserInfo(CommonRpcRes)returns(CommonRpcRes);
+    //重置用户密码
+    rpc resetPassWord(CommonRpcRes)returns(CommonRpcRes);
+    //删除用户
+    rpc removeUserByIds(RemoveUserByIdsReq)returns(CommonRpcRes); 
+    //获取应用信息
+    rpc getMarketAppInfo(GetMarketAppInfoReq)returns(CommonRpcRes); 
+}

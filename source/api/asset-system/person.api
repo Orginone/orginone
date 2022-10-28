@@ -1,0 +1,244 @@
+//人员管理
+
+@server(
+   jwt: Auth
+   group: person
+   prefix: /asset-system/person
+)
+
+service system-api {
+    //（v2）激活用户--use
+    @handler activateuser
+    post /activate/user(ActivateUserReq) returns (CommonResponse)
+    //新增人员
+    @handler add
+    post /add(AddReq) returns (CommonResponse)
+    //新增人员
+    @handler addPerson
+    post /addPerson(AddPersonReq) returns (CommonResponse)
+    //账号停用--use
+    @handler banuser
+    post /ban/user(BanUserReq) returns (CommonResponse)
+    //删除人员
+    @handler delete
+    delete /delete(Nil) returns (CommonResponse)
+    //人员数据导出--use
+    @handler exportExcel
+    get /exportExcel(ExportExcelReq) returns (CommonResponse)
+    //统计用户日活、月活
+    @handler getactivedaymonth
+    get /get/active/day/month(GetActiveDayMonthReq) returns (CommonResponse)
+    //多条件筛选用户
+    @handler getallconsperson
+    get /get/all/cons/person(GetAllConsPersonReq) returns (CommonResponse)
+    //多条件筛选用户V2--use
+    @handler getallconspersonv2
+    post /get/all/cons/person/v2(GetAllConsPersonV2Req) returns (CommonResponse)
+    //获取（租户或全部）人员信息
+    @handler getallperson
+    get /get/all/person(GetAllPersonReq) returns (CommonResponse)
+    //获取该部门下所有的用户
+    @handler getallpersonindept
+    get /get/all/person/in/dept(GetAllPersonInDeptReq) returns (CommonResponse)
+    //获取租户下所有的可用的人员信息
+    @handler getallpersonintenant
+    get /get/all/person/in/tenan/:v(GetAllPersonInTenantReq) returns (CommonResponse)
+    //获取平台所有用户
+    @handler getallpersons
+    get /get/all/persons(GetAllPersonsReq) returns (CommonResponse)
+    //getAppRolePerson
+    @handler getapproleperson
+    get /get/app/role/person(GetAppRolePersonReq) returns (CommonResponse)
+    //getInitPerson
+    @handler getinitperson
+    get /get/init/person(GetInitPersonReq) returns (CommonResponse)
+    //根据用户Id获取人员信息
+    @handler getperson
+    get /get/person(Nil) returns (CommonResponse)
+    //获取人员信息
+    @handler getpersonbyid
+    get /get/person/by/id(GetPersonByIdReq) returns (CommonResponse)
+    //模糊查询人员列表
+    @handler getpersonbylikeName
+    get /get/person/by/likeName(GetPersonByLikeNameReq) returns (CommonResponse)
+    //根据人员Id获取人员信息
+    @handler getpersonbypersonid
+    get /get/person/by/person/id(GetPersonByPersonIdReq) returns (CommonResponse)
+    //获取租户下的用户
+    @handler getpersontenantCode
+    get /get/person/tenantCode(Nil) returns (CommonResponse)
+    //获取租户下的所有用户--use
+    @handler gettenantintopersons
+    get /get/tenant/into/persons(GetTenantIntoPersonsReq) returns (CommonResponse)
+    //获取用户数据
+    @handler getuserdata
+    get /get/user/data(Nil) returns (CommonResponse)
+    //获取用户数据2--use
+    @handler getuserdata2
+    get /get/user/data2(Nil) returns (CommonResponse)
+    //获取用户信息--use
+    @handler getuserinfo
+    get /get/user/info(GetUserInfo) returns (CommonResponse)
+    //获取用户最近登陆时间
+    @handler getuserlogintime
+    get /get/user/login/time(Nil) returns (CommonResponse)
+    //获取租户下所有的可用的人员信息
+    @handler getAllPersonInTenantA
+    get /getAllPersonInTenant(GetAllPersonInTenantReq1) returns (CommonResponse)
+    //获取租户下所有的可用的人员信息
+    @handler getAllPersonInTenantSimple
+    get /getAllPersonInTenantSimple(GetAllPersonInTenantSimpleReq) returns (CommonResponse)
+    //getMasterUnit
+    @handler getMasterUnit
+    post /getMasterUnit(GetMasterUnitReq) returns (CommonResponse)
+    //查询本单位员工信息
+    @handler getOrgEmployee
+    post /getOrgEmployee(GetOrgEmployeeReq) returns (CommonResponse)
+    //根据员工手机号获取该用户加入的组织
+    @handler getOrgs
+    get /getOrgs(GetOrgsReq) returns (CommonResponse)
+    //获取人员列表
+    @handler getPersonListByIds
+    get /getPersonListByIds(GetPersonListByIdsReq) returns (CommonResponse)
+    //获取人员编码--use
+    @handler getUserCode
+    get /getUserCode(GetUserCodeReq) returns (CommonResponse)
+    //根据手机号获取用户信息
+    @handler getUserInfoByMobile
+    post /getUserInfoByMobile(GetUserInfoByMobileReq) returns (CommonResponse)
+    //单位管理员导入
+    @handler importadmin
+    post /import/admin(ImportAdminReq) returns (CommonResponse)
+    //补充管理员导入
+    @handler importreplenishadmin
+    post /import/replenish/admin(ImportReplenishAdminReq1) returns (CommonResponse)
+    //补充手机号导入--use
+    @handler importreplenishphonenumber
+    post /import/replenish/phone/number(ImportReplenishPhoneNumberReq) returns (CommonResponse)
+    //人员数据导入--use
+    @handler importtenantpersonuser
+    post /import/tenant/person/user(ImportTenantPersonUserReq) returns (CommonResponse)
+    //单位租户导入
+    @handler importunittenant
+    post /import/unit/tenant(ImportUnitTenantReq) returns (CommonResponse)
+    //用户数据导入
+    @handler importExcel
+    post /importExcel(ImportExcelReq) returns (CommonResponse)
+    //（v2）人员数据导入
+    @handler importExcelv2
+    post /importExcel/v2(ImportExcelV2Req) returns (CommonResponse)
+    //用户数据导入
+    @handler importExcel2
+    post /importExcel2(ImportExcel2Req) returns (CommonResponse)
+    //分页--use
+    @handler listPage
+    get /listPage(ListPageReq3) returns (CommonResponse)
+    //合并单位用户
+    @handler mergeUnit
+    post /mergeUnit(MergeUnitReq) returns (CommonResponse)
+    //模板下载--use
+    @handler modeldown
+    get /model/down(Nil) returns (CommonResponse)
+    //人员用户模板下载--use
+    @handler modeldownpersonuser
+    get /model/down/person/user(Nil) returns (CommonResponse)
+    //补充管理员导入模板下载
+    @handler modeldownreplenishadmin
+    get /model/down/replenish/admin(Nil) returns (CommonResponse)
+    //补充手机号模板下载--use
+    @handler modeldownreplenishphoneNumber
+    get /model/down/replenish/phoneNumber(Nil) returns (CommonResponse)
+    //单位租户模板下载
+    @handler modeldownunittenant
+    get /model/down/unit/tenant(Nil) returns (CommonResponse)
+    //人员入职
+    @handler personjoinstaff
+    get /person/join/staff(PersonJoinStaffReq) returns (CommonResponse)
+    //人员离职
+    @handler personleavestaff
+    get /person/leave/staff(PersonLeaveStaffReq) returns (CommonResponse)
+    //获取应用流程消息用户id逗号分隔字符串
+    @handler processMessageUserIds
+    post /processMessageUserIds(ProcessMessageUserIdsReq) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq2) returns (CommonResponse)
+    //将用户移除单位--use
+    @handler removeuser
+    post /remove/user(RemoveUserReq) returns (CommonResponse)
+    //补充手机号--use
+    @handler replenishphoneNumber
+    post /replenish/phoneNumber(ReplenishPhoneNumberReq) returns (CommonResponse)
+    //replenishUserCode
+    @handler replenishUserCode
+    post /replenishUserCode(ReplenishUserCodeReq) returns (CommonResponse)
+    //searchDeptPerson
+    @handler searchdeptperson
+    get /search/dept/person(SearchDeptPersonReq) returns (CommonResponse)
+    //（v2）根据岗位和部门获取所有用户信息
+    @handler searchuserallinfo
+    get /search/user/allinfo(SearchUserAllinfoReq) returns (CommonResponse)
+    //根据岗位和部门获取用户信息--use
+    @handler searchuserinfo
+    get /search/user/info/:v(SearchUserInfoReq) returns (CommonResponse)
+    //模糊搜索人员列表--use
+    @handler searchPersonList
+    get /searchPersonList(SearchPersonListReq) returns (CommonResponse)
+    //设置主单位--use
+    @handler setMasterUnit
+    post /setMasterUnit(SetMasterUnitReq) returns (CommonResponse)
+    //全列表
+    @handler singlelist
+    get /single/list(SingleListReq) returns (CommonResponse)
+    //分页全列表
+    @handler singlelistpage
+    get /single/list/page(SingleListPageReq) returns (CommonResponse)
+    //同步所有人员数据
+    @handler singlesynchronizeallperson
+    post /single/synchronize/all/person(Nil) returns (CommonResponse)
+    //根据手机号同步人员信息
+    @handler singlesynchronizepersonbyphonenumber
+    post /single/synchronize/person/by/phone/number(SingleSynchronizePersonByPhoneNumberReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq4) returns (CommonResponse)
+    //synchronizeTenantUserName
+    @handler synchronizeTenantUserName
+    post /synchronizeTenantUserName(SynchronizeTenantUserNameReq) returns (CommonResponse)
+    //筛选申请加入租户的用户--use
+    @handler tenantperson
+    get /tenant/person(TenantPersonReq) returns (CommonResponse)
+    //updateUserGetImg--use
+    @handler updateUserGetImg
+    get /update/user/getImg(updateUserGetImgReq) returns (CommonResponse)
+    //是否存在该手机号
+    @handler tokenisExistPhoneNumber
+    get /token/isExistPhoneNumber(TokenIsExistPhoneNumberReq) returns (CommonResponse)
+    //修改用户信息--use
+    @handler update
+    put /update(UpdateReq) returns (CommonResponse)
+    //修改人员信息--use
+    @handler updateuser
+    put /update/user(UpdateUserReq) returns (CommonResponse)
+    //修改用户地址
+    @handler updateuseraddress
+    post /update/user/address(UpdateUserAddressReq) returns (CommonResponse)
+    //修改邮箱
+    @handler updateuseremail
+    post /update/user/email(UpdateUserEmailReq) returns (CommonResponse)
+    //修改用户手机号
+    @handler updateuserphoneNumber
+    post /update/user/phoneNumber(UpdateUserPhoneNumberReq) returns (CommonResponse)
+    //修改用户头像
+    @handler updateuserphoto
+    post /update/user/photo(UpdateUserPhotoReq) returns (CommonResponse)
+    //修改用户姓名--use
+    @handler updateuserrealName
+    post /update/user/realName(UpdateUserRealNameReq) returns (CommonResponse)
+    //修改人员信息--use
+    @handler updatev1
+    put /update/v1(UpdateReq1) returns (CommonResponse)
+    //update
+    @handler updatev2
+    put /update/v2(UpdateV2Req) returns (CommonResponse)
+}

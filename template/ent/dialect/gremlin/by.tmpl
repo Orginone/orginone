@@ -1,0 +1,57 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Graph */}}
+
+{{ define "dialect/gremlin/order/signature" -}}
+	// OrderFunc applies an ordering on the graph traversal.
+	type OrderFunc func(*dsl.Traversal)
+{{- end }}
+
+{{ define "dialect/gremlin/order/func" -}}
+	{{- $order := $.Scope.Order -}}
+	func(tr *dsl.Traversal) {
+		for _, f := range fields {
+			tr.By(f, dsl.{{ pascal $order }})
+		}
+	}
+{{- end }}
+
+{{/* custom signature for group-by function */}}
+{{ define "dialect/gremlin/group/signature" -}}
+	// It gets two labels as parameters. The first used in the `As` step for the predicate,
+	// and the second is an optional name for the next predicates (or for later usage).
+	type AggregateFunc func(string, string) (string, *dsl.Traversal)
+{{- end }}
+
+{{ define "dialect/gremlin/group/as" -}}
+	func(start, _ string) (string, *dsl.Traversal) {
+		return fn(start, end)
+	}
+{{- end }}
+
+{{ define "dialect/gremlin/group/func" -}}
+	{{- $fn := $.Scope.Func -}}
+	{{- $withField := $.Scope.WithField -}}
+	func(start, end string) (string, *dsl.Traversal) {
+		if end == "" {
+			end = Default{{ $fn }}Label
+		}
+		return end, __.As(start).{{ if $withField }}Unfold().Values(field).{{ $fn }}(){{ else }}{{ $fn }}(dsl.Local){{ end }}.As(end)
+	}
+{{- end }}
+
+{{/* optional constants for group-by default values. */}}
+{{ define "dialect/gremlin/group/const" -}}
+	{{- $fn := $.Scope.Func }}
+	{{- $name := $.Scope.Name }}
+	{{- $pkg := base $.Config.Package }}
+	// Default{{ $fn }}Label is the default label name for the {{ $fn }} aggregation function.
+	// It should be used as the struct-tag for decoding, or a map key for interaction with the returned response.
+	// In order to {{ quote $name }} 2 or more fields and avoid conflicting, use the `{{ $pkg }}.As({{ $pkg }}.{{ $fn }}(field), "custom_name")`
+	// function with custom name in order to override it.
+	const Default{{ $fn }}Label = {{ quote $name }}
+{{- end }}

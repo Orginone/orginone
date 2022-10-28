@@ -1,0 +1,187 @@
+//集团关系
+
+@server(
+   jwt: Auth
+   group: grouptenantrelations
+   prefix: /asset-system/grouptenantrelations
+)
+
+service system-api {
+    //集团批量审核租户申请--use
+    @handler checkapply
+    post /check/apply(CheckApplyReq) returns (CommonResponse)
+    //clear
+    @handler clear
+    post /clear(Nil) returns (CommonResponse)
+    //集团批量解散--use
+    @handler disbandallgroup
+    post /disband/all/group(DisbandAllGroupReq) returns (CommonResponse)
+    //集团解散--use
+    @handler disbandgroup
+    post /disband/group(DisbandGroupReq) returns (CommonResponse)
+    //获取全部集团单位信息
+    @handler getallrelations
+    get /get/all/relations(Nil) returns (CommonResponse)
+    //获取集团id下级集团列表--use
+    @handler getbelowgroup
+    get /get/below/group(GetBelowGroupReq) returns (CommonResponse)
+    //获取集团id下级结点--use
+    @handler getbelowlayer
+    get /get/below/layer(GetBelowLayerReq) returns (CommonResponse)
+    //获取集团下单位列表分页--use
+    @handler getbelowunit
+    get /get/below/unit(GetBelowUnitReq) returns (CommonResponse)
+    //获取集团下单位列表--use
+    @handler getbelowunitlist
+    get /get/below/unit/list(GetBelowUnitListReq) returns (CommonResponse)
+    //获取集团内所有叶子节点--use
+    @handler getgroupallunit
+    get /get/group/all/unit(GetGroupAllUnitReq) returns (CommonResponse)
+    //获取集团内所有叶子节点列表
+    @handler getgroupallunitlist
+    get /get/group/all/unit/list(GetGroupAllUnitListReq) returns (CommonResponse)
+    //获取导入状态详请--use
+    @handler getimportstatus
+    get /get/import/status(GetImportStatusReq) returns (CommonResponse)
+    //获取集团内所有叶子节点中性质未分配列表--use
+    @handler getnopropertiestenant
+    get /get/no/properties/tenant(GetNoPropertiesTenantReq) returns (CommonResponse)
+    //获取集团内所有叶子节点中性质已分配列表
+    @handler getpropertiestenant
+    get /get/properties/tenant(GetPropertiesTenantReq) returns (CommonResponse)
+    //获取简易集团信息
+    @handler getsimplegroup
+    get /get/simple/group(GetSimpleGroupReq) returns (CommonResponse)
+    //租户获取申请加入集团记录列表分页--use
+    @handler gettenantapplyrecord
+    get /get/tenant/apply/record(GetTenantApplyRecordReq) returns (CommonResponse)
+    //获取各集团所属行政区划的接口
+    @handler getAdministrativeDivision
+    post /getAdministrativeDivision(GetAdministrativeDivisionReq) returns (CommonResponse)
+    //获取根集团下所有节点管理单位id列表
+    @handler getAllControlUnitList
+    get /getAllControlUnitList(GetAllControlUnitListReq) returns (CommonResponse)
+    //获取集团IdList
+    @handler getAllUnionIdList
+    get /getAllUnionIdList(GetAllUnionIdListReq) returns (CommonResponse)
+    //获取资产云集团树形
+    @handler getAssetGroupTenantTree
+    get /getAssetGroupTenantTree(GetAssetGroupTenantTreeReq) returns (CommonResponse)
+    //获取根集团下一级虚节点管理单位列表
+    @handler getBelowControlUnitList
+    get /getBelowControlUnitList(GetBelowControlUnitListReq) returns (CommonResponse)
+    //获取租户是否为集团下成员--use
+    @handler getDefaultGroup
+    post /getDefaultGroup(GetDefaultGroupReq) returns (CommonResponse)
+    //获取集团管理单位信息
+    @handler getDifferentGroupManagerUnit
+    get /getDifferentGroupManagerUnit(GetDifferentGroupManagerUnitReq) returns (CommonResponse)
+    //获取根集团下所有单位tenantCode列表
+    @handler getGroupAllTenantCodeList
+    get /getGroupAllTenantCodeList(GetGroupAllTenantCodeListReq) returns (CommonResponse)
+    //获取集团下所有单位统一社会信代码
+    @handler getGroupAllUnitSocialCreditCode
+    get /getGroupAllUnitSocialCreditCode(GetGroupAllUnitSocialCreditCodeReq) returns (CommonResponse)
+    //获取集团直接下级以及全部下级id列表
+    @handler getGroupBelowUnitIdList
+    get /getGroupBelowUnitIdList(GetGroupBelowUnitIdListReq) returns (CommonResponse)
+    //获取各集团下人员的接口
+    @handler getGroupPersonCount
+    post /getGroupPersonCount(GetGroupPersonCountReq) returns (CommonResponse)
+    //获取各集团所有集团单位id
+    @handler getGroupUnionIdList
+    post /getGroupUnionIdList(GetGroupUnionIdListReq) returns (CommonResponse)
+    //获取集团下所有管理单位创建集团下所有单位的id列表
+    @handler getManagerUnitIdList
+    get /getManagerUnitIdList(GetManagerUnitIdListReq1) returns (CommonResponse)
+    //获取集团下单位的层级
+    @handler getUnitLayer
+    get /getUnitLayer(GetUnitLayerReq) returns (CommonResponse)
+    //获取用户所在租户上级集团信息
+    @handler getUpGroupId
+    get /getUpGroupId(GetUpGroupIdReq) returns (CommonResponse)
+    //获取当前单位上级集团管理单位
+    @handler getUpGroupManagerUnitId
+    get /getUpGroupManagerUnitId(GetUpGroupManagerUnitIdReq) returns (CommonResponse)
+    //获取当前用户基础数据
+    @handler getUserBaseInfo
+    get /getUserBaseInfo(Nil) returns (CommonResponse)
+    //获取所有下属集团--use
+    @handler grouplist
+    get /group/list(GroupListReq) returns (CommonResponse)
+    //获取集团树--use
+    @handler grouptree
+    get /group/tree(GroupTreeReq) returns (CommonResponse)
+    //集团应用分发优化--use
+    @handler groupAppDistribute
+    post /groupAppDistribute(GroupAppDistributeReq1) returns (CommonResponse)
+    //隐藏显示树形单位--use
+    @handler hideUnitInGroup
+    get /hideUnitInGroup(HideUnitInGroupReq) returns (CommonResponse)
+    //导入集团间关系
+    @handler importgrouprelation
+    post /import/group/relation(ImportGroupRelationReq1) returns (CommonResponse)
+    //导入集团单位关系
+    @handler importtenantrelation
+    post /import/tenant/relation(ImportTenantRelationReq1) returns (CommonResponse)
+    //租户获取已加入和管理的集团列表分页--use
+    @handler joinedcontrolgroupList
+    get /joined/control/groupList(JoinedControlGroupListReq) returns (CommonResponse)
+    //集团获取申请加入当前集团的租户列表分页--use
+    @handler listapplytenant
+    get /list/apply/tenant(ListApplyTenantReq) returns (CommonResponse)
+    //分页
+    @handler listPage
+    get /listPage(ListPageReq2) returns (CommonResponse)
+    //集团关系模板下载
+    @handler modeldowngroup
+    get /model/down/group(Nil) returns (CommonResponse)
+    //集团单位关系模板下载
+    @handler modeldowntenant
+    get /model/down/tenant(Nil) returns (CommonResponse)
+    //实集团移除叶子节点租户--use
+    @handler removeleaftenants
+    post /remove/leaf/tenants(RemoveLeafTenantsReq) returns (CommonResponse)
+    //集团移出下属租户--use
+    @handler removetenants
+    post /remove/tenants(RemoveTenantsReq) returns (CommonResponse)
+    //删除
+    @handler removeByIds
+    post /removeByIds(RemoveByIdsReq2) returns (CommonResponse)
+    //集团单位树模块模糊查询--use
+    @handler searchgroupunit
+    get /search/group/unit(SearchGroupUnitReq) returns (CommonResponse)
+    //模糊搜索集团单位名称
+    @handler searchGroupUnitByName
+    get /searchGroupUnitByName(SearchGroupUnitByNameReq) returns (CommonResponse)
+    //获取简易集团租户树--use
+    @handler simpletenantgrouptree
+    get /simple/tenant/group/tree(SimpleTenantGroupTreeReq) returns (CommonResponse)
+    //懒加载排序--use
+    @handler sortLazyTree
+    post /sortLazyTree(SortLazyTreeReq) returns (CommonResponse)
+    //获取集团租户树--use
+    @handler tenantgrouptree
+    get /tenant/group/tree(TenantGroupTreeReq) returns (CommonResponse)
+    //租户申请加入集团--use
+    @handler tenantjoingroup
+    post /tenant/join/group(TenantJoinGroupReq) returns (CommonResponse)
+    //租户批量加入集团--use
+    @handler tenantsjoingroup
+    post /tenants/join/group(TenantsJoinGroupReq) returns (CommonResponse)
+    //获取上级集团树--use
+    @handler upGrouptree
+    get /upGroup/tree(UpGroupTreeReq) returns (CommonResponse)
+    //获取组织模块下级结点--use
+    @handler getlayergroup
+    get /get/layer/group(GetLayerGroupReq) returns (CommonResponse)
+    //批量调整租户上级--use
+    @handler updatefathertenant
+    post /update/father/tenant(UpdateFatherTenantReq) returns (CommonResponse)
+    //调整集团上级复制--use
+    @handler updatefathergroup
+    post /update/father/group(UpdateFatherGroupReq) returns (CommonResponse)
+    //修改集团信息--use
+    @handler updategroupinformation
+    post /update/group/information(UpdateGroupInformationReq1) returns (CommonResponse)
+}

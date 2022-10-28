@@ -1,0 +1,204 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Graph */}}
+
+{{ define "base" }}
+
+{{ $pkg := base $.Config.Package }}
+{{ template "header" $ }}
+
+{{ template "import" $ }}
+
+// ent aliases to avoid import conflicts in user's code.
+type (
+	Op         = ent.Op
+	Hook       = ent.Hook
+	Value      = ent.Value
+	Query      = ent.Query
+	Policy     = ent.Policy
+	Mutator    = ent.Mutator
+	Mutation   = ent.Mutation
+	MutateFunc = ent.MutateFunc
+)
+
+{{ $tmpl := printf "dialect/%s/order/signature" $.Storage }}
+{{ xtemplate $tmpl . }}
+
+{{ range $f, $order := order }}
+	{{ $f = pascal $f }}
+	// {{ $f }} applies the given fields in {{ upper $f }} order.
+	func {{ $f }}(fields ...string) OrderFunc {
+		{{- with extend (index $.Nodes 0) "Func" $f "Order" $order -}}
+			{{ $tmpl := printf "dialect/%s/order/func" $.Storage }}
+			return {{ xtemplate $tmpl . }}
+		{{ end -}}
+	}
+{{ end }}
+
+{{ $tmpl = printf "dialect/%s/group/signature" $.Storage }}
+// AggregateFunc applies an aggregation step on the group-by traversal/selector.
+{{ xtemplate $tmpl . }}
+
+
+// As is a pseudo aggregation function for renaming another other functions with custom names. For example:
+//
+//	GroupBy(field1, field2).
+//	Aggregate({{ $pkg }}.As({{ $pkg }}.Sum(field1), "sum_field1"), ({{ $pkg }}.As({{ $pkg }}.Sum(field2), "sum_field2")).
+//	Scan(ctx, &v)
+//
+func As(fn AggregateFunc, end string) AggregateFunc {
+	{{- $tmpl = printf "dialect/%s/group/as" $.Storage }}
+	return {{ xtemplate $tmpl . }}
+}
+
+{{ range $name, $withField := aggregate }}
+	{{ $fn := pascal $name }}
+	{{ $tmpl := printf "dialect/%s/group/const" $.Storage }}
+	{{ if hasTemplate $tmpl }}
+		{{ with extend (index $.Nodes 0) "Name" $name "Func" $fn -}}
+			{{ xtemplate $tmpl . }}
+		{{ end }}
+	{{ end }}
+
+	// {{ $fn }} applies the {{ quote $name }} aggregation function on {{ if $withField }}the given field of {{ end }}each group.
+	func {{ $fn }}({{ if $withField }}field string{{ end }}) AggregateFunc {
+		{{- with extend (index $.Nodes 0) "Func" $fn "WithField" $withField -}}
+			{{ $tmpl := printf "dialect/%s/group/func" $.Storage }}
+			return {{ xtemplate $tmpl . }}
+		{{ end -}}
+	}
+{{ end }}
+
+// ValidationError returns when validating a field or edge fails.
+type ValidationError struct {
+	Name string // Field or edge name.
+	err error
+}
+
+// Error implements the error interface.
+func (e *ValidationError) Error() string {
+	return e.err.Error()
+}
+
+// Unwrap implements the errors.Wrapper interface.
+func (e *ValidationError) Unwrap() error {
+	return e.err
+}
+
+// IsValidationError returns a boolean indicating whether the error is a validation error.
+func IsValidationError(err error) bool {
+	if err == nil {
+		return false
+	}
+	var e *ValidationError
+	return errors.As(err, &e)
+}
+
+// NotFoundError returns when trying to fetch a specific entity and it was not found in the database.
+type NotFoundError struct {
+	label string
+}
+
+// Error implements the error interface.
+func (e *NotFoundError) Error() string {
+	return "{{ $pkg }}: " + e.label + " not found"
+}
+
+// IsNotFound returns a boolean indicating whether the error is a not found error.
+func IsNotFound(err error) bool {
+	if err == nil {
+		return false
+	}
+	var e *NotFoundError
+	return errors.As(err, &e)
+}
+
+// MaskNotFound masks not found error.
+func MaskNotFound(err error) error {
+	if IsNotFound(err) {
+		return nil
+	}
+	return err
+}
+
+// NotSingularError returns when trying to fetch a singular entity and more then one was found in the database.
+type NotSingularError struct {
+	label string
+}
+
+// Error implements the error interface.
+func (e *NotSingularError) Error() string {
+	return "{{ $pkg }}: " + e.label + " not singular"
+}
+
+// IsNotSingular returns a boolean indicating whether the error is a not singular error.
+func IsNotSingular(err error) bool {
+	if err == nil {
+		return false
+	}
+	var e *NotSingularError
+	return errors.As(err, &e)
+}
+
+// NotLoadedError returns when trying to get a node that was not loaded by the query.
+type NotLoadedError struct {
+	edge string
+}
+
+// Error implements the error interface.
+func (e *NotLoadedError) Error() string {
+	return "{{ $pkg }}: " + e.edge + " edge was not loaded"
+}
+
+// IsNotLoaded returns a boolean indicating whether the error is a not loaded error.
+func IsNotLoaded(err error) bool {
+	if err == nil {
+		return false
+	}
+	var e *NotLoadedError
+	return errors.As(err, &e)
+}
+
+// ConstraintError returns when trying to create/update one or more entities and
+// one or more of their constraints failed. For example, violation of edge or
+// field uniqueness.
+type ConstraintError struct {
+	msg string
+	wrap error
+}
+
+// Error implements the error interface.
+func (e ConstraintError) Error() string {
+	return "{{ $pkg }}: constraint failed: " + e.msg
+}
+
+// Unwrap implements the errors.Wrapper interface.
+func (e *ConstraintError) Unwrap() error {
+	return e.wrap
+}
+
+// IsConstraintError returns a boolean indicating whether the error is a constraint failure.
+func IsConstraintError(err error) bool {
+	if err == nil {
+		return false
+	}
+	var e *ConstraintError
+	return errors.As(err, &e)
+}
+
+{{/* expand error types and global helpers. */}}
+{{ $tmpl = printf "dialect/%s/errors" $.Storage }}
+{{ if hasTemplate $tmpl }}
+	{{ xtemplate $tmpl $ }}
+{{ end }}
+
+{{ $tmpl = printf "dialect/%s/globals" $.Storage }}
+{{ if hasTemplate $tmpl }}
+	{{ xtemplate $tmpl $ }}
+{{ end }}
+
+{{ end }}

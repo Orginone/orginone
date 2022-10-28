@@ -1,0 +1,28 @@
+//Portal模板
+
+@server(
+   jwt: Auth
+   group: marketappcomponenttemplate
+   prefix: /asset-market/marketappcomponenttemplate
+)
+
+service market-api {
+    //根据模板id获取组件列表
+    @handler getComponentByTemplateId
+    get /getComponentByTemplateId(GetComponentByTemplateIdReq) returns (CommonResponse)
+    //分页--use
+    @handler getUserTemplate
+    get /getUserTemplate(GetUserTemplateReq) returns (CommonResponse)
+    //分页--use
+    @handler list
+    get /list(ListReq5) returns (CommonResponse)
+    //删除--use
+    @handler remove
+    post /remove(RemoveReq4) returns (CommonResponse)
+    //设为默认模板--use
+    @handler setDefault
+    get /setDefault(SetDefaultReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq4) returns (CommonResponse)
+}

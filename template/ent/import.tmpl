@@ -1,0 +1,62 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Graph */}}
+
+{{ define "import" }}
+import (
+	"context"
+	"errors"
+	"fmt"
+	"math"
+	"strings"
+	"time"
+	{{- /* Ignore generting on graph specififc templates */}}
+	{{- if not (eq $.Config.Package $.Package) }}
+		"{{ $.Config.Package }}/predicate"
+		{{- with $.ID.Type.PkgPath }}
+			"{{ . }}"
+		{{- end }}
+		{{- /* Import external packages */}}
+        {{- template "import/types" $ }}
+	{{- end }}
+	"entgo.io/ent"
+	"entgo.io/ent/dialect"
+	{{- with $.Storage }}
+		{{- range $import := .Imports }}
+			"{{ $import }}"
+		{{- end }}
+	{{- end }}
+	{{- template "import/additional" $ }}
+)
+{{ end }}
+
+{{/* A template for importing fields with custom types */}}
+{{ define "import/types" -}}
+	{{- $fields := $.Fields }}{{ if $.ID.UserDefined }}{{ $fields = append $fields $.ID }}{{ end }}
+	{{- range $f := $fields }}
+		{{- $pkg := $f.Type.PkgPath }}
+		{{- if and $pkg (not (hasImport (base $pkg ))) }}
+			"{{ $pkg }}"
+		{{- end }}
+	{{- end }}
+{{- end }}
+
+{{/* A template for allowing additional imports by ent extensions or user templates.*/}}
+{{ define "import/additional" }}
+	{{- with $tmpls := matchTemplate "import/additional/*" }}
+		{{- range $tmpl := $tmpls }}
+			{{- xtemplate $tmpl $ }}
+		{{- end }}
+	{{- end }}
+	{{- if $.Storage }}
+		{{- with $tmpls := matchTemplate (printf "dialect/%s/import/additional/*" $.Storage) }}
+			{{- range $tmpl := $tmpls }}
+				{{- xtemplate $tmpl $ }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+{{ end }}

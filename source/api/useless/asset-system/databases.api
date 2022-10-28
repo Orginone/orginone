@@ -1,0 +1,13 @@
+//数据源管理
+
+@server(
+   jwt: Auth
+   group: databases
+   prefix: /asset-system/v1/databases
+)
+
+service system-api {
+    //testConnnection
+    @handler connectiontest
+    post /connection/test(Nil) returns (CommonResponse)
+}

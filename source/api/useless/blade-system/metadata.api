@@ -1,0 +1,28 @@
+//meta-data-controller
+
+@server(
+   jwt: Auth
+   group: metadata
+   prefix: /blade-system/metadata
+)
+
+service user-api {
+    //根据字段所在表的code查找字段集合信息
+    @handler field
+    get /field(FieldReq) returns (CommonResponse)
+    //根据字段recid获取字段对象
+    @handler field
+    get /field(FieldReq1) returns (CommonResponse)
+    //根据字段所在表的code以及查询条件查找字段集合信息(分页）
+    @handler filterbyfield
+    get /filterbyfield(FilterbyfieldReq) returns (CommonResponse)
+    //根据字段所在表的code以及查询条件查找字段集合信息
+    @handler filterfield
+    get /filterfield(FilterfieldReq) returns (CommonResponse)
+    //得到当前版本号
+    @handler getcurrversion
+    get /getcurrversion(Nil) returns (CommonResponse)
+    //根据表mtcode发布表
+    @handler 
+    get /(Req) returns (CommonResponse)
+}

@@ -1,0 +1,50 @@
+{
+    "appId": "1301700065634553858",
+    "roleList": [
+        {
+            "roleName": "管理员"
+        },
+        {
+            "roleName": "用户"
+        }
+    ],
+    "menu": [
+        {
+            "menuName": "国资交易中心",
+            "icon": "",
+            "menuUrl": "",
+            "roleList": [],
+            "children": [
+                {
+                    "menuName": "不知道吧",
+                    "icon": "",
+                    "menuUrl": "/app",
+                    "roleList": [
+                        {
+                            "roleName": "用户"
+                        },
+                        {
+                            "roleName": "管理员"
+                        }
+                    ],
+                    "children": [],
+                    "innerUrl": "/app"
+                },
+                {
+                    "menuName": "这个知道",
+                    "icon": "",
+                    "menuUrl": "/admin",
+                    "roleList": [
+                        {
+                            "roleName": "管理员"
+                        }
+                    ],
+                    "children": [],
+                    "innerUrl": "/admin"
+                }
+            ],
+            "parentId": -1
+        }
+    ],
+    "componentList": []
+}

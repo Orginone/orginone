@@ -1,0 +1,28 @@
+//redeploy接口
+
+@server(
+   jwt: Auth
+   group: redeploy
+   prefix: /asset-market/redeploy
+)
+
+service market-api {
+    //应用重新发布审核--use
+    @handler checkRedeploy
+    post /checkRedeploy(CheckRedeployReq) returns (CommonResponse)
+    //是否可以添加角色--use
+    @handler isAddRole
+    get /isAddRole(IsAddRoleReq) returns (CommonResponse)
+    //是否可以删除角色--use
+    @handler isDeleteRole
+    get /isDeleteRole(IsDeleteRoleReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq17) returns (CommonResponse)
+    //获取全部应用
+    @handler listAll
+    get /listAll(ListAllReq2) returns (CommonResponse)
+    //重新部署应用--use
+    @handler redeploy
+    post /redeploy(RedeployReq) returns (CommonResponse)
+}

@@ -1,0 +1,64 @@
+//集团管理
+
+@server(
+   jwt: Auth
+   group: allgroup
+   prefix: /asset-system/allgroup
+)
+
+service system-api {
+    //租户创建集团--use
+    @handler creategroup
+    post /create/group(CreateGroupReq) returns (CommonResponse)
+    //获取集团详细信息--use
+    @handler getgroupbyid
+    get /get/group/by/id(GetGroupByIdReq) returns (CommonResponse)
+    //获取集团管理单位的detail
+    @handler getgroupmanagerunit
+    get /get/group/manager/unit(GetGroupManagerUnitReq) returns (CommonResponse)
+    //获取集团管理单位的tenantCode
+    @handler getgroupmanagerunitId
+    get /get/group/manager/unitId(GetGroupManagerUnitIdReq) returns (CommonResponse)
+    //获取单位管理实集团id列表
+    @handler getgroupIdListbytenantCode
+    get /get/groupIdList/by/tenantCode(GetGroupIdListByTenantCodeReq) returns (CommonResponse)
+    //获取单位管理集团id列表
+    @handler getmanagergroupidlist
+    get /get/manager/group/id/list(GetManagerGroupIdListReq) returns (CommonResponse)
+    //获取集团列表的管理单位列表
+    @handler getmanagerunitidlist
+    get /get/manager/unit/id/list(GetManagerUnitIdListReq) returns (CommonResponse)
+    //获取集团管理单位的unitId
+    @handler getmanagerunitId
+    get /get/manager/unitId(GetManagerUnitIdReq) returns (CommonResponse)
+    //获取用户对应单位管理集团id列表
+    @handler getusermanagergroupidlist
+    get /get/user/manager/group/id/list(GetUserManagerGroupIdListReq) returns (CommonResponse)
+    //获取根集团简易集团详细信息--use
+    @handler getSimpleGroupById
+    get /getSimpleGroupById(GetSimpleGroupByIdReq) returns (CommonResponse)
+    //获取根集团下所有管理单位为tenantCode的集团列表
+    @handler getTenantCodeControlGroup
+    get /getTenantCodeControlGroup(GetTenantCodeControlGroupReq) returns (CommonResponse)
+    //集团列表(兼模糊检索)--use
+    @handler list
+    get /list(ListReq) returns (CommonResponse)
+    //获取管理租户的集团列表
+    @handler listbytenantCode
+    get /list/by/tenantCode(ListByTenantCodeReq) returns (CommonResponse)
+    //获取当前单位为管理租户的集团列表--use
+    @handler listnowtenantCode
+    get /list/now/tenantCode(ListNowTenantCodeReq) returns (CommonResponse)
+    //分页--use
+    @handler listAll
+    get /listAll(ListAllReq1) returns (CommonResponse)
+    //集团列表分页(兼模糊检索)
+    @handler listPage
+    get /listPage(ListPageReq) returns (CommonResponse)
+    //删除--use
+    @handler removeByIds
+    post /removeByIds(RemoveByIdsReq1) returns (CommonResponse)
+    //修改--use
+    @handler submit
+    post /submit(SubmitReq1) returns (CommonResponse)
+}

@@ -1,0 +1,19 @@
+//GroupAppDistributionData接口
+
+@server(
+   jwt: Auth
+   group: groupappdistributiondata
+   prefix: /asset-market/groupappdistributiondata
+)
+
+service market-api {
+    //获取配置--use
+    @handler getConfig
+    get /getConfig(GetConfigReq) returns (CommonResponse)
+    //列表
+    @handler list
+    get /list(ListReq) returns (CommonResponse)
+    //分页
+    @handler listPage
+    get /listPage(ListPageReq) returns (CommonResponse)
+}

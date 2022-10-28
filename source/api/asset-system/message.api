@@ -1,0 +1,16 @@
+//消息管理
+
+@server(
+   jwt: Auth
+   group: message
+   prefix: /asset-message/message
+)
+
+service system-api {
+    //消息管理-未读数量--use
+    @handler receiverUnreadNumber
+    get /receiver/unread/number(Nil)returns(CommonResponse)
+    //消息管理-未读数量--use
+    @handler receiverList
+    get /receiver/list(receiverListReq)returns(CommonResponse)
+}

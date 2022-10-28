@@ -1,0 +1,112 @@
+//租户管理
+
+@server(
+   jwt: Auth
+   group: scenes
+   prefix: /asset-system/scenes
+)
+
+service system-api {
+    //增加租户及其单位管理员
+    @handler addadmintenant
+    post /add/admin/tenant(AddAdminTenantReq) returns (CommonResponse)
+    //个人创建租户--use
+    @handler createtenant
+    post /create/tenant(CreateTenantReq) returns (CommonResponse)
+    //批量删除单位--use
+    @handler deletetenant
+    post /delete/tenant(DeleteTenantReq) returns (CommonResponse)
+    //检索（模糊）租户--use
+    @handler getalltenant
+    get /get/all/tenant(GetAllTenantReq) returns (CommonResponse)
+    //获取导入状态详请
+    @handler getimportstatus
+    get /get/import/status(GetImportStatusReq1) returns (CommonResponse)
+    //获取平台监控租户数据--use
+    @handler gettenantdata
+    get /get/tenant/data(GetTenantDataReq) returns (CommonResponse)
+    //单位增长趋势图--use
+    @handler gettenantuping
+    get /get/tenant/uping(Nil) returns (CommonResponse)
+    //根据租户编码获取租户对应组织信息--use
+    @handler getunitbycode
+    get /get/unit/by/code(GetUnitByCodeReq) returns (CommonResponse)
+    //getAppPurchaseGroupMap
+    @handler getAppPurchaseGroupMap
+    get /getAppPurchaseGroupMap(GetAppPurchaseGroupMapReq) returns (CommonResponse)
+    //getTenantByCode
+    @handler getTenantByCode
+    get /getTenantByCode(GetTenantByCodeReq) returns (CommonResponse)
+    //getUnitPersonCount
+    @handler getUnitPersonCount
+    get /getUnitPersonCount(GetUnitPersonCountReq) returns (CommonResponse)
+    //无管理员单位租户导入
+    @handler importnoadminunittenant
+    post /import/no/admin/unit/tenant(ImportNoAdminUnitTenantReq1) returns (CommonResponse)
+    //（v2）租户及其单位管理员导入
+    @handler inputtenant
+    post /input/tenant(InputTenantReq) returns (CommonResponse)
+    //分页--use
+    @handler listPage
+    get /listPage(ListPageReq4) returns (CommonResponse)
+    //getSceneAllAttr--use
+    @handler getSceneAllAttr
+    get /get/scene/allAttr(Nil) returns (CommonResponse)
+    //无管理员单位租户模板下载
+    @handler modeldownnoadminunittenant
+    get /model/down/no/admin/unit/tenant(Nil) returns (CommonResponse)
+    //查询详情(租户对应组织单位)--use
+    @handler query
+    get /query(QueryReq) returns (CommonResponse)
+    //查询详情(租户对应组织单位)
+    @handler querybyname
+    get /query/by/name(QueryByNameReq) returns (CommonResponse)
+    //查询详情(租户)--use
+    @handler queryteninfo
+    get /query/ten/info(QueryTenInfoReq) returns (CommonResponse)
+    //筛选用户所在租户--use
+    @handler querytenant
+    get /query/tenant(QueryTenantReq) returns (CommonResponse)
+    //queryTenantV2
+    @handler querytenantv2
+    get /query/tenant/v2(QueryTenantV2Req) returns (CommonResponse)
+    //删除租户
+    @handler remove
+    delete /remove(RemoveReq4) returns (CommonResponse)
+    //删除--use
+    @handler removeByIds
+    post /removeByIds(RemoveByIdsReq3) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq6) returns (CommonResponse)
+    //租户模板下载
+    @handler tenantmodeldown
+    get /tenant/model/down(Nil) returns (CommonResponse)
+    //租户权限移交--use
+    @handler transferauthority
+    put /transfer/authority(TransferAuthorityReq) returns (CommonResponse)
+    //修改租户信息--use
+    @handler update
+    put /update(UpdateReq3) returns (CommonResponse)
+    //修改租户及其单位管理员
+    @handler updateadmintenant
+    post /update/admin/tenant(UpdateAdminTenantReq) returns (CommonResponse)
+    //修改单位信息--use
+    @handler updateunitinfo
+    post /update/unit/info(UpdateUnitInfoReq) returns (CommonResponse)
+    //修改租户主题--use
+    @handler updateTheme
+    post /updateTheme(UpdateThemeReq) returns (CommonResponse)
+    //获取租户列表（分页）
+    @handler v2list
+    get /v2/list(V2ListReq1) returns (CommonResponse)
+    //获取用户所属租户列表--use
+    @handler v2userlist
+    get /v2/user/list(V2UserListReq) returns (CommonResponse)
+    //获取用户所属租户列表
+    @handler v3userlist
+    get /v3/user/list(Nil) returns (CommonResponse)
+    //exportTenantExcel--use
+    @handler exportTenantExcel
+    get /export/tenant/Excel(ExportTenantExcelReq) returns (CommonResponse)
+}

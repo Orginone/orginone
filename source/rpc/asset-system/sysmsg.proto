@@ -1,0 +1,730 @@
+syntax = "proto3";
+package system;
+option go_package = "./system";
+
+message Nil{
+    
+}
+
+
+message CommonRpcRes{
+    //返回数据JSON
+    string json = 1;
+}
+
+message CommonRpcReq{
+    //请求数据JSON
+    string json = 1;
+    //请求数据 int类型
+    int64 number = 2;
+}
+
+/*系统模块(asset-system)*/
+message PersonByUserReq{
+    //用户Id
+    int64 userId = 1; 
+    //租户编号  
+    string tenantCode = 2;          
+}
+
+message SearchTeantReq{
+    //租户名称
+    string tenantName = 1;
+}
+
+message TenantCodeReq{
+    //用户ID
+    int64 userId = 1;
+    //账户  
+    string account = 2;    
+    //租户编号
+    string tenantCode = 3;
+    //模糊搜索
+    string filter = 4;
+}
+
+message CreateTenantReq{
+    //组织名称  
+    string tenantName = 1;    
+    //账户  
+    int64 userId = 2;     
+    //社会统一代码  
+    string socialCreCode = 3;     
+}
+
+message ByAccountReq{
+    //账户  
+    string account = 1;          
+}
+
+message AccountTenantReq {
+    //账户  
+    string account = 1;  
+    //数量  
+    int64 count = 2;  
+    //分页参数  
+    PageRequest page = 3; 
+}
+
+message PrimaryKeyReq{
+    //主键Id
+    int64 Id = 1;
+}
+
+message RoleUserReq{
+    //用户Id
+    int64 userId = 1;
+    //角色Id
+    int64 roleId = 2;
+}
+
+message AgencyPersonReq{
+    //机构Id
+    int64 agencyId = 1;
+    //人员Id
+    int64 personId = 2;
+}
+
+message TenantByIdReq{
+    //租户编号
+    int64 id = 1;
+}
+
+message SearchAllGroupReq{
+    //组织编号
+    string tenantCode = 1;
+    //集团类型
+    int64 groupType = 2;
+}
+
+message RoleMenusByUserReq{
+    //用户ID
+    int64 userId = 1;
+    //租户编号
+    string tenantCode = 2;
+    //平台ID
+    int64 platformId = 3;
+    //角色IDs
+    repeated int64 roleIds = 4;
+}
+
+message SearchPersonByTenantCodeReq{
+    //标志
+    int64 flag = 1;
+    //租户编号
+    string tenantCode = 2;
+    //是否激活
+    int64 isActivate = 3;
+    //部门id
+    int64 deptId = 4;
+    //岗位id
+    int64 jobId = 5;
+    //分页参数
+    PageRequest page = 6;
+    //是否包含子部门人员
+    bool hasChild = 7;
+}  
+
+message PageRequest {
+    int64 limit = 1;
+    int64 offset = 2;
+    bool searchCount = 3;
+    string filter = 4;
+}
+
+
+message FindAllGroupByTenantCodeReq{
+    //查询类型 1: 全部, 2: 创建, 3:已加入
+    int64 type=1;
+    //租户编号
+    string tenantCode = 2;
+    //状态集合
+    repeated int64 statusRange=3;
+    //关系集合
+    repeated int64 relationTypeRange=4;
+    //分页参数
+    PageRequest page = 5;
+}
+
+message FindJobListReq{
+    //租户编号
+    string tenantCode = 1;
+    //分页参数
+    PageRequest page = 2;
+}
+
+message FindUnitPageReq{
+    //集团编号
+    int64 groupId = 1;
+    //分页参数
+    PageRequest page = 2;
+}
+message FindUnitByIdsReq{ 
+    //集团编号
+    repeated int64 unitIdList = 1;
+}
+
+
+message FindScenesListPageReq{
+    //租户ID
+    int64 id = 1;
+    //租户编号
+    string tenantName = 2;
+    //是否删除
+    int64 isDeleted = 3;
+    //租户Code
+    string tenantCode = 4; 
+    //分页参数
+    PageRequest page = 5;
+}  
+
+message RemoveScenesByIdsReq{
+    //租户ID
+    repeated int64 ids = 1;
+}
+
+message FindOrgansV2ListPageReq{
+    //单位ID
+    int64 id = 1;
+    //单位名称
+    string unitName = 2;
+    //是否删除
+    int64 isDeleted = 3;
+    //社会统一代码
+    string socialCreditCode = 4; 
+    //租户ID
+    int64 tenantId = 5;
+    //分页参数
+    PageRequest page = 6;
+}  
+
+message V2RemoveByIdsReq{
+    //单位ID
+    repeated int64 ids = 1;
+}
+
+message FindPersonListPageReq{
+    //人员ID
+    int64 id = 1;
+    //人员名称
+    string realName = 2;
+    //是否删除
+    int64 isDeleted = 3;
+    //电话号码
+    string phoneNumber = 4; 
+    //租户Code
+    string tenantCode = 5;
+    //分页参数
+    PageRequest page = 6;
+} 
+
+message RemovePersonByIdsReq{
+    //人员ID
+    repeated int64 ids = 1;
+}
+
+message RemoveAllGroupByIdsReq{
+    //集团ID
+    repeated int64 ids = 1;
+}
+ 
+message FindAllGroupListAllReq{
+    //集团ID
+    int64 id = 1;
+    //集团名称
+    string groupName = 2;
+    //是否删除
+    int64 isDeleted = 3;
+    //集团Code
+    string groupCode = 4; 
+    //租户Code
+    string tenantCode = 5;
+    //类型
+    int64 type = 6;
+    //分页参数
+    PageRequest page = 7;
+}
+
+message FindRoleListReq{
+    //角色别名
+    string roleAlias = 1;
+    //角色名称
+    string roleName = 2; 
+    //分页参数
+    PageRequest page = 3;
+}
+
+message GroupLayerByIdReq{
+    //集团ID
+    int64 groupId = 1;
+    //原集团ID
+    int64 sourceGroupId = 2;
+    //是否包含单位
+    bool withUnit = 3;
+}
+
+message FindTenantAttrListReq{
+    //租户组名称
+    string attrName = 1;
+    //分页参数
+    PageRequest page = 2;
+}
+
+
+message FindTenantIconListReq{
+    //租户组名称
+    string tenantCode = 1;
+    //图标名称
+    string tenantIcon = 2;
+}
+
+message FindImportStatusListReq{
+    //集团编号
+    string tableName = 1;
+    //类型
+    int64 type =2;
+    //状态 0-导入中 1-成功 2-失败
+    int64 status=3;
+    //租户编号
+    string tenantCode = 4;
+    //文件名
+    string fileName = 5;
+    //分页参数
+    PageRequest page = 6;
+}
+
+message FindAllDicReq{
+    //字典编号
+    string code = 1;
+    //字典键
+    int64 dictKey = 2; 
+    //分页参数
+    PageRequest page = 3;
+}
+
+message FindDicItemReq{
+    //父节点ID
+    int64 parentId = 1;
+    //字典值
+    string dictValue = 2;
+    //版本
+    int64  version = 3;
+}
+
+message FindInnerAgencyListReq{
+    //租户组名称
+    string tenantCode = 1; 
+    //租户组名称
+    string agencyName = 2;
+    //分页参数
+    PageRequest page = 3;
+    //内部机构Id集合
+    repeated int64 Ids = 4;
+}
+
+message FindAllRolesListReq{ 
+    //租户编号
+    string tenantCode = 1; 
+}
+
+message UpdateAgencyInnerUserReq{ 
+    //部门编号
+    string agencyCode = 1;   
+    //部门ID
+    int64 deptId = 2;  
+    //部门名称
+    string deptName = 3;  
+    //父节点ID
+    int64 pId = 4;  
+    //人员ID列表
+    repeated int64 personIds = 5; 
+}
+
+message AddPersonReq{ 
+    //租户编号
+    string tenantCode = 1;   
+    //名字
+    string name = 2;  
+    //电话
+    string phone = 3;  
+    //用户编号
+    string userCode = 4;  
+    //角色
+    int64 role = 5;  
+    //部门
+    repeated int64 depart = 6; 
+}  
+
+message DistributeDeptPersonsReq{ 
+    //部门ID
+    int64 deptId= 1;   
+    //类型
+    int64 type= 2;   
+    //人员id列表
+    repeated int64 personIdList=3;
+    //租户编号
+    string tenantCode = 4; 
+} 
+ 
+message DeleteUserInfoReq{  
+    //用户ID
+    repeated int64 userIds=1;
+    //租户编号
+    string tenantCode = 2; 
+}
+
+message UpdatePersonPhoneNumberReq{  
+    //人员ID
+    int64 personId = 1;
+    //租户编号
+    string  tenantCode = 2; 
+    //电话号码
+    string phoneNumber = 3;
+}
+
+message SerarchDeptPersonReq{
+    //
+    string filter = 1;
+    //租户编号
+    string tenantCode = 2; 
+}
+
+message GroupAppDistributeReq {
+    //集团Id
+    int64 groupId = 1;
+    //应用Id
+    int64 appId = 2;
+    //账户
+    int64 userId = 3;
+    //分发Json数据
+    string DistribeJson = 4;
+}
+
+message DisbandGroupReq {
+    //用户Id
+    int64 userId = 1;
+    //集团Id
+    int64 groupId = 2;
+    //原集团ID
+    int64 sourceGroupId = 3;
+}
+
+message CreateGroupReq {
+    //集团编号
+	string groupCode = 1;
+    //集团描述
+    string groupDescription = 2;
+    //用户Id
+	int64 userId = 3;
+    //集团Id
+	int64 groupId = 4;
+    //集团名称
+	string groupName = 5;
+    //层级
+	repeated int64 shape = 6;
+    //租户编号
+	string tenantCode = 7;
+}
+
+message QueryGroupReq{
+    //名称
+    string groupName = 1;
+    //类型
+    int64 groupType = 2;
+}
+
+message ListApplyTenantReq {
+    //标记
+	int64 flag = 1;
+    //集团Id
+	int64 groupId = 2;
+    //分页参数
+    PageRequest page = 3;
+}
+
+message TenantsJoinGroupReq {
+    //标记
+	int64 flag = 1;
+    //集团Id
+	int64 groupId = 2;
+    //原集团Id
+	int64 sourcegGroupId = 3;
+    //租户ID集合
+    repeated int64 tenantIds = 4;
+}
+
+message GroupTreeReq {
+    //集团Id
+    int64 groupId = 2;
+    //组织ID
+    int64 sourceGroupId = 3;
+}
+
+
+message SearchJobListReq{
+    //租户编号
+    string tenantCode = 1; 
+    //分页参数
+    PageRequest page = 2; 
+}
+
+message UpdateJobUserReq{
+    //岗位名称
+    string jobName = 1; 
+    //排序序号
+    int64 sort = 2; 
+    //岗位Id
+    int64 jobId = 3;
+    //人员Id列表
+    repeated int64 personIds = 4;
+}
+
+message UpdateJobUsersReq{ 
+    //岗位Ids
+    repeated int64 jobIds = 1;
+    //人员Id列表
+    repeated int64 personIds = 2;
+}
+
+message AddJobUserReq{
+    //岗位名称
+    string jobName = 1; 
+    //组织编号
+    string tenantCode=2;  
+    //人员Id列表
+    repeated int64 personIds = 4;
+}
+
+message RemoveJobReq{
+    //岗位Id
+    int64 jobId = 1;  
+} 
+
+message UpdateGroupIsHideReq{
+    //类型
+    int64 type = 1;   
+    //组织Id
+    int64 tenantId = 2; 
+    //集团编号
+    string groupCode=3; 
+    //根集团Id
+    int64 sourceGroupId=4;
+}
+
+message RemoveLeafTenantsReq{
+    //集团Id
+    int64 groupId = 1;   
+    //组织Id集合
+    repeated int64 tenantIds = 2;  
+}
+
+message FindPropertiesUnitListReq{
+    //性质Id
+    int64 propertiesId = 1;   
+    // //特性名称
+    // int64 propertiesName = 2;   
+    // //租户编号
+    // int64 tenantCode = 3; 
+    //页面参数
+    PageRequest page = 4;  
+} 
+
+message CreateDistributePropertiesReq{
+    //性质Id
+    int64 propertiesId = 1;   
+    //组织Id
+    repeated int64 tenantIds = 2;  
+}
+
+message DistributePropertiesReq{
+    //性质Id
+    int64 propertiesId = 1;   
+    //性质名称
+    string propertiesName = 2; 
+    //组织Id
+    repeated int64 tenantIds = 3;  
+}
+
+message FindGroupListByRelationsReq{
+    //根集团Id
+    int64 groupId = 1; 
+    //分页参数  
+    PageRequest page=2; 
+}
+
+message BanPersonUserReq{
+    //租户编号
+    string tenantCode = 1; 
+    //电话号码列表  
+    repeated string phones = 2; 
+}
+
+message UpdateUserRoleReq{
+    //用户Id集合
+    repeated int64 userIds = 1; 
+    //角色Id集合
+    repeated int64 roleIds = 2;
+} 
+
+message AddInnerUserReq{
+    //机构名称
+    string agencyName = 1;
+    //机构编号
+    string agencyCode = 2;  
+    //租户编号
+    string tenantCode = 3;
+    //人员Id集合
+    repeated int64 personIds = 4; 
+    //父Id
+    int64 parentId = 5;
+}
+
+message ActiveUserReq{
+    //电话号码
+    repeated string phones = 1; 
+    //租户编号
+    string tenantCode = 2;
+}
+
+message RemoveDeptUserJobReq{
+    //部门Id
+    int64 deptId = 1; 
+    //部门Id
+    int64 jobId = 2; 
+    //用户Id集合
+    repeated int64 personIds=3; 
+}
+
+message SetMasterUnitReq{
+    //账户  
+    string account = 1;    
+    //租户编号
+    string tenantCode = 2;
+}
+
+message UpdateUserName{
+    //用户ID
+    int64 userId = 1;
+    //用户名称
+    string userName = 2;
+    //用户卡号
+    string idCard = 3;
+    //用户编号
+    string userCode = 4;
+}
+
+message FindRoleListByUserIdReq{
+    //用户Id
+    int64 userId = 1; 
+    //页面参数
+    PageRequest page = 2; 
+} 
+
+message FindPropertiesListReq{
+    //集团Id
+    int64 groupId = 1;  
+    //页面参数
+    PageRequest page = 2; 
+}
+
+message UpdateFatherTenantReq{
+    //租户id
+    repeated int64 tenantIds = 1;
+    //集团id
+    int64 groupId = 2;
+}
+
+message UpdateGroupInfoReq {
+    //描述
+	string GroupDescription = 1;
+    //名称
+	string GroupName = 2;
+    //父ID
+	int64 ParentGroupId = 3;
+    //代码
+	string SocialCreditCode = 4;
+    //子ID
+	int64 SonGroupId = 5;
+    //租户
+	string TenantCode = 6;
+} 
+
+message CreateAndDistributePropertiesReq{
+    //租户Id
+    repeated int64 tenantIds = 1;  
+    //集团Id
+    int64 groupId = 2;
+    //性质名称
+    string propertiesName = 3;
+}
+
+
+message TenantRelationData{  
+    //社会统一信用代码
+	string socialCreditCode = 1;
+    //父集团名称
+	string parentGroupName = 2;
+}
+
+message UpdateTenantRelationsReq {
+    // 
+	repeated TenantRelationData tenantRelationDatas = 1; 
+    //根节点
+	int64 SourceGroupId = 5; 
+}
+
+message RemoveMenuReq{ 
+    //菜单id
+    repeated int64 menuIds = 1;
+}
+
+message RoleTreeKeysMenuReq{ 
+    //角色id
+    repeated int64 roleIds = 1;
+}
+
+message RemoveRoleByIdsReq{ 
+    //角色id
+    repeated int64 roleIds = 1;
+}
+
+message ListRoleByAttrReq{
+    //租户组id
+    int64 attrId = 1;
+}
+
+message TenantAttrRoleAllocReq{
+    //租户组id
+    int64 attrId = 1;
+    //角色id
+    repeated   int64 roleIds = 2;
+}
+
+message AuthorizationRoleReq{
+    //角色id
+    int64 roleId = 1;
+    //菜单id
+    repeated int64 menuIds = 2;
+}
+
+message TenantAttrRemoveReq{
+    //租户组id
+    repeated int64 id = 1;
+}
+
+message RemovePropertiesReq{
+    //性质id
+    repeated int64 propertiesIds = 1;
+}
+
+message AgencyRemoveReq{
+    //租户组id
+    repeated int64 ids = 1;
+} 
+
+message ImportTenantIconReq{
+    //图标地址
+    repeated string urls = 1;
+    //租户编号
+     string tenantCode = 2;
+} 

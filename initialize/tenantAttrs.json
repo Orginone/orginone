@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "parentId": "0",
+        "attrName": "普通租户",
+        "attrRemark": "负责公司单位管理"
+    },
+    {
+        "id": "2",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "parentId": "0",
+        "attrName": "平台租户",
+        "attrRemark": "负责维护平台运行"
+    },
+    {
+        "id": "3",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "parentId": "0",
+        "attrName": "默认租户",
+        "attrRemark": "作为用户注册进来默认加入租户的类型"
+    },
+    {
+        "id": "4",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "parentId": "0",
+        "attrName": "集团租户",
+        "attrRemark": "负责集团管理"
+    },
+    {
+        "id": "5",
+        "createUser": 1,
+        "updateUser": 1,
+        "isDeleted": 0,
+        "status": 2,
+        "parentId": "0",
+        "attrName": "开发租户",
+        "attrRemark": "负责开发应用、运维"
+    }
+]

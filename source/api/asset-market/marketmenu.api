@@ -1,0 +1,37 @@
+//市场菜单
+
+@server(
+   jwt: Auth
+   group: marketmenu
+   prefix: /asset-market/marketmenu
+)
+
+service market-api {
+    //详情
+    @handler detail
+    get /detail(DetailReq8) returns (CommonResponse)
+    //获取子级菜单列表
+    @handler getAppMenuList
+    get /getAppMenuList(GetAppMenuListReq) returns (CommonResponse)
+    //获取菜单列表--use
+    @handler getMenuList
+    get /getMenuList(GetMenuListReq) returns (CommonResponse)
+    //获取移动端应用菜单列表
+    @handler getMobileMenuList
+    get /getMobileMenuList(GetMobileMenuListReq) returns (CommonResponse)
+    //获取父级菜单列表
+    @handler getParentMobileMenuList
+    get /getParentMobileMenuList(GetParentMobileMenuListReq) returns (CommonResponse)
+    //获取子级菜单列表
+    @handler getSonMobileMenuList
+    get /getSonMobileMenuList(GetSonMobileMenuListReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq13) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq13) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq13) returns (CommonResponse)
+}

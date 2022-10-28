@@ -1,0 +1,21 @@
+Name: user.rpc
+ListenOn: 127.0.0.1:1020
+Mode: dev
+Timeout: 0
+Etcd:
+  Hosts:
+  - localhost:2379
+  Key: user.rpc
+Store:
+  Mode: dev
+  Driver: mysql
+  DataSource: root:123456@(localhost)/orgstore?charset=utf8&parseTime=true&loc=Local
+  Cache:
+    Network: tcp
+    Addr: localhost:6379
+    Db: 1
+    TTL: 1
+    Username:
+    Password: 
+    PoolSize: 10
+    MaxEntries: -1

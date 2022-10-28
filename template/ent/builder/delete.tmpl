@@ -1,0 +1,116 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Type */}}
+
+{{ define "delete" }}
+{{ $pkg := base $.Config.Package }}
+
+{{ template "header" $ }}
+
+{{ template "import" $ }}
+
+import (
+	{{ $.PackageAlias }} "{{ $.Config.Package }}/{{ $.PackageDir }}"
+)
+
+{{ $builder := $.DeleteName }}
+{{ $receiver := receiver $builder }}
+{{ $mutation := print $receiver ".mutation" }}
+
+// {{ $builder }} is the builder for deleting a {{ $.Name }} entity.
+type {{ $builder }} struct {
+	config
+	hooks      []Hook
+	mutation   *{{ $.MutationName }}
+}
+
+// Where appends a list predicates to the {{ $builder }} builder.
+func ({{ $receiver }} *{{ $builder }}) Where(ps ...predicate.{{ $.Name }}) *{{ $builder }} {
+	{{ $mutation }}.Where(ps...)
+	return {{ $receiver }}
+}
+
+// Exec executes the deletion query and returns how many vertices were deleted.
+func ({{ $receiver}} *{{ $builder }}) Exec(ctx context.Context) (int, error) {
+	var (
+		err error
+		affected int
+	)
+	if len({{ $receiver }}.hooks) == 0 {
+		affected, err = {{ $receiver }}.{{ $.Storage }}Exec(ctx)
+	} else {
+		var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
+			mutation, ok := m.(*{{ $.MutationName }})
+			if !ok {
+				return nil, fmt.Errorf("unexpected mutation type %T", m)
+			}
+			{{ $mutation }} = mutation
+			affected, err = {{ $receiver }}.{{ $.Storage }}Exec(ctx)
+			mutation.done = true
+			return affected, err
+		})
+		for i := len({{ $receiver }}.hooks) - 1; i >= 0; i-- {
+			if {{ $receiver }}.hooks[i] == nil {
+				return 0, fmt.Errorf("{{ $pkg }}: uninitialized hook (forgotten import {{ $pkg }}/runtime?)")
+			}
+			mut = {{ $receiver }}.hooks[i](mut)
+		}
+		if _, err := mut.Mutate(ctx, {{ $mutation }}); err != nil {
+			return 0, err
+		}
+	}
+	return affected, err
+}
+
+// ExecX is like Exec, but panics if an error occurs.
+func ({{ $receiver }} *{{ $builder }}) ExecX(ctx context.Context) int {
+	n, err := {{ $receiver }}.Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
+	return n
+}
+
+{{ with extend $ "Builder" $builder }}
+	{{ $tmpl := printf "dialect/%s/delete" $.Storage }}
+	{{ xtemplate $tmpl . }}
+{{ end }}
+
+{{- /* Support adding delete methods by global templates. */}}
+{{- with $tmpls := matchTemplate "delete/additional/*" }}
+	{{- range $tmpl := $tmpls }}
+		{{ xtemplate $tmpl $ }}
+	{{- end }}
+{{- end }}
+
+{{ $onebuilder := $.DeleteOneName }}
+{{ $oneReceiver := receiver $onebuilder }}
+
+// {{ $onebuilder }} is the builder for deleting a single {{ $.Name }} entity.
+type {{ $onebuilder }} struct {
+	{{ $receiver }} *{{ $builder }}
+}
+
+// Exec executes the deletion query.
+func ({{ $oneReceiver }} *{{ $onebuilder }}) Exec(ctx context.Context) error {
+	n, err := {{ $oneReceiver }}.{{ $receiver }}.Exec(ctx)
+	switch {
+	case err != nil:
+		return err
+	case n == 0:
+		return &NotFoundError{ {{ $.Package }}.Label}
+	default:
+		return nil
+	}
+}
+
+// ExecX is like Exec, but panics if an error occurs.
+func ({{ $oneReceiver }} *{{ $onebuilder }}) ExecX(ctx context.Context) {
+	{{ $oneReceiver }}.{{ $receiver }}.ExecX(ctx)
+}
+
+{{ end }}

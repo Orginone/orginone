@@ -1,0 +1,19 @@
+//集团关系
+
+@server(
+   jwt: Auth
+   group: grouprelations
+   prefix: /asset-system/grouprelations
+)
+
+service system-api {
+    //获取集团已加入的集团列表--use
+    @handler getjoingroup
+    get /get/join/group(GrouprelationsGetJoinGroupReq) returns (CommonResponse) 
+    //集团申请加入上级集团--use
+    @handler joingroup
+    post /join/group(GrouprelationsJoinGroupReq) returns (CommonResponse)
+    //集团申请加入集团记录列表--use
+    @handler getgroupapplyrecord
+    get  /get/group/apply/record(GrouprelationsGetGroupApplyRecordReq) returns (CommonResponse)  
+}

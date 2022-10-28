@@ -1,0 +1,19 @@
+//集团性质
+
+@server(
+   jwt: Auth
+   group: properties
+   prefix: /asset-system/properties
+)
+
+service system-api {
+    //分页--use 参数不对
+    @handler list
+    get /list(ListReq1) returns (CommonResponse)
+    //列表
+    @handler listAll
+    get /listAll(ListAllReq2) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq5) returns (CommonResponse)
+}

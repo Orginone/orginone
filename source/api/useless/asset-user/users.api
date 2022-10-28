@@ -1,0 +1,16 @@
+//其它用户管理
+
+@server(
+   jwt: Auth
+   group: users
+   prefix: /asset-user/users
+)
+
+service user-api {
+    //获取岗位人员
+    @handler pagebyjob
+    get /v1/page-by-job(PageByJobReq) returns (CommonResponse)
+    //岗位人员反选
+    @handler pagebyjobinverse
+    get /v1/page-by-job/inverse(PageByJobInverseReq) returns (CommonResponse)
+}

@@ -1,0 +1,5 @@
+@url=http://qkbyte.com:3000/dev-api/asset-market
+
+### 获取应用列表
+GET {{url}}/marketapp/list?current=1&size=30&appName=&saleStatus=1 HTTP/1.1
+blade-auth: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50IjoiMjAyMDA1MjAxMzE0IiwiZXhwIjozNzk5NTk0NzcyLCJpYXQiOjE2NTIxMTExMjUsInRlbmFudENvZGUiOiIwMDAwMDAiLCJ1c2VySWQiOjF9.W_FvrFf19ZT7-1kghKgHfIK0JEZxYqEIUvno19D6NvM

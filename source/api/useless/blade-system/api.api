@@ -1,0 +1,46 @@
+//api-act-todo-controller
+
+@server(
+   jwt: Auth
+   group: api
+   prefix: /blade-system/api
+)
+
+service user-api {
+    //增加已完成任务信息
+    @handler acttodoaddacthistory
+    post /acttodo/addacthistory(ActtodoAddacthistoryReq) returns (CommonResponse)
+    //增加待办任务信息
+    @handler acttodoaddacttodo
+    post /acttodo/addacttodo(ActtodoAddacttodoReq) returns (CommonResponse)
+    //审批通过、不通过行为
+    @handler acttodoapprovelist
+    get /acttodo/approvelist(Nil) returns (CommonResponse)
+    //procid
+    @handler acttododeleteacttodo
+    delete /acttodo/deleteacttodo(ActtodoDeleteacttodoReq) returns (CommonResponse)
+    //procid
+    @handler acttododeleteallacttodo
+    delete /acttodo/deleteallacttodo(ActtodoDeleteallacttodoReq) returns (CommonResponse)
+    //流程结束行为
+    @handler acttodofinishproc
+    get /acttodo/finishproc(Nil) returns (CommonResponse)
+    //获取待办任务
+    @handler acttodogetallacttodo
+    get /acttodo/getallacttodo(ActtodoGetallacttodoReq) returns (CommonResponse)
+    //获取已办任务
+    @handler acttodogetallfinishacttodo
+    get /acttodo/getallfinishacttodo(ActtodoGetallfinishacttodoReq) returns (CommonResponse)
+    //获取已完成任务
+    @handler acttodogetallhistoryacttodo
+    get /acttodo/getallhistoryacttodo(ActtodoGetallhistoryacttodoReq) returns (CommonResponse)
+    //修改待办任务信息
+    @handler acttodoupdateacttodo
+    post /acttodo/updateacttodo(ActtodoUpdateacttodoReq) returns (CommonResponse)
+    //获取字典和字典条目所有列表
+    @handler dictlist
+    get /dict/list(Nil) returns (CommonResponse)
+    //获取元数据列表
+    @handler metadatalist
+    get /metadata/list(Nil) returns (CommonResponse)
+}

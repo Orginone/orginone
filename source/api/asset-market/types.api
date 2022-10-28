@@ -1,0 +1,866 @@
+//市场应用角色-list-请求参数
+type RoleListReq struct {
+    Param                interface{}    `json:"param"`
+}
+//GroupAppDistributionData接口-获取配置-请求参数
+type GetConfigReq struct {
+    AppId                int64          `form:"appId"`
+    GroupId              int64          `form:"groupId"`
+}
+//GroupAppDistributionData接口-列表-请求参数
+type ListReq struct {
+    GroupAppDistribution interface{}    `json:"GroupAppDistributionData"`
+}
+//GroupAppDistributionData接口-分页-请求参数
+type ListPageReq struct {
+    GroupAppDistribution interface{}    `json:"GroupAppDistributionData"`
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//Kubesphere接口-获取token-请求参数
+type GetTokenReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用-应用审核-请求参数
+type AppCheckReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用-取消应用申请-请求参数
+type CancelApplyReq struct {
+    IdList               []int64    `json:"idList"`
+}
+//市场应用-删除应用-请求参数
+type DeleteAppReq struct {
+	AppId int64 `form:"appId"`
+	RemoveAdmin bool `form:"removeAdmin,optional,default=false"`
+}
+//市场应用-详情-请求参数
+type DetailReq struct {
+    Id                   int64          `json:"id"`
+}
+//市场应用-获取应用相关信息-请求参数
+type GetAllReq struct {
+    Id                   int64          `form:"id"`
+}
+//市场应用-获取应用相关信息-请求参数
+type GetAllAppReq struct {
+    Id                   int64          `form:"id"`
+}
+//市场应用-获取应用相关信息-请求参数
+type FreezeAppReq struct {
+    Ids                  interface{}    `form:"ids"`
+}
+//市场应用-获取重新发布应用列表-请求参数
+type GetRedeployAppListReq struct {
+    AppName              string         `form:"appName,optional"`
+    Current              int64          `form:"current"`
+    Flag                 int64          `form:"flag"`
+    Size                 int64          `form:"size"`
+}
+//市场应用-分页-请求参数
+type ListReq1 struct {
+    Current              int64          `json:"current"`
+    MarketApp            interface{}    `json:"marketApp"`
+    Size                 int64          `json:"size"`
+}
+//市场应用-分页-请求参数
+type AppListReq struct {
+    Current              int64          `form:"current"`
+    AppName              string         `form:"appName,optional"` 
+    Size                 int64          `form:"size"`
+    SaleStatus           int64          `form:"saleStatus,optional,default=-1"`
+}
+//市场应用-获取应用审核列表分页-请求参数
+type ListCheckReq struct {
+    AppName              string         `form:"appName,optional"`
+    Count                int64          `form:"count,optional,default=-1"`
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+}
+//市场应用-获取全部应用-请求参数
+type ListAllReq struct {
+    MarketApp            interface{}    `json:"marketApp"`
+}
+//市场应用-获取通用查询排序应用列表-请求参数
+type ListAppBySortReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用-获取单位创建应用列表-请求参数
+type ListAppListReq struct {
+    TenantCode           string         `json:"tenantCode"`
+}
+//市场应用-租户已被分配应用分页-请求参数
+type ListByDistributeTenantIdReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantId             string         `json:"tenantId"`
+}
+//市场应用-集团已购应用分页-请求参数
+type ListByPurchaseGroupIdReq struct {
+    AppName              string         `form:"appName,optional"`
+    Current              int64          `form:"current"`
+    GroupId              int64          `form:"groupId"`
+    Size                 int64          `form:"size"`
+}
+//市场应用-租户已购应用分页-请求参数
+type ListByPurchaseTenantIdReq struct {
+    AppName              string         `form:"appName,optional"`
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+    TenantId             string         `form:"tenantId"`
+}
+//市场应用-整改应用-请求参数
+type ReformAppReq struct {
+    Ids                  int64          `json:"ids"`
+}
+//市场应用-删除-请求参数
+type RemoveReq struct {
+    Ids                 []int64   `json:"ids"`
+}
+//市场应用-下架-请求参数
+type SetOffSaleReq struct {
+    IdList              []int64   `json:"idList"`
+}
+//市场应用-上架-请求参数
+type SetOnSaleReq struct {
+    IdList              []int64   `json:"idList"`
+}
+//市场应用-新增或修改-请求参数
+type SubmitReq struct {
+    MarketApp            interface{}    `json:"marketApp"`
+}
+//市场应用-新增或修改所有应用相关信息-请求参数
+type SubmitAllReq struct {
+    Application          interface{}    `json:"application"`
+    MarketApplication    interface{}    `json:"marketApplication"`
+}
+//市场应用-注册-请求参数
+type SubmitFirstReq struct {
+    MarketApp            interface{}    `json:"MarketApp"`
+    Application          interface{}    `json:"application"`
+}
+//市场应用-部署-请求参数
+type SubmitSecondReq struct {
+	AppId               int64           `json:"appId,string"`
+}
+//市场应用-发布-请求参数
+type SubmitThirdReq struct {
+    Application          interface{}    `json:"application"`
+    MarketApplication    interface{}    `json:"marketApplication"`
+}
+//市场应用-详情-请求参数
+type TokenDetailReq struct {
+    Id                   int64          `json:"id"`
+}
+//市场应用-获取通用查询排序应用列表-请求参数
+type TokenListAppBySortReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用-分页-请求参数
+type TokenListWithoutTokenReq struct {
+    MarketApp            interface{}    `json:"marketApp"`
+}
+//预警消息-取消已读/标为未读-请求参数
+type CancelCheckAlertReq struct {
+    Id                   int64          `json:"id"`
+}
+//预警消息-标为已读-请求参数
+type CheckAlertReq struct {
+    Id                   int64          `form:"id"`
+}
+//预警消息-分页-请求参数
+type ListReq2 struct {
+    Current              int64          `json:"current"`
+    AlertTitle       interface{}    `json:"alertTitle"`
+    Size                 int64          `json:"size"`
+}
+//预警消息-我的预警消息 body结构：{"role":[],"job":[]}-请求参数
+type MyAlertListReq struct {
+    JsonObject           interface{}    `form:"jsonObject"`
+}
+//预警消息-删除-请求参数
+type RemoveReq1 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//预警消息-发送预警-请求参数
+type SendAlertReq struct {
+    Dto                  interface{}    `json:"dto"`
+}
+//预警消息-新增或修改-请求参数
+type SubmitReq1 struct {
+    MarketAppAlert       interface{}    `json:"marketAppAlert"`
+}
+//应用申请表-apply-请求参数
+type ApplyReq struct {
+    AppDescription       string         `json:"appDescription"`
+    AppName              string         `json:"appName"`
+}
+//应用申请表-applyCancel-请求参数
+type ApplyCancelReq struct {
+    Id                   int64          `json:"id"`
+}
+//应用申请表-applyHandle-请求参数
+type ApplyhandleReq struct {
+    Feedback             string         `json:"feedback"`
+    Id                   int64          `json:"id"`
+    Status               int64          `json:"status"`
+}
+//应用申请表-详情-请求参数
+type DetailReq1 struct {
+    Id                   int64          `json:"id"`
+}
+//应用申请表-getApplyDetail-请求参数
+type GetApplyDetailReq struct {
+    Id                   int64          `form:"id"`
+}
+//应用申请表-获取自己的分页-请求参数
+type GetMyListReq struct {
+    Current              int64          `json:"current"`
+    MarketAppApply       interface{}    `json:"marketAppApply"`
+    Size                 int64          `json:"size"`
+}
+//应用申请表-getSecretByKey-请求参数
+type GetSecretByKeyReq struct {
+    AppKey               string         `json:"appKey"`
+}
+//应用申请表-分页-请求参数
+type ListReq3 struct {
+    Current              int64          `json:"current"`
+    MarketAppApply       interface{}    `json:"marketAppApply"`
+    Size                 int64          `json:"size"`
+}
+//应用申请表-删除-请求参数
+type RemoveReq2 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//应用申请表-新增或修改-请求参数
+type SubmitReq2 struct {
+    MarketAppApply       interface{}    `json:"marketAppApply"`
+}
+//应用申请表-test-请求参数
+type TestReq struct {
+    A                    int64          `json:"a"`
+    B                    int64          `json:"b"`
+}
+//应用申请表-updateApply-请求参数
+type UpdateApplyReq struct {
+    AppDescription       string         `form:"appDescription"`
+    AppName              string         `form:"appName"`
+    Id                   int64          `form:"id"`
+}
+//Portal组件-根据appId获取组件列表-请求参数
+type GetComponentListByAppIdReq struct {
+    AppId                int64          `form:"appId"`
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+}
+//Portal组件-分页-请求参数
+type ListReq4 struct {
+	Current            int64       `form:"current"`
+	Size               int64       `form:"size"`
+	Name               string      `form:"name,optional"`
+	Flag               int64       `form:"flag,optional,default=-1"`
+}
+//Portal组件-删除-请求参数
+type RemoveReq3 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//Portal组件-新增或修改-请求参数
+type SubmitReq3 struct {
+    MarketAppComponent   interface{}    `json:"marketAppComponent"`
+}
+//Portal模板-根据模板id获取组件列表-请求参数
+type GetComponentByTemplateIdReq struct {
+    TemplateId           int64          `json:"templateId"`
+}
+//Portal模板-分页-请求参数
+type GetUserTemplateReq struct {
+    Current              int64          `form:"current"`
+    Name                 string         `form:"name,optional"`
+    Size                 int64          `form:"size"`
+}
+//Portal模板-分页-请求参数
+type ListReq5 struct {
+    Current              int64          `form:"current"`
+    Size                 int64          `form:"size"`
+    Name                 string         `form:"name,optional"` 
+    Status               int64          `form:"status"`
+}
+//Portal模板-删除-请求参数
+type RemoveReq4 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//Portal模板-设为默认模板-请求参数
+type SetDefaultReq struct {
+    Id                   int64          `form:"id"`
+}
+//Portal模板-新增或修改-请求参数
+type SubmitReq4 struct {
+    MarketAppComponentTe interface{}    `json:"marketAppComponentTemplate"`
+}
+//市场应用集团分配-详情-请求参数
+type DetailReq2 struct {
+    Id                   int64          `json:"id"`
+}
+//市场应用集团分配-集团已分配租户列表-请求参数
+type DistributeAppTenantListReq struct {
+    AppId                int64          `form:"appId"`
+    Current              int64          `form:"current"`
+    GroupId              int64          `form:"groupId,optional"`
+    LikeName             string         `form:"likeName,optional"`
+    Size                 int64          `form:"size"`
+}
+//市场应用集团分配-获取租户被分配集团id列表-请求参数
+type GetDistributedGroupIdListReq struct {
+    AppId                int64          `json:"appId"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//市场应用集团分配-获取集团分配单位应用列表-请求参数
+type GetGroupDistributeTenantAppReq struct {
+    GroupId              int64          `json:"groupId"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//市场应用集团分配-获取当前租户被分配集团id列表-请求参数
+type GetGroupIdListReq struct {
+    AppId                int64          `form:"appId"`
+}
+//市场应用集团分配-删除-请求参数
+type RemoveReq5 struct {
+    IdList               interface{}    `json:"idList"`
+}
+//市场应用集团分配-新增或修改-请求参数
+type SubmitReq5 struct {
+    MarketAppGroupDistri interface{}    `json:"marketAppGroupDistribution"`
+}
+//市场应用集团分配-新增多个-请求参数
+type SubmitAllReq1 struct {
+    MarketAppGroupDistri interface{}    `json:"marketAppGroupDistribution"`
+}
+//市场应用集团分配-集团取消分发-请求参数
+type UnitCancelDistributeReq struct {
+    AppId              int64          `json:"appId,string"`
+    GroupId            int64          `json:"groupId,string"`
+    TenantId           string         `json:"tenantId"`
+}
+//市场应用集团分配-集团分发-请求参数
+type UnitDistributeReq struct {
+    MarketAppDistributio interface{}    `json:"marketAppDistributionRelationDto"`
+}
+//市场应用集团分配-获取id列表-请求参数
+type GetRelationReq struct {
+    AppId                int64          `form:"appId"`
+    GroupId              int64          `form:"groupId"`
+}
+//应用申请keysecret表-详情-请求参数
+type DetailReq3 struct {
+    Id                   int64          `json:"id"`
+}
+//应用申请keysecret表-详情-请求参数
+type GetByAppIdReq struct {
+    AppId                int64          `json:"appId"`
+}
+//应用申请keysecret表-分页-请求参数
+type ListReq6 struct {
+    Current              int64          `json:"current"`
+    MarketAppKeySecret   interface{}    `json:"marketAppKeySecret"`
+    Size                 int64          `json:"size"`
+}
+//应用申请keysecret表-删除-请求参数
+type RemoveReq6 struct {
+    IdList               interface{}    `json:"idList"`
+}
+//应用申请keysecret表-新增或修改-请求参数
+type SubmitReq6 struct {
+    MarketAppKeySecret   interface{}    `json:"marketAppKeySecret"`
+}
+//通知公告-下架-请求参数
+type CancelReleaseNoteReq struct {
+    Id                   int64          `form:"id"`
+}
+//通知公告-分页-请求参数
+type ListReq7 struct {
+    Size                 int64          `form:"size"`
+    Current              int64          `form:"current"`
+    groupOrUnit          int64          `form:"groupOrUnit"`
+    noticeTitle          string         `form:"noticeTitle,optional"`
+}
+//通知公告-我的通知 body结构：{"role":[],"unit":[]}-请求参数
+type MyNoticeListReq struct {
+    JsonObject           interface{}    `json:"jsonObject"`
+}
+//通知公告-发布-请求参数
+type ReleaseNoteReq struct {
+    Id                   int64          `form:"id"`
+}
+//通知公告-删除-请求参数
+type RemoveReq7 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//通知公告-新增或修改-请求参数
+type SubmitReq7 struct {
+	Id 						  string     `json:"id,optional"`
+	GroupOrUnit 			  int64     `json:"groupOrUnit,optional,default=-1"`
+	NoticeTitle 			  string    `json:"noticeTitle,optional"` 
+	NoticeContent      	      string    `json:"noticeContent,optional"`
+	NoticeUnitIds       	  string    `json:"noticeUnitIds,optional"`
+	NoticeRoleIds       	  string    `json:"noticeRoleIds,optional"`
+	NoticeReleaseStatus       int64     `json:"noticeReleaseStatus,optional"`
+	NoticeReleaseUnitId       string    `json:"noticeReleaseUnitId,optional"`
+}
+//市场应用购买-详情-请求参数
+type DetailReq4 struct {
+    Id                   int64          `json:"id"`
+}
+//市场应用购买-获取应用列表-请求参数
+type GetListsReq struct {
+    Current              string         `json:"current"`
+    Flag                 string         `json:"flag"`
+    GroupId              string         `json:"groupId"`
+    Size                 string         `json:"size"`
+    TenantCode           string         `json:"tenantCode"`
+    UserId               string         `json:"userId"`
+}
+//市场应用购买-获取某个应用购买情况-请求参数
+type GetAppPurchaseConfigReq struct {
+    AppId                int64          `form:"appId"`
+}
+//市场应用购买-分页-请求参数
+type ListReq8 struct {
+    Current              int64          `json:"current"`
+    MarketAppPurchase    interface{}    `json:"marketAppPurchase"`
+    Size                 int64          `json:"size"`
+}
+//市场应用购买-租户所有应用分页-请求参数
+type ListAppByTenantIdReq struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    TenantId             string         `json:"tenantId"`
+}
+//市场应用购买-应用列表分页-请求参数
+type ListByGroupIdVOReq struct {
+    GroupId              int64          `form:"groupId"`
+    SaleStatus            interface{}    `form:"saleStatus"`
+    Current              int64          `form:"current"` 
+    AppName              string         `form:"appName"`
+    Size                 int64          `form:"size"`
+}
+//市场应用购买-应用列表个人单位分页（可以根据应用名模糊查询）-请求参数
+type ListUnitAndPersonalVOReq struct {
+    Current              int64          `form:"current"`
+    Name                 string         `form:"name"`
+    Size                 int64          `form:"size"`
+}
+//市场应用购买-应用列表分页-请求参数
+type ListVOReq struct {
+    SaleStatus            interface{}    `form:"saleStatus"`
+    Current              int64          `form:"current"`
+    AppName              string         `form:"appName"`
+    Size                 int64          `form:"size"`
+}
+//市场应用购买-应用已购集团列表分页-请求参数
+type PurchaseAppGroupListReq struct {
+    Current              int64          `form:"current"`
+    AppId            int64          `form:"appId"`
+    Size                 int64          `form:"size"`
+}
+//市场应用购买-应用已购租户列表分页-请求参数
+type PurchaseAppTenantListReq struct {
+    Current              int64          `form:"current"`
+    AppId            int64          `form:"appId"`
+    Size                 int64          `form:"size"`
+}
+//市场应用购买-集团批量获取-请求参数
+type PurchaseByGroupsReq struct {
+	AppId 		int64 	    `json:"appId,string"`
+	GroupIds 	[]string 	`json:"groupId"`
+}
+//市场应用购买-删除-请求参数
+type RemoveReq8 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//市场应用购买-新增或修改-请求参数
+type MarketAppPurchasSubmitReq struct {
+	AppId 		int64 	`json:"appId,string"`
+	TenantCode 	string 	`json:"tenantId"`
+}
+//市场应用购买-集团取消订阅-请求参数
+type UnitunsubscribeReq struct {
+	AppIds []int64 	`form:"appIds"`
+	GroupId int64 `form:"groupid"`
+}
+//市场应用购买-取消订阅-请求参数
+type UnsubscribeReq struct {
+	AppIds []int64 `json:"appIds"`
+}
+//市场应用购买-修改集团启用停用状态-请求参数
+type UpdateGroupUseStatusReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用购买-修改租户启用停用状态-请求参数
+type UpdateTenantUseStatusReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用购买-撤回集团权限-请求参数
+type WithdrawGroupAuthorityReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用购买-撤回租户权限-请求参数
+type WithdrawTenantAuthorityReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场应用角色-详情-请求参数
+type DetailReq5 struct {
+    Id                   int64          `json:"id"`
+}
+//市场应用角色-详情-请求参数
+type GetRoleListReq struct {
+    AppId                int64          `json:"appId"`
+}
+//市场应用角色-详情-请求参数
+type GetRoleNameListReq struct {
+    AppId                int64          `json:"appId"`
+}
+//市场应用角色-分页-请求参数
+type ListReq9 struct {
+    AppRole              interface{}    `json:"appRole"`
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//市场应用角色-删除-请求参数
+type RemoveReq9 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//市场应用角色-新增或修改-请求参数
+type SubmitReq9 struct {
+    MarketAppRole        interface{}    `json:"marketAppRole"`
+}
+//市场角色分配给用户、岗位、部门-appVerifyUser-请求参数
+type ApptokenVerifyUserReq struct {
+    AppKey               string         `json:"appKey"`
+    AppSecret            string         `json:"appSecret"`
+    UserId               int64          `json:"userId"`
+}
+//市场角色分配给用户、岗位、部门-详情-请求参数
+type DetailReq6 struct {
+    Id                   int64          `json:"id"`
+}
+//市场角色分配给用户、岗位、部门-getAppDistributedRole-请求参数
+type GetAppDistributedRoleReq struct {
+    AppId                int64          `form:"appId,string"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//市场角色分配给用户、岗位、部门-getAppIdByUserId-请求参数
+type GetAppIdByUserIdReq struct {
+    UserId               int64          `form:"userId"`
+}
+//市场角色分配给用户、岗位、部门-获取应用分配部门-请求参数
+type GetDistributedAgencyReq struct {
+    RoleId               int64          `form:"roleId"`
+    TenantCode           string         `form:"tenantCode"`
+    AppId                int64          `form:"appId"`
+}
+//市场角色分配给用户、岗位、部门-获取应用分配岗位-请求参数
+type GetDistributedJobReq struct {
+    AppId                int64          `form:"appId"`
+    RoleId               int64          `form:"roleId"`
+    TenantCode           string         `form:"tenantCode"`
+}
+//市场角色分配给用户、岗位、部门-获取应用已分配的人员列表-请求参数
+type GetDistributedPersonListByAppIdReq struct {
+    AppId                int64          `form:"appId"`
+    RoleId               int64          `form:"roleId"`
+}
+//市场角色分配给用户、岗位、部门-获取该角色已分配的部门-请求参数
+type GetDistributionAgencyReq struct {
+    RoleId               int64          `json:"roleId"`
+}
+//市场角色分配给用户、岗位、部门-获取该角色已分配的岗位-请求参数
+type GetDistributionJobReq struct {
+    RoleId               int64          `json:"roleId"`
+}
+//市场角色分配给用户、岗位、部门-获取租户下角色已分配的人员-请求参数
+type GetDistributionPersonReq struct {
+    AppId                int64          `json:"appId"`
+    RoleName             string         `json:"roleName"`
+    TenantCode           string         `json:"tenantCode"`
+}
+//市场角色分配给用户、岗位、部门-获取该角色已分配的用户-请求参数
+type GetDistributionUserReq struct {
+    RoleId               int64          `form:"roleId"`
+}
+//市场角色分配给用户、岗位、部门-getRoleByUserId-请求参数
+type GetRoleByUserIdReq struct {
+    UserId               int64          `json:"userId"`
+}
+//市场角色分配给用户、岗位、部门-详情-请求参数
+type GetUserRoleListReq struct {
+    AppId                int64          `json:"appId"`
+    TenantCode           string         `json:"tenantCode"`
+    UserId               int64          `json:"userId"`
+}
+//市场角色分配给用户、岗位、部门-判断用户是否被分配-请求参数
+type IsDistributedReq struct {
+    AppId                int64          `form:"appId"`
+}
+//市场角色分配给用户、岗位、部门-分页-请求参数
+type ListReq10 struct {
+    AppRoleDistribution  interface{}    `json:"appRoleDistribution"`
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//市场角色分配给用户、岗位、部门-删除-请求参数
+type RemoveReq10 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//市场角色分配给用户、岗位、部门-新增或修改-请求参数
+type SubmitReq10 struct {
+    MarketAppRoleDistrib interface{}    `json:"marketAppRoleDistribution"`
+}
+//市场角色分配给用户、岗位、部门-新增或修改-请求参数
+type SubmitV2Req struct {
+	RoleId  	int64		`json:"roleId,string"`
+	JobIds  	string   	`json:"jobIds,optional"`
+	AgencyIds  	string   	`json:"agencyIds,optional"`
+	UserIds  	string   	`json:"userIds,optional"`
+}
+//市场应用菜单-详情-请求参数
+type DetailReq7 struct {
+    Id                   int64          `json:"id"`
+}
+//市场应用菜单-分页-请求参数
+type ListReq11 struct {
+    Current              int64          `json:"current"`
+    MarketAppRoleMenu    interface{}    `json:"marketAppRoleMenu"`
+    Size                 int64          `json:"size"`
+}
+//市场应用菜单-删除-请求参数
+type RemoveReq11 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//市场应用菜单-新增或修改-请求参数
+type SubmitReq11 struct {
+    MarketAppRoleMenu    interface{}    `json:"marketAppRoleMenu"`
+}
+//Portal用户模板-获取用户默认模板id-请求参数
+type GetDefaultTemplateReq struct {
+    UserId               int64          `form:"userId"`
+}
+//Portal用户模板-根据用户id获取正在使用模板id-请求参数
+type GetTemplateIdByUserIdInUseReq struct {
+    UserId               int64          `form:"userId"`
+}
+//Portal用户模板-根据用户id获取模板id列表-请求参数
+type GetTemplateIdListByUserIdReq struct {
+    UserId               int64          `form:"userId"`
+}
+//Portal用户模板-分页-请求参数
+type ListReq12 struct {
+    Current              int64          `json:"current"`
+    MarketAppUserTemplat interface{}    `json:"marketAppUserTemplate"`
+    Size                 int64          `json:"size"`
+}
+//Portal用户模板-分页-请求参数
+type AppComponentGroupByUserReq struct { 
+    ComponentName                 string          `form:"componentName"`
+    TenantCode           string         `form:"tenantCode"`
+    AppName              string         `form:"appName"`
+}
+//Portal用户模板-删除-请求参数
+type RemoveReq12 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//Portal用户模板-设置默认模板-请求参数
+type SetDefaultTemplateReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//Portal用户模板-设置集团单位默认模板-请求参数
+type SetGroupTenantDefaultTemplateReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//Portal用户模板-新增或修改-请求参数
+type SubmitReq12 struct {
+    MarketAppUserTemplat interface{}    `json:"marketAppUserTemplate"`
+}
+//市场菜单-详情-请求参数
+type DetailReq8 struct {
+    Id                   int64          `json:"id"`
+}
+//市场菜单-获取子级菜单列表-请求参数
+type GetAppMenuListReq struct {
+    AppId                int64          `json:"appId"`
+}
+//市场菜单-获取菜单列表-请求参数
+type GetMenuListReq struct {
+    Platform             int64          `form:"platform"`
+    TenantId             string         `form:"tenantId"`
+    UserId               int64          `form:"userId"`
+}
+//市场菜单-获取移动端应用菜单列表-请求参数
+type GetMobileMenuListReq struct {
+    AppId                int64          `json:"appId"`
+    UserId               int64          `json:"userId"`
+}
+//市场菜单-获取父级菜单列表-请求参数
+type GetParentMobileMenuListReq struct {
+    UserId               int64          `json:"userId"`
+}
+//市场菜单-获取子级菜单列表-请求参数
+type GetSonMobileMenuListReq struct {
+    MenuId               int64          `json:"menuId"`
+    UserId               int64          `json:"userId"`
+}
+//市场菜单-分页-请求参数
+type ListReq13 struct {
+    Current              int64          `json:"current"`
+    MarketMenu           interface{}    `json:"marketMenu"`
+    Size                 int64          `json:"size"`
+}
+//市场菜单-删除-请求参数
+type RemoveReq13 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//市场菜单-新增或修改-请求参数
+type SubmitReq13 struct {
+    MarketMenu           interface{}    `json:"marketMenu"`
+}
+//市场菜单排序-详情-请求参数
+type DetailReq9 struct {
+    Id                   int64          `json:"id"`
+}
+//市场菜单排序-获取用户菜单排序列表-请求参数
+type GetUserMenuSortListReq struct {
+    UserId               int64          `json:"userId"`
+}
+//市场菜单排序-分页-请求参数
+type ListReq14 struct {
+    Current              int64          `json:"current"`
+    MarketMenuUserSort   interface{}    `json:"marketMenuUserSort"`
+    Size                 int64          `json:"size"`
+}
+//市场菜单排序-删除-请求参数
+type RemoveReq14 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//市场菜单排序-用户菜单排序-请求参数
+type SortUserMenuReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场菜单排序-单位用户菜单排序-请求参数
+type SortUserMenuByUnitReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//市场菜单排序-新增或修改-请求参数
+type SubmitReq14 struct {
+    MarketMenuUserSort   interface{}    `json:"marketMenuUserSort"`
+}
+//用户常用应用-获取常用应用-请求参数
+type GetUsedAppReq struct {
+    UserId               int64          `form:"userId"`
+}
+//用户常用应用-获取常用应用菜单-请求参数
+type GetUsedAppMenuReq struct {
+    UserId               int64          `form:"userId"`
+}
+//用户常用应用-分页-请求参数
+type ListReq15 struct {
+    Current              int64          `json:"current"`
+    MarketUsedApp        interface{}    `json:"marketUsedApp"`
+    Size                 int64          `json:"size"`
+}
+//用户常用应用-删除-请求参数
+type RemoveReq15 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//用户常用应用-删除-请求参数
+type RemoveByRelationReq struct {
+    AppId                 int64    `json:"appId"`
+    UserId                int64    `json:"userId"`
+}
+//用户常用应用-常用应用排序-请求参数
+type SortUsedAppReq struct {
+    AppIdList            interface{}    `json:"appIdList"`
+}
+//用户常用应用-新增或修改-请求参数
+type SubmitReq15 struct {
+    MarketUsedApp        interface{}    `json:"marketUsedApp"`
+}
+//portal接口-增加常用应用-请求参数
+type AddUniAppReq struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//portal接口-取消常用应用-请求参数
+type CancelUniAppReq struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//portal接口-得到所有应用（if_used=1时为常用应用）-请求参数
+type GetAllAppReq1 struct {
+    Platform             int64          `json:"platform"`
+}
+//portal接口-获取常用应用-请求参数
+type GetCommonUseAppReq struct {
+    TenantId             string         `json:"tenantId"`
+    UserId               int64          `json:"userId"`
+}
+//portal接口-获取全部应用-常用应用-请求参数
+type GetRemainAppReq struct {
+    TenantId             string         `form:"tenantId"`
+    UserId               int64          `form:"userId"`
+}
+//portal接口-获取用户的portal-请求参数
+type GetUserPortalReq struct {
+    TenantId             string         `form:"tenantId"`
+    UserId               int64          `form:"userId"`
+}
+//portal接口-分页-请求参数
+type ListReq16 struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+}
+//portal接口-删除-请求参数
+type RemoveReq16 struct {
+    Ids                  interface{}    `json:"ids"`
+}
+//portal接口-新增或更新用户的portal-请求参数
+type SaveOrUpdateAllPortalReq struct { 
+    Portals                 interface{}    `json:"portals"`
+    UserId               int64          `form:"userId"`
+    TenantId             string         `form:"tenantId"`
+}
+//portal接口-新增或修改-请求参数
+type SubmitReq16 struct {
+    Portal               interface{}    `json:"portal"`
+}
+//portal接口-获取常用应用v2-请求参数
+type V2GetCommonUseAppReq struct {
+    TenantId             string         `form:"tenantId"`
+    UserId               int64          `form:"userId"`
+}
+//redeploy接口-应用重新发布审核-请求参数
+type CheckRedeployReq struct {
+	CheckStatus         bool             `json:"checkStatus"`
+	RedeployIds         []string          `json:"redeloyIds"`
+}
+//redeploy接口-是否可以添加角色-请求参数
+type IsAddRoleReq struct {
+    AppId                int64          `form:"appId"`
+    RoleName             string         `form:"roleName"`
+}
+//redeploy接口-是否可以删除角色-请求参数
+type IsDeleteRoleReq struct {
+    AppId                int64          `form:"appId"`
+    RoleName             string         `form:"roleName"`
+}
+//redeploy接口-分页-请求参数
+type ListReq17 struct {
+    Current              int64          `json:"current"`
+    ReDeployData         interface{}    `json:"reDeployData"`
+    Size                 int64          `json:"size"`
+}
+//redeploy接口-获取全部应用-请求参数
+type ListAllReq2 struct {
+    ReDeployData         interface{}    `json:"reDeployData"`
+}
+//redeploy接口-重新部署应用-请求参数
+type RedeployReq struct {
+    MarketApplication    interface{}    `json:"marketApplication"`
+}

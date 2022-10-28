@@ -1,0 +1,1894 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "用户模块",
+    "description": "奥吉能系统用户模块",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/asset-user/token/user/retrieve/user": {
+      "get": {
+        "operationId": "userretrieveuser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "token"
+        ]
+      }
+    },
+    "/asset-user/token/user/update/pwd": {
+      "put": {
+        "operationId": "userupdatepwd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户注册-修改密码-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserUpdatePwdReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "token"
+        ]
+      }
+    },
+    "/asset-user/token/user/v1/user/reReg": {
+      "post": {
+        "operationId": "useruserreReg",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户注册请求",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserOptReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "token"
+        ]
+      }
+    },
+    "/asset-user/user/add/tenant": {
+      "post": {
+        "operationId": "addtenant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-用户申请加入租户-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTenantReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/add/user/v2": {
+      "post": {
+        "operationId": "adduserv2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-新增用户-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddUserV2Req"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/authority/transfer": {
+      "post": {
+        "operationId": "authoritytransfer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-权限转移-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthorityTransferReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/check/token": {
+      "get": {
+        "operationId": "checktoken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/createPassword": {
+      "get": {
+        "operationId": "createPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/delete/by/userIds": {
+      "delete": {
+        "operationId": "deletebyuserIds",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-删除用户(逻辑删除)-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteByUserIdsReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/delete/person": {
+      "post": {
+        "operationId": "deleteperson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-人员离职-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeletePersonReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/delete/userInfo": {
+      "delete": {
+        "operationId": "deleteuserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-删除用户(支持批量操作)-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteUserInfoReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/detail": {
+      "get": {
+        "operationId": "detail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get": {
+      "get": {
+        "operationId": "get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/all/usable/user": {
+      "get": {
+        "operationId": "getallusableuser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/all/user": {
+      "get": {
+        "operationId": "getalluser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/all/users": {
+      "get": {
+        "operationId": "getallusers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/online/user/count": {
+      "get": {
+        "operationId": "getonlineusercount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/person/tenantCode/v2": {
+      "get": {
+        "operationId": "getpersontenantCodev2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/user/by/phone": {
+      "get": {
+        "operationId": "getuserbyphone",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userIds",
+            "in": "query",
+            "required": true,
+            "type": "invalid",
+            "format": "UNKNOWN"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/get/user/tenantCode": {
+      "get": {
+        "operationId": "getusertenantCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenantCode",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/getManagerUserIdList": {
+      "post": {
+        "operationId": "getManagerUserIdList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-获取单位管理用户Id列表-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetManagerUserIdListReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/list": {
+      "get": {
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tenantCode",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/listPage": {
+      "get": {
+        "operationId": "listPage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "-1"
+          },
+          {
+            "name": "isDeleted",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": "0"
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tenantCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/remove": {
+      "delete": {
+        "operationId": "remove",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-删除-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RemoveReq1"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/removeByIds": {
+      "post": {
+        "operationId": "removeByIds",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-删除-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RemoveByIdsReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/reset-password": {
+      "post": {
+        "operationId": "resetpassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-重置密码-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordReq1"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/resetPassword": {
+      "post": {
+        "operationId": "resetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-重置密码-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/submit": {
+      "post": {
+        "operationId": "submit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-新增或修改-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubmitReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/tenant/user": {
+      "get": {
+        "operationId": "tenantuser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "count",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "realName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "tenantCode",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/token/getTenantUserId": {
+      "get": {
+        "operationId": "tokengetTenantUserId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/update": {
+      "put": {
+        "operationId": "update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "无参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Nil"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/update/login/tenant": {
+      "post": {
+        "operationId": "updatelogintenant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-更改登录默认租户-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateLoginTenantReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/update/password": {
+      "post": {
+        "operationId": "updatepassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-修改密码-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePasswordReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/update/user/info": {
+      "post": {
+        "operationId": "updateuserinfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-修改用户手机号和姓名-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserInfoReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/user/quit/tenant": {
+      "post": {
+        "operationId": "userquittenant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-用户退出单位-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserQuitTenantReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/v1/get/test/user": {
+      "get": {
+        "operationId": "v1gettestuser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "required": true,
+            "type": "invalid",
+            "format": "UNKNOWN"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/v1/reView/user": {
+      "put": {
+        "operationId": "reViewuser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-单位管理员审核用户-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReViewUserReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/asset-user/user/withdraw/application": {
+      "post": {
+        "operationId": "withdrawapplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户管理-用户取消申请加入租户-请求参数",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WithdrawApplicationReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/blade-auth/switch-tenant": {
+      "post": {
+        "operationId": "switch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "切换单位请求",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SwitchReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "token"
+        ]
+      }
+    },
+    "/blade-auth/token": {
+      "post": {
+        "operationId": "bladeauthtoken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "用户登录请求",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLoginReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "token"
+        ]
+      }
+    },
+    "/blade-auth/token/getSimplePwd": {
+      "post": {
+        "operationId": "getSimplePwd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CommonResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "检验密码复杂度",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetSimplePwdReq"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "token"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddTenantReq": {
+      "type": "object",
+      "properties": {
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "AddTenantReq",
+      "required": [
+        "tenantCode"
+      ]
+    },
+    "AddUserV2Req": {
+      "type": "object",
+      "properties": {
+        "idCard": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "realName": {
+          "type": "string"
+        },
+        "roleIds": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "AddUserV2Req",
+      "required": [
+        "idCard",
+        "phoneNumber",
+        "realName",
+        "roleIds",
+        "tenantCode"
+      ]
+    },
+    "AppTokenReq": {
+      "type": "object",
+      "properties": {
+        "appkey": {
+          "type": "string"
+        },
+        "appsecret": {
+          "type": "string"
+        }
+      },
+      "title": "AppTokenReq",
+      "required": [
+        "appkey",
+        "appsecret"
+      ]
+    },
+    "AuthorityTransferReq": {
+      "type": "object",
+      "properties": {
+        "tenantCode": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AuthorityTransferReq",
+      "required": [
+        "tenantCode",
+        "userId"
+      ]
+    },
+    "CommonResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "type": "object"
+        },
+        "msg": {
+          "type": "string"
+        },
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "CommonResponse",
+      "required": [
+        "code",
+        "data",
+        "msg",
+        "success"
+      ]
+    },
+    "CreatePasswordReq": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "CreatePasswordReq",
+      "required": [
+        "password"
+      ]
+    },
+    "DeleteByUserIdsReq": {
+      "type": "object",
+      "properties": {
+        "tenantCode": {
+          "type": "string"
+        },
+        "userIds": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeleteByUserIdsReq",
+      "required": [
+        "tenantCode",
+        "userIds"
+      ]
+    },
+    "DeletePersonReq": {
+      "type": "object",
+      "properties": {
+        "pkId": {
+          "type": "string"
+        },
+        "unitId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeletePersonReq",
+      "required": [
+        "pkId",
+        "unitId"
+      ]
+    },
+    "DeleteUserInfoReq": {
+      "type": "object",
+      "properties": {
+        "userIds": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteUserInfoReq",
+      "required": [
+        "userIds",
+        "tenantCode"
+      ]
+    },
+    "GetAllUsableUserReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        }
+      },
+      "title": "GetAllUsableUserReq",
+      "required": [
+        "current",
+        "size"
+      ]
+    },
+    "GetAllUsersReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        }
+      },
+      "title": "GetAllUsersReq",
+      "required": [
+        "current",
+        "size"
+      ]
+    },
+    "GetManagerUserIdListReq": {
+      "type": "object",
+      "properties": {
+        "unitIdList": {
+          "type": "object"
+        }
+      },
+      "title": "GetManagerUserIdListReq",
+      "required": [
+        "unitIdList"
+      ]
+    },
+    "GetSimplePwdReq": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "GetSimplePwdReq",
+      "required": [
+        "account",
+        "password"
+      ]
+    },
+    "GetUserByPhoneReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "userIds": {
+          "type": "object"
+        }
+      },
+      "title": "GetUserByPhoneReq",
+      "required": [
+        "phoneNumber",
+        "userIds"
+      ]
+    },
+    "GetUserTenantCodeReq": {
+      "type": "object",
+      "properties": {
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "GetUserTenantCodeReq",
+      "required": [
+        "tenantCode"
+      ]
+    },
+    "ListPageReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "default": "-1"
+        },
+        "isDeleted": {
+          "type": "integer",
+          "format": "int64",
+          "default": "0"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "ListPageReq",
+      "required": [
+        "current",
+        "size",
+        "id",
+        "isDeleted"
+      ]
+    },
+    "ListReq": {
+      "type": "object",
+      "properties": {
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "ListReq",
+      "required": [
+        "tenantCode"
+      ]
+    },
+    "Nil": {
+      "type": "object",
+      "title": "Nil"
+    },
+    "ReViewUserReq": {
+      "type": "object",
+      "properties": {
+        "isPass": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userIds": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "ReViewUserReq",
+      "required": [
+        "isPass",
+        "userIds",
+        "tenantCode"
+      ]
+    },
+    "RemoveByIdsReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      },
+      "title": "RemoveByIdsReq",
+      "required": [
+        "ids"
+      ]
+    },
+    "RemoveReq": {
+      "type": "object",
+      "properties": {
+        "createTime": {
+          "type": "string"
+        },
+        "createUser": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isAdmin": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isCreated": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isDeleted": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "isMaster": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "openId": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tenantApplyingState": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tenantCode": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string"
+        },
+        "updateUser": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        }
+      },
+      "title": "RemoveReq",
+      "required": [
+        "createTime",
+        "createUser",
+        "id",
+        "isAdmin",
+        "isCreated",
+        "isDeleted",
+        "isMaster",
+        "openId",
+        "phoneNumber",
+        "status",
+        "tenantApplyingState",
+        "tenantCode",
+        "updateTime",
+        "updateUser",
+        "userName"
+      ]
+    },
+    "RemoveReq1": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "string"
+        }
+      },
+      "title": "RemoveReq1",
+      "required": [
+        "ids"
+      ]
+    },
+    "ResetPasswordReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        }
+      },
+      "title": "ResetPasswordReq",
+      "required": [
+        "phoneNumber"
+      ]
+    },
+    "ResetPasswordReq1": {
+      "type": "object",
+      "properties": {
+        "userIds": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ResetPasswordReq1",
+      "required": [
+        "userIds"
+      ]
+    },
+    "SubmitReq": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object"
+        }
+      },
+      "title": "SubmitReq",
+      "required": [
+        "user"
+      ]
+    },
+    "SwitchReq": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "SwitchReq",
+      "required": [
+        "account",
+        "tenantCode"
+      ]
+    },
+    "TenantUserReq": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "current": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "realName": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "TenantUserReq",
+      "required": [
+        "count",
+        "current",
+        "size"
+      ]
+    },
+    "TokenGetTenantUserIdReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "TokenGetTenantUserIdReq",
+      "required": [
+        "phoneNumber",
+        "platform"
+      ]
+    },
+    "UpdateLoginTenantReq": {
+      "type": "object",
+      "properties": {
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateLoginTenantReq",
+      "required": [
+        "tenantCode"
+      ]
+    },
+    "UpdatePasswordReq": {
+      "type": "object",
+      "properties": {
+        "newPassword": {
+          "type": "string"
+        },
+        "newPassword1": {
+          "type": "string"
+        },
+        "oldPassword": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdatePasswordReq",
+      "required": [
+        "newPassword",
+        "newPassword1",
+        "oldPassword",
+        "userId"
+      ]
+    },
+    "UpdateUserInfoReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateUserInfoReq",
+      "required": [
+        "name",
+        "phoneNumber",
+        "userId"
+      ]
+    },
+    "UserLoginReq": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "UserLoginReq",
+      "required": [
+        "account",
+        "password"
+      ]
+    },
+    "UserOptReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "realName": {
+          "type": "string"
+        },
+        "pwd": {
+          "type": "string"
+        }
+      },
+      "title": "UserOptReq",
+      "required": [
+        "phoneNumber",
+        "realName",
+        "pwd"
+      ]
+    },
+    "UserQuitTenantReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "tenantCode": {
+          "type": "string"
+        }
+      },
+      "title": "UserQuitTenantReq",
+      "required": [
+        "phoneNumber",
+        "tenantCode"
+      ]
+    },
+    "UserRetrieveUserReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        }
+      },
+      "title": "UserRetrieveUserReq",
+      "required": [
+        "phoneNumber"
+      ]
+    },
+    "UserUpdatePwdReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "object"
+        },
+        "pwd": {
+          "type": "object"
+        }
+      },
+      "title": "UserUpdatePwdReq",
+      "required": [
+        "phoneNumber",
+        "pwd"
+      ]
+    },
+    "UserUserReRegReq": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "pwd": {
+          "type": "string"
+        },
+        "realName": {
+          "type": "string"
+        }
+      },
+      "title": "UserUserReRegReq",
+      "required": [
+        "phoneNumber",
+        "pwd",
+        "realName"
+      ]
+    },
+    "V1GetTestUser": {
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "object"
+        }
+      },
+      "title": "V1GetTestUser",
+      "required": [
+        "phoneNumber"
+      ]
+    },
+    "WithdrawApplicationReq": {
+      "type": "object",
+      "properties": {
+        "tenantCodeList": {
+          "type": "object"
+        },
+        "tenantCodes": {
+          "type": "object"
+        }
+      },
+      "title": "WithdrawApplicationReq",
+      "required": [
+        "tenantCodeList",
+        "tenantCodes"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

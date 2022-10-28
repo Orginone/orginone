@@ -1,0 +1,25 @@
+//审批
+
+@server(
+   jwt: Auth
+   group: audit
+   prefix: /blade-system/audit
+)
+
+service user-api {
+    //元数据,字典审核
+    @handler dictOrField
+    post /dictOrField(DictOrFieldReq) returns (CommonResponse)
+    //审批失败
+    @handler fail
+    post /fail(FailReq) returns (CommonResponse)
+    //获取审批
+    @handler getallaudit
+    get /getallaudit(GetallauditReq) returns (CommonResponse)
+    //审批结果查询
+    @handler resAudit
+    get /resAudit(Nil) returns (CommonResponse)
+    //审批成功
+    @handler success
+    post /success(SuccessReq) returns (CommonResponse)
+}

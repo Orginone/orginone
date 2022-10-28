@@ -1,0 +1,31 @@
+//市场菜单排序
+
+@server(
+   jwt: Auth
+   group: marketmenuusersort
+   prefix: /asset-market/marketmenuusersort
+)
+
+service market-api {
+    //详情
+    @handler detail
+    get /detail(DetailReq9) returns (CommonResponse)
+    //获取用户菜单排序列表
+    @handler getUserMenuSortList
+    get /getUserMenuSortList(GetUserMenuSortListReq) returns (CommonResponse)
+    //分页
+    @handler list
+    get /list(ListReq14) returns (CommonResponse)
+    //删除
+    @handler remove
+    post /remove(RemoveReq14) returns (CommonResponse)
+    //用户菜单排序--use
+    @handler sortUserMenu
+    post /sortUserMenu(SortUserMenuReq) returns (CommonResponse)
+    //单位用户菜单排序--use
+    @handler sortUserMenuByUnit
+    post /sortUserMenuByUnit(SortUserMenuByUnitReq) returns (CommonResponse)
+    //新增或修改
+    @handler submit
+    post /submit(SubmitReq14) returns (CommonResponse)
+}

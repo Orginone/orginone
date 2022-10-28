@@ -1,0 +1,16 @@
+//用户注册
+
+@server(
+   jwt: Auth
+   group: token
+   prefix: /asset-user/token
+)
+
+service user-api {
+    //检索手机号是否注册过--use
+    @handler userretrieveuser
+    get /user/retrieve/user(UserRetrieveUserReq) returns (CommonResponse)
+    //修改密码--use
+    @handler userupdatepwd
+    put /user/update/pwd(UserUpdatePwdReq) returns (CommonResponse)
+}

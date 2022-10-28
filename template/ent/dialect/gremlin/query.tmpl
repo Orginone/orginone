@@ -1,0 +1,114 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.typeScope */}}
+
+{{ define "dialect/gremlin/query" }}
+{{ $builder := pascal $.Scope.Builder }}
+{{ $receiver := receiver $builder }}
+
+func ({{ $receiver }} *{{ $builder }}) gremlinAll(ctx context.Context) ([]*{{ $.Name }}, error) {
+	res := &gremlin.Response{}
+	traversal := {{ $receiver }}.gremlinQuery(ctx)
+	if len({{ $receiver }}.fields) > 0 {
+		fields := make([]interface{}, len({{ $receiver }}.fields))
+		for i, f := range {{ $receiver }}.fields {
+			fields[i] = f
+		}
+		traversal.ValueMap(fields...)
+	} else {
+		traversal.ValueMap(true)
+	}
+	query, bindings := traversal.Query()
+	if err := {{ $receiver }}.driver.Exec(ctx, query, bindings, res); err != nil {
+		return nil, err
+	}
+	var {{ plural $.Receiver }} {{ plural $.Name  }}
+	if err := {{ plural $.Receiver }}.FromResponse(res); err != nil {
+		return nil, err
+	}
+	{{ plural $.Receiver }}.config({{ $receiver }}.config)
+	return {{ plural $.Receiver }}, nil
+}
+
+func ({{ $receiver }} *{{ $builder }}) gremlinCount(ctx context.Context) (int, error) {
+	res := &gremlin.Response{}
+	query, bindings := {{ $receiver }}.gremlinQuery(ctx).Count().Query()
+	if err := {{ $receiver }}.driver.Exec(ctx, query, bindings, res); err != nil {
+		return 0, err
+	}
+	return res.ReadInt()
+}
+
+func ({{ $receiver }} *{{ $builder }}) gremlinExist(ctx context.Context) (bool, error) {
+	res := &gremlin.Response{}
+	query, bindings := {{ $receiver }}.gremlinQuery(ctx).HasNext().Query()
+	if err := {{ $receiver }}.driver.Exec(ctx, query, bindings, res); err != nil {
+		return false, err
+	}
+	return res.ReadBool()
+}
+
+func ({{ $receiver }} *{{ $builder }}) gremlinQuery(context.Context) *dsl.Traversal {
+	v := g.V().HasLabel({{ $.Package }}.Label)
+	if {{ $receiver }}.gremlin != nil {
+		v = {{ $receiver }}.gremlin.Clone()
+	}
+	for _, p := range {{ $receiver }}.predicates {
+		p(v)
+	}
+	if len({{ $receiver }}.order) > 0 {
+		v.Order()
+		for _, p := range {{ $receiver }}.order {
+			p(v)
+		}
+	}
+	switch limit, offset := {{ $receiver }}.limit, {{ $receiver }}.offset; {
+	case limit != nil && offset != nil:
+		v.Range(*offset, *offset + *limit)
+	case offset != nil:
+		v.Range(*offset, math.MaxInt32)
+	case limit != nil:
+		v.Limit(*limit)
+	}
+	if unique := {{ $receiver }}.unique; unique == nil || *unique {
+		v.Dedup()
+	}
+	return v
+}
+{{ end }}
+
+{{/* query/path defines the query generation for path of a given edge. */}}
+{{ define "dialect/gremlin/query/path" }}
+	{{- $e := $.Scope.Edge }} {{/* the edge we need to genegrate the path to. */}}
+	{{- $receiver := $.Scope.Receiver }}
+	{{- $ident := $.Scope.Ident }}
+	gremlin := {{ $receiver }}.gremlinQuery(ctx)
+	{{- if $e.Bidi }}
+		{{ $ident }} = gremlin.Both({{ $.Package }}.{{ $e.LabelConstant }})
+	{{- else if $e.IsInverse }}
+		{{ $ident }} = gremlin.InE({{ $e.Type.Package }}.{{ $e.LabelConstant }}).OutV()
+	{{- else }}
+		{{ $ident }} = gremlin.OutE({{ $.Package }}.{{ $e.LabelConstant }}).InV()
+	{{- end }}
+{{ end }}
+
+
+{{/* query/from defines the query generation for an edge query from a given node. */}}
+{{ define "dialect/gremlin/query/from" }}
+	{{- $n := $ }} {{/* the node we start the query from. */}}
+	{{- $e := $.Scope.Edge }} {{/* the edge we need to genegrate the path to. */}}
+	{{- $receiver := $.Scope.Receiver }}
+	{{- $ident := $.Scope.Ident -}}
+
+	{{- if $e.Bidi }}
+		{{ $ident }} = g.V({{ $receiver }}.ID).Both({{ $n.Package }}.{{ $e.LabelConstant }})
+	{{- else if $e.IsInverse }}
+		{{ $ident }} = g.V({{ $receiver }}.ID).InE({{ $e.Type.Package }}.{{ $e.LabelConstant }}).OutV()
+	{{- else }}
+		{{ $ident }} = g.V({{ $receiver }}.ID).OutE({{ $n.Package }}.{{ $e.LabelConstant }}).InV()
+	{{- end }}
+{{ end }}

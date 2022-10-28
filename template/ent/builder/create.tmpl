@@ -1,0 +1,202 @@
+{{/*
+Copyright 2019-present Facebook Inc. All rights reserved.
+This source code is licensed under the Apache 2.0 license found
+in the LICENSE file in the root directory of this source tree.
+*/}}
+
+{{/* gotype: entgo.io/ent/entc/gen.Type */}}
+
+{{ define "create" }}
+{{ $pkg := base $.Config.Package }}
+{{ $runtimeRequired := or $.NumHooks $.NumPolicy }}
+
+{{ template "header" $ }}
+
+{{ template "import" $ }}
+
+import (
+	{{- range $import := $.SiblingImports }}
+		{{ $import.Alias }} "{{ $import.Path }}"
+	{{- end }}
+)
+
+{{ $builder := $.CreateName }}
+{{ $receiver := receiver $builder }}
+{{ $mutation := print $receiver ".mutation" }}
+
+// {{ $builder }} is the builder for creating a {{ $.Name }} entity.
+type {{ $builder }} struct {
+	config
+	mutation *{{  $.MutationName }}
+	hooks []Hook
+	{{- /* Additional fields to add to the builder. */}}
+	{{- $tmpl := printf "dialect/%s/create/fields" $.Storage }}
+	{{- if hasTemplate $tmpl }}
+		{{- xtemplate $tmpl . }}
+	{{- end }}
+}
+
+{{ with extend $ "Builder" $builder }}
+	{{ template "setter" . }}
+{{ end }}
+
+// Save creates the {{ $.Name }} in the database.
+func ({{ $receiver }} *{{ $builder }}) Save(ctx context.Context) (*{{ $.Name }}, error) {
+	var (
+		err error
+		node *{{ $.Name }}
+	)
+	{{- if $.HasDefault }}
+		{{- if $runtimeRequired }}
+			if err := {{ $receiver }}.defaults(); err != nil {
+				return nil, err
+			}
+		{{- else }}
+			{{ $receiver }}.defaults()
+		{{- end }}
+	{{- end }}
+	if len({{ $receiver }}.hooks) == 0 {
+		if err = {{ $receiver }}.check(); err != nil {
+			return nil, err
+		}
+		node, err = {{ $receiver }}.{{ $.Storage }}Save(ctx)
+	} else {
+		var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
+			mutation, ok := m.(*{{ $.MutationName }})
+			if !ok {
+				return nil, fmt.Errorf("unexpected mutation type %T", m)
+			}
+			if err = {{ $receiver }}.check(); err != nil {
+				return nil, err
+			}
+			{{ $mutation }} = mutation
+			if node, err = {{ $receiver }}.{{ $.Storage }}Save(ctx) ; err != nil {
+				return nil, err
+			}
+			mutation.{{ $.ID.BuilderField }} = &node.{{ $.ID.StructField }}
+			mutation.done = true
+			return node, err
+		})
+		for i := len({{ $receiver }}.hooks) - 1; i >= 0; i-- {
+			if {{ $receiver }}.hooks[i] == nil {
+				return nil, fmt.Errorf("{{ $pkg }}: uninitialized hook (forgotten import {{ $pkg }}/runtime?)")
+			}
+			mut = {{ $receiver }}.hooks[i](mut)
+		}
+		if _, err := mut.Mutate(ctx, {{ $mutation }}); err != nil {
+			return nil, err
+		}
+	}
+	return node, err
+}
+
+// SaveX calls Save and panics if Save returns an error.
+func ({{ $receiver }} *{{ $builder }}) SaveX(ctx context.Context) *{{ $.Name }} {
+	v, err := {{ $receiver }}.Save(ctx)
+	if err != nil {
+		panic(err)
+	}
+	return v
+}
+
+// Exec executes the query.
+func ({{ $receiver }} *{{ $builder }}) Exec(ctx context.Context) error {
+	_, err := {{ $receiver }}.Save(ctx)
+	return err
+}
+
+// ExecX is like Exec, but panics if an error occurs.
+func ({{ $receiver }} *{{ $builder }}) ExecX(ctx context.Context) {
+	if err := {{ $receiver }}.Exec(ctx); err != nil {
+		panic(err)
+	}
+}
+
+{{- $fields := $.Fields }}{{ if $.ID.UserDefined }}{{ $fields = append $fields $.ID }}{{ end }}
+{{ if $.HasDefault }}
+	// defaults sets the default values of the builder before save.
+	func ({{ $receiver }} *{{ $builder }}) defaults() {{ if $runtimeRequired }}error{{ end }}{
+		{{- range $f := $fields }}
+			{{- if $f.Default }}
+				if _, ok := {{ $mutation }}.{{ $f.MutationGet }}(); !ok {
+					{{- if and $runtimeRequired $f.DefaultFunc }}
+						if {{ $.Package }}.{{ $f.DefaultName }} == nil {
+							return fmt.Errorf("{{ $pkg }}: uninitialized {{ $.Package }}.{{ $f.DefaultName }} (forgotten import {{ $pkg }}/runtime?)")
+						}
+					{{- end }}
+					v := {{ $.Package }}.{{ $f.DefaultName }}{{ if $f.DefaultFunc }}(){{ end }}
+					{{ $mutation }}.Set{{ $f.StructField }}(v)
+				}
+			{{- end }}
+		{{- end }}
+		{{- if $runtimeRequired }}
+			return nil
+		{{- end }}
+	}
+{{ end }}
+
+// check runs all checks and user-defined validators on the builder.
+func ({{ $receiver }} *{{ $builder }}) check() error {
+	{{- range $f := $fields }}
+		{{- if and (not $f.Optional) (ne $f.Name $.ID.Name) }}
+			if _, ok := {{ $mutation }}.{{ $f.MutationGet }}(); !ok {
+				return &ValidationError{Name: "{{ $f.Name }}", err: errors.New(`{{ $pkg }}: missing required field "{{ $.Name }}.{{ $f.Name }}"`)}
+			}
+		{{- end }}
+		{{- with or $f.Validators $f.IsEnum }}
+			if v, ok := {{ $mutation }}.{{ $f.MutationGet }}(); ok {
+				{{- $basic := $f.BasicType "v" }}
+				if err := {{ $.Package }}.{{ $f.Validator }}({{ $basic }}); err != nil {
+					return &ValidationError{Name: "{{ $f.Name }}", err: fmt.Errorf(`{{ $pkg }}: validator failed for field "{{ $.Name }}.{{ $f.Name }}": %w`, err)}
+				}
+			}
+		{{- end }}
+	{{- end }}
+	{{- range $e := $.Edges }}
+		{{- if not $e.Optional }}
+			{{- if $e.Unique }}
+				if _, ok := {{ $mutation }}.{{ $e.StructField }}ID(); !ok {
+			{{- else }}
+				if len({{ $mutation }}.{{ $e.StructField }}IDs()) == 0 {
+			{{- end }}
+				return &ValidationError{Name: "{{ $e.Name }}", err: errors.New(`{{ $pkg }}: missing required edge "{{ $.Name }}.{{ $e.Name }}"`)}
+			}
+		{{- end }}
+	{{- end }}
+	return nil
+}
+
+{{ with extend $ "Builder" $builder }}
+	{{ $tmpl := printf "dialect/%s/create" $.Storage }}
+	{{ xtemplate $tmpl . }}
+{{ end }}
+
+{{- /* Support adding create methods by global templates. */}}
+{{- with $tmpls := matchTemplate "create/additional/*" }}
+	{{- range $tmpl := $tmpls }}
+		{{ xtemplate $tmpl $ }}
+	{{- end }}
+{{- end }}
+
+{{ $bulk := printf "%sCreateBulk" (pascal $.Name) }}
+{{ $receiver = receiver $bulk }}
+
+// {{ $bulk }} is the builder for creating many {{ $.Name }} entities in bulk.
+type {{ $bulk }} struct {
+	config
+	builders []*{{  $builder }}
+	{{- /* Additional fields to add to the builder. */}}
+	{{- $tmpl = printf "dialect/%s/create_bulk/fields" $.Storage }}
+	{{- if hasTemplate $tmpl }}
+		{{- xtemplate $tmpl . }}
+	{{- end }}
+}
+
+{{/* If the storage driver supports bulk creation */}}
+{{ $tmpl = printf "dialect/%s/create_bulk" $.Storage }}
+{{ if hasTemplate $tmpl }}
+	{{ with extend $ "Builder" $bulk "Receiver" $receiver }}
+		{{ xtemplate $tmpl . }}
+	{{ end }}
+{{ end }}
+{{ end }}

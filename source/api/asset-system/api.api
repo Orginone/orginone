@@ -1,0 +1,13 @@
+//api-tenant-controller
+
+@server(
+   jwt: Auth
+   group: api
+   prefix: /asset-system/api
+)
+
+service system-api {
+    //获取元数据列表
+    @handler tenantlist
+    get /tenant/list(TenantListReq) returns (CommonResponse)
+}

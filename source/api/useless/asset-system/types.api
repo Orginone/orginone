@@ -1,0 +1,83 @@
+
+//数据源管理-删除-请求参数
+type ApiVerificationReq struct {
+    Id                   string         `json:"id"`
+}
+//数据源管理-详情-请求参数
+type DetailReq1 struct {
+    ApiCookie            string         `json:"apiCookie"`
+    ApiHeader            string         `json:"apiHeader"`
+    ApiMethod            int64          `json:"apiMethod"`
+    ApiType              int64          `json:"apiType"`
+    ApiUrl               string         `json:"apiUrl"`
+    ContentType          int64          `json:"contentType"`
+    CreateTime           string         `json:"createTime"`
+    CreateUser           int64          `json:"createUser"`
+    Id                   int64          `json:"id"`
+    IsDeleted            int64          `json:"isDeleted"`
+    Params               string         `json:"params"`
+    SourceName           string         `json:"sourceName"`
+    SourceType           int64          `json:"sourceType"`
+    Status               int64          `json:"status"`
+    TenantCode           string         `json:"tenantCode"`
+    UpdateTime           string         `json:"updateTime"`
+    UpdateUser           int64          `json:"updateUser"`
+}
+//数据源管理-列表-请求参数
+type ListReq4 struct {
+    UrlName              string         `json:"urlName"`
+}
+//数据源管理-列表-请求参数
+type ListPerSceneReq struct {
+    ApiName              string         `json:"apiName"`
+    Current              int64          `json:"current"`
+    Page                 string         `json:"page"`
+    SceneId              string         `json:"sceneId"`
+    Size                 string         `json:"size"`
+}
+//数据源管理-删除-请求参数
+type RemoveReq6 struct {
+    Id                   int64          `json:"id"`
+}
+//数据源管理-新增或修改-请求参数
+type SubmitReq8 struct {
+    ApiDataSource        interface{}    `json:"apiDataSource"`
+}
+
+
+//在途业务用户数据处理-绑定在途业务人员-请求参数
+type ApptokenBindWorkingUserReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//在途业务用户数据处理-解除绑定在途业务人员-请求参数
+type ApptokenCancelBindWorkingUserReq struct {
+    Data                 interface{}    `json:"data"`
+}
+//在途业务用户数据处理-判断用户是否可以删除-请求参数
+type ApptokenCheckDeleteReq struct {
+    Type                 int64          `json:"type"`
+    UserId               int64          `json:"userId"`
+}
+//在途业务用户数据处理-获取用户无法删除类型-请求参数
+type ApptokenGetAllWorkingUserTypeReq struct {
+    UserId               int64          `json:"userId"`
+}
+//在途业务用户数据处理-获取某个应用下用户无法删除类型-请求参数
+type ApptokenGetAppWorkingUserTypeReq struct {
+    AppId                int64          `json:"appId"`
+    UserId               int64          `json:"userId"`
+}
+//在途业务用户数据处理-分页-请求参数
+type ListPageReq6 struct {
+    Current              int64          `json:"current"`
+    Size                 int64          `json:"size"`
+    WorkingData          interface{}    `json:"workingData"`
+}
+//在途业务用户数据处理-删除-请求参数
+type RemoveReq8 struct {
+    Ids                  string         `json:"ids"`
+}
+//在途业务用户数据处理-新增或修改-请求参数
+type SubmitReq10 struct {
+    WorkingData          interface{}    `json:"workingData"`
+}

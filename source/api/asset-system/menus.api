@@ -1,0 +1,43 @@
+//菜单管理
+
+@server(
+   jwt: Auth
+   group: menus
+   prefix: /asset-system/v1/menus
+)
+
+service system-api {
+    //终端聚合菜单数据--use
+    @handler allRoutes
+    get /allRoutes(AllRoutesReq) returns (CommonResponse)
+    //前端按钮数据
+    @handler buttons
+    get /buttons(ButtonsReq) returns (CommonResponse)
+    //查看详情
+    @handler detail
+    get /detail(DetailReq2) returns (CommonResponse)
+    //获取角色已有的的菜单
+    @handler getmenusbyroleId
+    get /get/menus/by/roleId(GetMenusByRoleIdReq) returns (CommonResponse)
+    //列表--use
+    @handler list
+    get /list(ListReq5) returns (CommonResponse)
+    //批量删除--use
+    @handler remove
+    delete /remove(RemoveReq7) returns (CommonResponse)
+    //角色所分配的树--use
+    @handler roletreekeys
+    get /role-tree-keys(RoleTreeKeysReq) returns (CommonResponse)
+    //终端菜单数据
+    @handler routes
+    get /routes(RoutesReq) returns (CommonResponse)
+    //新增或修改--use
+    @handler submit
+    post /submit(SubmitReq9) returns (CommonResponse)
+    //某类租户所分配的权限树
+    @handler tenanttreekeys
+    get /tenant-tree-keys(TenantTreeKeysReq) returns (CommonResponse)
+    //树形结构--use
+    @handler tree
+    get /tree(Nil) returns (CommonResponse)
+}
