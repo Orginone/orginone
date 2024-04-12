@@ -141,4 +141,28 @@ etc/user-api.yaml文件中配置好数据库，在user目录下面执行
 ```
 go run cmd/api/user.go -f cmd/api/etc/user-api.yaml
 ```
--->
+
+
+## 开发组构成
+
+
+### 贡献者 Contributor
+
+- 要求：完成一次pr的提交和合并
+
+### 提交者 Committer
+
+- 要求： 完成至少5个pr的提交和合并，并得到mentor的邀请
+- 权力：review和accept pr
+- Committer列表：
+
+### 维护者 maintainer
+
+- 要求：能长期维护项目，并得到mentor的邀请
+- 权力：合并pr进入主分支
+- Maintainer列表： [Captain842](https://github.com/Captain842), [realVeerHdu](https://github.com/realVeerHdu)
+
+### 导师 Mentor
+
+- 权力：决定项目发展方向，对项目进行指导
+- 导师[panzhaohui](https://github.com/panzhaohui)
